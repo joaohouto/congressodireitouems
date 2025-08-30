@@ -1,0 +1,20 @@
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Subscription {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  count     Int      @default(0)
+  name      String
+  email     String
+  category  String
+  instagram String?
+  igAvatar  String?
+  igName    String?
+  createdAt DateTime @default(now())
+}
