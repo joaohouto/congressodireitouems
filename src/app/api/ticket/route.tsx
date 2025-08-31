@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { ImageResponse } from "next/og";
 import { database } from "@/lib/prisma";
 
-export async function GET(req: Request, res: Response) {
+export async function GET(req: Request) {
   const url = new URL(req.url);
   const id = url.searchParams.get("id");
 

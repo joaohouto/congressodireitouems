@@ -4,7 +4,7 @@ import axios from "axios";
 
 import { sendSubscriptionConfirmation } from "@/email/sendSubscriptionConfirmation";
 
-export async function POST(request: Request, response: Response) {
+export async function POST(request: Request) {
   const body = await request.json();
   let { name, email, category, instagram, igAvatar, igName } = body;
 

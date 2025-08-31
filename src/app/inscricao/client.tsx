@@ -24,7 +24,6 @@ import {
   User2,
   UserCheck,
 } from "lucide-react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Form,
   FormControl,
@@ -41,29 +40,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import { Switch } from "@/components/ui/switch";
 import { Separator } from "@/components/ui/separator";
-import { Label } from "@/components/ui/label";
 
-import Link from "next/link";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
 
 import axios from "axios";
-import crypto from "crypto";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
 import { toast } from "sonner";
 import { appConfig } from "../config";
 
@@ -72,11 +59,11 @@ const formSchema = z
     name: z.string().min(2, {
       message: "Informe o seu nome.",
     }),
-    email: z.string("Informe o seu email.").email("Informe um email válido."),
-
+    email: z.email("Informe um email válido."),
     category: z.string("Escolha uma opção."),
 
-    custom_ticket: z.boolean().default(true),
+    custom_ticket: z.boolean().optional(),
+
     instagram: z.string({}).optional(),
     igName: z.string({}).optional(),
     igAvatar: z.string({}).optional(),
@@ -98,26 +85,14 @@ const formSchema = z
 export function SignUpForm() {
   const [loading, setLoading] = useState(false);
 
-  // Fallback dados do Instagram
-  const [isUploadDialogOpen, setIsUploadDialogOpen] = useState(false);
-  const [loadingUpload, setLoadingUpload] = useState(false);
-
-  // Resumos
-  const [abstractStatus, setAbstractStatus] = useState("empty");
-  const [anonAbstractStatus, setAnonAbstractStatus] = useState("empty");
-
-  // Clouflare Turnstile
-  const [turnstileStatus, setTurnstileStatus] = useState<
-    "success" | "error" | "expired" | "required"
-  >("required");
-
   const router = useRouter();
-  const submitRef = useRef<any>();
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       name: "",
+      category: "",
+      email: "",
       custom_ticket: true,
     },
   });
@@ -137,7 +112,6 @@ export function SignUpForm() {
       if (err.response.data.message === "Erro ao buscar dados do Instagram!") {
         form.setValue("instagram", "");
         form.setValue("custom_ticket", false);
-        setIsUploadDialogOpen(true);
       }
 
       toast.error(err.response.data.message || "Algo deu errado!");
@@ -299,12 +273,7 @@ export function SignUpForm() {
                 </Card>
               )}
 
-              <Button
-                className="w-full"
-                type="submit"
-                ref={submitRef}
-                disabled={loading || loadingUpload}
-              >
+              <Button className="w-full" type="submit" disabled={loading}>
                 {loading ? (
                   <>
                     Enviando

@@ -1,3 +1,4 @@
+import * as React from "react";
 import { resend } from "@/lib/resend";
 import { SubscriptionEmailTemplate } from "@/components/email/subscription-confirmation";
 import { appConfig } from "@/app/config";
@@ -24,7 +25,7 @@ export async function sendSubscriptionConfirmation({
       email,
       name,
       category,
-    }),
+    }) as React.ReactElement,
   });
 
   if (error) {
