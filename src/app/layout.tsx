@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { appConfig } from "./config";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import Providers from "./providers";
+import AuthBanner from "@/components/auth-banner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,6 +22,9 @@ export const metadata: Metadata = {
     template: `%s | ${appConfig.shortTitle}`,
   },
   description: appConfig.description,
+  icons: {
+    icon: "/icon.png",
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -48,7 +53,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <Providers>
+          <AuthBanner />
+          {children}
+        </Providers>
         <Toaster />
       </body>
     </html>

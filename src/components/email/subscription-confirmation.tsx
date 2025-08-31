@@ -11,7 +11,6 @@ import {
   Row,
   Column,
   Button,
-  Section,
   Link,
 } from "@react-email/components";
 
@@ -26,14 +25,14 @@ interface EmailTemplateProps {
 
 export const SubscriptionEmailTemplate: React.FC<
   Readonly<EmailTemplateProps>
-> = ({ id, email, name, category }) => (
+> = ({ id, name, category }) => (
   <Html lang="pt-Br">
     <Head />
     <Tailwind>
       <Body className="mx-auto my-auto bg-gray-50 font-sans">
         <Container className="my-[40px] rounded p-8 shadow-sm">
           <Img
-            src={`https://example.com/banner.png`}
+            src={`${process.env.NEXT_PUBLIC_HOSTNAME}/banner.png`}
             alt={appConfig.title}
             className="w-full rounded"
           />
@@ -71,7 +70,7 @@ export const SubscriptionEmailTemplate: React.FC<
                 <Column className="w-1/2 pr-2">
                   <Button
                     className="box-border block w-full rounded-[8px] bg-green-800 px-[20px] py-[12px] text-center font-semibold text-white"
-                    href={`https://example.com`}
+                    href={process.env.NEXT_PUBLIC_HOSTNAME}
                   >
                     Programação do evento
                   </Button>
@@ -79,7 +78,7 @@ export const SubscriptionEmailTemplate: React.FC<
                 <Column className="w-1/2 pl-2">
                   <Button
                     className="box-border block w-full rounded-[8px] border border-solid border-gray-200 bg-white px-[20px] py-[12px] text-center font-semibold text-gray-900"
-                    href={`https://example.com/ingresso/${id}`}
+                    href={`${process.env.NEXT_PUBLIC_HOSTNAME}/ingresso/${id}`}
                   >
                     Seu ingresso
                   </Button>

@@ -80,6 +80,22 @@ export async function POST(request: Request) {
       },
     });
 
+    // Enviar dados para o Zapier
+    const zapierWebhookUrl = process.env.ZAPIER_WEBHOOK_URL;
+    if (zapierWebhookUrl) {
+      try {
+        await axios.post(zapierWebhookUrl, {
+          Nome: name,
+          Email: email,
+          Categoria: category,
+          Instagram: instagram,
+          DataInscricao: new Date().toISOString(),
+        });
+      } catch (zapierError) {
+        console.error("Erro ao enviar dados para o Zapier:", zapierError);
+      }
+    }
+
     await sendSubscriptionConfirmation({
       id: subscription.id,
       name,

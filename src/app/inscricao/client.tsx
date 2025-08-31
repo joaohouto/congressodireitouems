@@ -3,7 +3,13 @@
 import { useRouter } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import {
   ArrowUpRight,
@@ -70,15 +76,14 @@ const formSchema = z
   })
   .refine(
     (data) => {
-      // Verifica se o instagram é obrigatório quando custom_ticket é true
       if (data.custom_ticket) {
         return data.instagram !== undefined && data.instagram !== "";
       }
-      return true; // Se custom_ticket for false, a validação passa normalmente
+      return true;
     },
     {
       message: "Informe o seu usuário.",
-      path: ["instagram"], // Aponta o erro para o campo instagram
+      path: ["instagram"],
     }
   );
 
@@ -124,15 +129,15 @@ export function SignUpForm() {
       <Card className="w-full mx-auto my-auto rounded-lg">
         <CardHeader>
           <div className="h-12 w-12 rounded-full bg-primary grid place-items-center mb-2">
-            <UserCheck className="h-6 w-6 text-white" />
+            <UserCheck className="h-6 w-6 text-background" />
           </div>
 
-          <h1 className="text-3xl font-semibold tracking-tight mb-2 text-primary">
+          <CardTitle className="text-3xl font-semibold tracking-tight mb-2 text-primary">
             Inscrições
-          </h1>
-          <p className="text-base text-neutral-600 text-balance">
+          </CardTitle>
+          <CardDescription className="text-base  text-balance">
             Preencha o formulário abaixo para se inscrever no {appConfig.title}.
-          </p>
+          </CardDescription>
         </CardHeader>
 
         <CardContent>
@@ -228,7 +233,7 @@ export function SignUpForm() {
                   <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 gap-4">
                     <div className="space-y-0.5">
                       <FormLabel className="text-base">
-                        <Ticket className="text-primary size-8" />
+                        <Ticket className="text-primary size-6" />
                         Gerar ingresso personalizado
                       </FormLabel>
                       <FormDescription>

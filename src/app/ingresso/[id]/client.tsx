@@ -92,7 +92,7 @@ export const StoryPreview = ({ id }: { id: string }) => {
       />
 
       <Card className="rounded-lg w-full p-0">
-        <CardContent className="p-0">
+        <CardContent className="p-0 relative">
           <div className="relative aspect-[9/16] w-full">
             <Image
               src={`/api/ticket?id=${id}`}
@@ -101,7 +101,7 @@ export const StoryPreview = ({ id }: { id: string }) => {
               objectFit="cover"
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAASAAoDAREAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAABQcICf/EACQQAAIBBAICAQUAAAAAAAAAAAECAwQFBhEAIQcSgQgTMUGR/8QAGAEBAAMBAAAAAAAAAAAAAAAABQECBgP/xAAgEQACAgAHAQEAAAAAAAAAAAABAgADBRETIUFRcSMz/9oADAMBAAIRAxEAPwB8YL9G2D5ThmN5CK+/PUXe10tbVBLjToInljVmCxmItoe3Wz88Nrw6l0DMTmYUmHo6ht9x3JuzK0UuL5ffMZp5p5IrRcqqhR5SPdlilZAW0Nb0veuF2UBXKjgw6ygK5UcGX54ey3DqXxVhNDecgio69LBbTLEn3SdinjPTAdbBHzzRUj5r5NFT+a+TP/yzPXzeVMylWGkcPkFxYMHcgg1MnY2N/wB4PaG1G9MGtB1G9MQL5FkEDtBBfbjHHGSqIlU4VQPwAAeuQGPcnMw/A7ywxyyuzu6hmZjssSOyT+zyk5z/2Q=="
-              className="rounded-t-lg object-cover"
+              className="rounded-lg object-cover"
               onError={() => toast.error("Erro ao carregar imagem!")}
               onLoad={() => {
                 setLoading(false);
@@ -111,14 +111,14 @@ export const StoryPreview = ({ id }: { id: string }) => {
           </div>
 
           {!loading && (
-            <div className="p-4 flex flex-row justify-between items-center gap-2">
+            <div className="absolute top-0 w-full p-4 flex flex-row justify-between items-center gap-2">
               <Button asChild variant="outline">
                 <a href={`/api/ticket?id=${id}`} download>
                   <Download /> Salvar imagem
                 </a>
               </Button>
 
-              <Button onClick={handleShare}>
+              <Button variant="outline" onClick={handleShare}>
                 <RiInstagramLine /> Compartilhar
               </Button>
             </div>

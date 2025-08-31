@@ -1,0 +1,9 @@
+{
+  "tailwind": {
+    "css": "./src/app/globals.css"
+  },
+  "aliases": {
+    "components": "@/components/luxe",
+    "utils": "@/lib/utils"
+  }
+}
