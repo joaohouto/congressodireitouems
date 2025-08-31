@@ -3,7 +3,6 @@ import { database } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import GerenciaClient from "./client";
-import GerenciaHeader from "./header";
 
 export default async function Gerencia() {
   const session = await getServerSession(authOptions);
@@ -16,7 +15,10 @@ export default async function Gerencia() {
 
   return (
     <div className="container mx-auto p-4">
-      <GerenciaHeader />
+      <header className="flex justify-between items-center mb-4">
+        <h1 className="text-2xl font-bold">Inscrições</h1>
+      </header>
+
       <GerenciaClient subscriptions={subscriptions} />
     </div>
   );

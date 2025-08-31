@@ -22,9 +22,7 @@ export const metadata: Metadata = {
     template: `%s | ${appConfig.shortTitle}`,
   },
   description: appConfig.description,
-  icons: {
-    icon: "/icon.png",
-  },
+
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -38,6 +36,20 @@ export const metadata: Metadata = {
         width: 1200,
         height: 630,
         alt: appConfig.title,
+      },
+    ],
+  },
+  icons: {
+    icon: [
+      {
+        media: "(prefers-color-scheme: light)",
+        url: "/icon-light.svg",
+        href: "/icon-light.svg",
+      },
+      {
+        media: "(prefers-color-scheme: dark)",
+        url: "/icon-dark.svg",
+        href: "/icon-dark.svg",
       },
     ],
   },

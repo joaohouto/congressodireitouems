@@ -7,9 +7,12 @@ import ReactMarkdown from "react-markdown";
 import { formatDate } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
+import { SiGooglecalendar } from "react-icons/si";
+
 import {
   Calendar,
   CalendarCheck,
+  CalendarCheck2,
   Clock,
   MapPin,
   PresentationIcon,
@@ -142,11 +145,11 @@ export default function Page() {
                         </div>
                       </DialogTrigger>
 
-                      <DialogContent className="max-h-[calc(100%-2rem)] w-[800px] overflow-y-auto flex flex-col md:flex-row">
-                        {!!event.avatar && (
+                      <DialogContent className="max-h-[calc(100%-2rem)] w-[800px] overflow-y-auto flex flex-col ">
+                        {!!event.image && (
                           <Image
                             className="rounded-sm size-[200px] object-cover bg-muted"
-                            src={event.avatar}
+                            src={event.image}
                             alt={event.person}
                             width={200}
                             height={200}

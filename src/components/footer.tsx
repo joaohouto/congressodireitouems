@@ -24,8 +24,8 @@ export function Footer() {
       </div>
 
       <div className="mt-8 text-center text-xs text-muted-foreground border-t  pt-4">
-        &copy; {new Date().getFullYear()} {appConfig.title}. Todos os direitos
-        reservados.
+        &copy; {new Date().getFullYear()} {appConfig.title}. Organizado com
+        muito carinho por alunos e professores.
       </div>
     </footer>
   );

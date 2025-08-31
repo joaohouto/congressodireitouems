@@ -10,6 +10,8 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import * as XLSX from "xlsx";
+import { FileSpreadsheet } from "lucide-react";
+import { formatDate } from "date-fns";
 
 type Subscription = {
   id: string;
@@ -17,6 +19,7 @@ type Subscription = {
   email: string;
   category: string;
   instagram: string | null;
+  createdAt: string;
 };
 
 export default function GerenciaClient({
@@ -47,8 +50,13 @@ export default function GerenciaClient({
   return (
     <div>
       <div className="flex justify-end mb-4 gap-2">
-        <Button onClick={() => handleExport("csv")}>Exportar CSV</Button>
-        <Button onClick={() => handleExport("excel")}>Exportar Excel</Button>
+        <Button variant="outline" onClick={() => handleExport("csv")}>
+          Exportar CSV
+        </Button>
+        <Button variant="outline" onClick={() => handleExport("excel")}>
+          <FileSpreadsheet />
+          Exportar Excel
+        </Button>
       </div>
       <Table>
         <TableHeader>
@@ -57,6 +65,7 @@ export default function GerenciaClient({
             <TableHead>Email</TableHead>
             <TableHead>Categoria</TableHead>
             <TableHead>Instagram</TableHead>
+            <TableHead>Criada em</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -66,6 +75,9 @@ export default function GerenciaClient({
               <TableCell>{sub.email}</TableCell>
               <TableCell>{sub.category}</TableCell>
               <TableCell>{sub.instagram}</TableCell>
+              <TableCell>
+                {formatDate(sub.createdAt, "dd/MM/yyyy HH:mm")}
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
