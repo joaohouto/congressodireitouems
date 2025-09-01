@@ -17,9 +17,12 @@ type Subscription = {
   id: string;
   name: string;
   email: string;
+  count: number;
   category: string;
   instagram: string | null;
-  createdAt: string;
+  igAvatar: string | null;
+  igName: string | null;
+  createdAt: Date;
 };
 
 export default function GerenciaClient({
