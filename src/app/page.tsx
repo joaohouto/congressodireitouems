@@ -1,5 +1,6 @@
 "use client";
 
+import { motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
@@ -7,12 +8,15 @@ import ReactMarkdown from "react-markdown";
 import { formatDate } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
-import { SiGooglecalendar } from "react-icons/si";
+import {
+  CalendarBlankIcon,
+  MapPinIcon,
+  NotePencilIcon,
+} from "@phosphor-icons/react";
 
 import {
   Calendar,
   CalendarCheck,
-  CalendarCheck2,
   Clock,
   MapPin,
   PresentationIcon,
@@ -31,7 +35,9 @@ import { RightBranchIcon } from "@/components/icon/right-branch";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 
-import { EVENT_SCHEDULE } from "./config";
+import { appConfig, EVENT_SCHEDULE } from "./config";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 const AddToCalendarButton = ({ event }: { event: any }) => {
   // Formata a data para YYYYMMDDTHHMMSS
@@ -72,37 +78,176 @@ const AddToCalendarButton = ({ event }: { event: any }) => {
   );
 };
 
+const AnimatedLogoCloud = () => {
+  const [logos, setLogos] = useState<any>([]);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const response = await axios.get("/api/sponsors");
+        setLogos(response.data.files);
+      } catch (error) {
+        console.error("Erro ao buscar logos:", error);
+      }
+    })();
+  }, []);
+
+  return (
+    <div className="w-full py-12">
+      <div className="mx-auto w-full px-4">
+        <div
+          className="group relative mt-6 flex gap-6 overflow-hidden p-2"
+          style={{
+            maskImage:
+              "linear-gradient(to left, transparent 0%, black 20%, black 80%, transparent 95%)",
+          }}
+        >
+          {Array(5)
+            .fill(null)
+            .map((index) => (
+              <div
+                key={index}
+                className="flex shrink-0 animate-logo-cloud flex-row justify-around gap-6"
+              >
+                {logos.map((logo: any, key: any) => (
+                  <img
+                    key={key}
+                    src={logo}
+                    className="h-10 w-auto px-2 dark:invert"
+                    alt={`${logo}`}
+                  />
+                ))}
+              </div>
+            ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
 export default function Page() {
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0, filter: "blur(6px)" },
+    visible: (index: number) => ({
+      opacity: 1,
+      y: 0,
+      filter: "blur(0)",
+      transition: {
+        duration: 0.6,
+        delay: index * 0.2,
+      },
+    }),
+  };
+
   return (
     <div className="min-h-screen bg-muted">
       <div className="max-w-[600px] mx-auto my-auto p-8 flex flex-col items-center">
-        <header className="flex flex-col items-center gap-6 py-10">
-          <Image
-            width={340}
-            height={116}
-            layout="contain"
-            src="/logo.svg"
-            alt="Congresso Jurídico"
-          />
-
-          <span className="flex items-center gap-2 font-semibold ">
-            <LeftBranchIcon className="size-8 opacity-20" />
-            <span className="text-sky-900">
-              Direito Penal e Processual Penal
-            </span>
-            <RightBranchIcon className="size-8 opacity-20" />
-          </span>
-
-          <Button
-            asChild
-            className="h-12 w-[310px] uppercase rounded-full text-base font-semibold text-primary-foreground"
+        <header className="flex flex-col items-center gap-7 py-15 relative">
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={0}
+            className="absolute -top-[130px] -right-[200px]"
           >
-            <Link href="/inscricao">Inscreva-se</Link>
-          </Button>
+            <Image
+              width={300}
+              height={100}
+              layout="contain"
+              src="/araras.png"
+              alt="Araras"
+            />
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={1}
+          >
+            <Image
+              width={340}
+              height={116}
+              layout="contain"
+              src="/logo.svg"
+              alt="Congresso Jurídico"
+            />
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={2}
+            className="flex justify-center items-end font-semibold"
+          >
+            <LeftBranchIcon className="size-9 opacity-20" />
+            <span className="text-secondary text-center max-w-[240px] text-sm leading-3.5">
+              {appConfig.theme}
+            </span>
+            <RightBranchIcon className="size-9 opacity-20" />
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={3}
+            className="grid grid-cols-2 gap-4"
+          >
+            <div className="flex gap-2 leading-3.5 font-semibold text-secondary text-sm max-w-[160px]">
+              <CalendarBlankIcon
+                weight="fill"
+                className="size-6 min-w-6 text-primary"
+              />
+              {appConfig.fullDate}
+            </div>
+
+            <div className="flex gap-2 leading-3.5 font-semibold text-secondary text-sm max-w-[160px]">
+              <MapPinIcon
+                weight="fill"
+                className="size-6 min-w-6 text-primary"
+              />
+              {appConfig.place}
+            </div>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={4}
+          >
+            <Button
+              asChild
+              className="h-12 w-[310px] uppercase rounded-full text-base font-semibold text-primary-foreground"
+            >
+              <Link href="/inscricao">
+                <NotePencilIcon />
+                Inscreva-se
+              </Link>
+            </Button>
+          </motion.div>
+
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={5}
+            className="absolute -bottom-[0px] -left-[240px]"
+          >
+            <Image
+              width={140}
+              height={100}
+              layout="contain"
+              src="/themis.png"
+              alt="Themis"
+            />
+          </motion.div>
         </header>
 
         <div className="flex flex-col items-center gap-6">
-          <h2 className="uppercase tracking-widest text-muted-foreground">
+          <h2 className="uppercase tracking-widest text-muted-foreground my-6">
             Programação
           </h2>
 
@@ -129,7 +274,7 @@ export default function Page() {
                     <Dialog key={event.title}>
                       <DialogTrigger>
                         <div className="flex items-start gap-4">
-                          <span className="text-sm bg-primary text-background py-1 px-2 rounded-full w-[52px] text-center text-balance font-semibold">
+                          <span className="text-sm bg-primary text-primary-foreground py-1 px-2 rounded-full w-15 min-w-15 text-center text-balance font-semibold">
                             {event.time}
                           </span>
                           <div className="flex flex-col items-start justify-start">
@@ -148,7 +293,7 @@ export default function Page() {
                       <DialogContent className="max-h-[calc(100%-2rem)] w-[800px] overflow-y-auto flex flex-col ">
                         {!!event.image && (
                           <Image
-                            className="rounded-sm size-[200px] object-cover bg-muted"
+                            className="rounded-sm h-[200px] w-full object-cover bg-muted"
                             src={event.image}
                             alt={event.person}
                             width={200}
@@ -206,6 +351,8 @@ export default function Page() {
             </Card>
           ))}
         </div>
+
+        <AnimatedLogoCloud />
 
         <Footer />
       </div>

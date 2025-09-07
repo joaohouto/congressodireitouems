@@ -5,7 +5,7 @@ import { RiInstagramLine } from "react-icons/ri";
 export function Footer() {
   return (
     <footer className="w-full py-8 px-4 mt-6 bg-background rounded-xl">
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex flex-col md:flex-row items-center justify-center gap-4">
         <span>Siga-nos</span>
 
         <Button
