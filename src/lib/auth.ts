@@ -3,6 +3,7 @@ import { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { database } from "@/lib/prisma";
 import { resend } from "@/lib/resend";
+import { appConfig } from "@/app/config";
 
 const whitelist = process.env.AUTH_WHITELIST?.split(",") ?? [];
 
@@ -10,14 +11,13 @@ export const authOptions: NextAuthOptions = {
   adapter: PrismaAdapter(database),
   providers: [
     EmailProvider({
-      server: "",
-      from: "naoresponda@congressojuridicouems.com.br",
+      from: `${appConfig.shortTitle} <${appConfig.email}>`,
       sendVerificationRequest: async ({ identifier: email, url }) => {
         await resend.emails.send({
-          from: "naoresponda@congressojuridicouems.com.br",
+          from: appConfig.email,
           to: email,
-          subject: "Seu link de acesso para o Congresso Jurídico",
-          html: `<p>Clique <a href="${url}">aqui</a> para entrar.</p>`,
+          subject: "Seu link de acesso",
+          html: `<p>Clique aqui para entrar: ${url}`,
         });
       },
     }),

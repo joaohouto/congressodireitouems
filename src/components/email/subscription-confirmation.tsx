@@ -15,6 +15,7 @@ import {
 } from "@react-email/components";
 
 import { appConfig } from "@/app/config";
+import { Calendar, Ticket } from "lucide-react";
 
 interface EmailTemplateProps {
   id: string;
@@ -40,21 +41,21 @@ export const SubscriptionEmailTemplate: React.FC<
             Olá, <b>{name}</b>!
           </Text>
           <Text className="text-gray-700">
-            Estamos felizes em confirmar sua inscrição no III Congresso Jurídico
-            do Curso de Direito da UEMS, que ocorrerá de 11 a 14 de novembro de
-            2024.
+            Estamos felizes em confirmar sua inscrição no {appConfig.title}, que
+            ocorrerá <b>{appConfig.fullDate}</b>.
           </Text>
           <ul className="list-disc pl-4 text-gray-700">
             <li>
               <b>Tema:</b> {appConfig.theme}
             </li>
             <li>
-              <b>Local:</b> Unidade da UEMS Aquidauana Rodovia Graziela Maciel
-              Barroso, Km 12 Zona Rural
+              <b>Local:</b> {appConfig.place}
             </li>
           </ul>
 
-          <Text className="my-4 font-semibold text-gray-800">Seus dados</Text>
+          <Text className="my-4 font-semibold text-gray-800">
+            Sua inscrição
+          </Text>
           <ul className="list-disc pl-4 text-gray-700">
             <li>
               Nome: <b>{name}</b>
@@ -70,17 +71,47 @@ export const SubscriptionEmailTemplate: React.FC<
                 <Column className="w-1/2 pr-2">
                   <Button
                     className="box-border block w-full rounded-[8px] bg-green-800 px-[20px] py-[12px] text-center font-semibold text-white"
-                    href={process.env.NEXT_PUBLIC_HOSTNAME}
+                    href={`${process.env.NEXT_PUBLIC_HOSTNAME}/ingresso/${id}`}
                   >
-                    Programação do evento
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-ticket-icon lucide-ticket"
+                    >
+                      <path d="M2 9a3 3 0 010 6v2a2 2 0 002 2h16a2 2 0 002-2v-2a3 3 0 010-6V7a2 2 0 00-2-2H4a2 2 0 00-2 2zM13 5v2M13 17v2M13 11v2" />
+                    </svg>
+                    Seu ingresso
                   </Button>
                 </Column>
                 <Column className="w-1/2 pl-2">
                   <Button
                     className="box-border block w-full rounded-[8px] border border-solid border-gray-200 bg-white px-[20px] py-[12px] text-center font-semibold text-gray-900"
-                    href={`${process.env.NEXT_PUBLIC_HOSTNAME}/ingresso/${id}`}
+                    href={process.env.NEXT_PUBLIC_HOSTNAME}
                   >
-                    Seu ingresso
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width={24}
+                      height={24}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth={2}
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      className="lucide lucide-calendar-days-icon lucide-calendar-days"
+                    >
+                      <path d="M8 2v4M16 2v4" />
+                      <rect width={18} height={18} x={3} y={4} rx={2} />
+                      <path d="M3 10h18M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01" />
+                    </svg>
+                    Programação do evento
                   </Button>
                 </Column>
               </Row>
@@ -104,7 +135,7 @@ export const SubscriptionEmailTemplate: React.FC<
           <Text className="text-xs text-gray-500">
             Atenciosamente,
             <br />
-            Curso de Direito da UEMS Aquidauana
+            Organização do {appConfig.shortTitle}
           </Text>
         </Container>
       </Body>

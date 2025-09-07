@@ -58,7 +58,7 @@ import { z } from "zod";
 import axios from "axios";
 
 import { toast } from "sonner";
-import { appConfig } from "../config";
+import { appConfig, SUBSCRIPTION_CATEGORIES } from "../config";
 
 const formSchema = z
   .object({
@@ -201,24 +201,14 @@ export function SignUpForm() {
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
-                        <SelectItem value="Aluno da UEMS (1º ano)">
-                          🎓 Aluno da UEMS (1º ano)
-                        </SelectItem>
-
-                        <SelectItem value="Aluno da UEMS (2º ano)">
-                          🎓 Aluno da UEMS (2º ano)
-                        </SelectItem>
-
-                        <SelectItem value="Aluno da UEMS (3º ano)">
-                          🎓 Aluno da UEMS (3º ano)
-                        </SelectItem>
-
-                        <SelectItem value="Aluno de outra instituição">
-                          🎓 Aluno de outra instituição
-                        </SelectItem>
-                        <SelectItem value="Público externo">
-                          👥 Público externo
-                        </SelectItem>
+                        {SUBSCRIPTION_CATEGORIES.map((category) => (
+                          <SelectItem
+                            key={category.value}
+                            value={category.value}
+                          >
+                            {category.label}
+                          </SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                     <FormMessage />

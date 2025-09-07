@@ -15,6 +15,7 @@ import { useState } from "react";
 import { RiInstagramLine } from "react-icons/ri";
 import { appConfig } from "@/app/config";
 import { toast } from "sonner";
+import { Footer } from "@/components/footer";
 
 export const StoryPreview = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true);
@@ -125,6 +126,8 @@ export const StoryPreview = ({ id }: { id: string }) => {
           )}
         </CardContent>
       </Card>
+
+      <Footer />
     </>
   );
 };

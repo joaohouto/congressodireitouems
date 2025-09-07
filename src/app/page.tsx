@@ -147,7 +147,7 @@ export default function Page() {
             variants={itemVariants}
             initial="hidden"
             animate="visible"
-            custom={0}
+            custom={5}
             className="absolute -top-[130px] -right-[200px]"
           >
             <Image
@@ -234,7 +234,7 @@ export default function Page() {
             initial="hidden"
             animate="visible"
             custom={5}
-            className="absolute -bottom-[0px] -left-[240px]"
+            className="absolute -bottom-[0px] -left-[200px]"
           >
             <Image
               width={140}
@@ -246,7 +246,13 @@ export default function Page() {
           </motion.div>
         </header>
 
-        <div className="flex flex-col items-center gap-6">
+        <motion.div
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          custom={6}
+          className="flex flex-col items-center gap-6"
+        >
           <h2 className="uppercase tracking-widest text-muted-foreground my-6">
             Programação
           </h2>
@@ -350,7 +356,11 @@ export default function Page() {
               </CardContent>
             </Card>
           ))}
-        </div>
+        </motion.div>
+
+        <h2 className="uppercase tracking-widest text-muted-foreground mt-20">
+          Patrocinadores
+        </h2>
 
         <AnimatedLogoCloud />
 
