@@ -5,6 +5,7 @@ export const appConfig = {
   theme: "Direitos Humanos Socioambientais: Perspectivas e Desafios",
   fullDate: "12 a 14 de novembro de 2025",
   place: "Câmara Municipal de Aquidauana/MS",
+  description: "",
   instagram: "congressodireitouems",
   email: "nao-responda@joaocouto.com",
 };
