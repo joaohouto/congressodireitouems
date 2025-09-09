@@ -141,7 +141,7 @@ export default function Page() {
 
   return (
     <div className="min-h-screen bg-muted">
-      <div className="max-w-[600px] mx-auto my-auto p-8 flex flex-col items-center">
+      <div className="max-w-[600px] mx-auto my-auto py-8 px-4 flex flex-col items-center">
         <header className="flex flex-col items-center gap-7 py-15 relative">
           <motion.div
             variants={itemVariants}

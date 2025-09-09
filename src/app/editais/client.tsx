@@ -44,7 +44,7 @@ function EditalItem({ edital }: { edital: Edital }) {
 
 export function EditaisList() {
   return (
-    <div className="w-full mx-auto my-auto rounded-lg space-y-4">
+    <div className="w-full mx-auto my-auto rounded-lg flex flex-col gap-6">
       <Card>
         <CardHeader>
           <div className="h-12 w-12 rounded-full bg-primary grid place-items-center mb-2">
@@ -53,9 +53,6 @@ export function EditaisList() {
           <CardTitle className="text-3xl font-semibold tracking-tight mb-2 text-primary">
             Editais
           </CardTitle>
-          <CardDescription className="text-base text-balance">
-            Confira os editais do {appConfig.title}.
-          </CardDescription>
         </CardHeader>
       </Card>
 

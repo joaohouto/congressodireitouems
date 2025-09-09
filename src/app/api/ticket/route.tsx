@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { ImageResponse } from "next/og";
 import { database } from "@/lib/prisma";
+import { appConfig } from "@/app/config";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
@@ -45,6 +46,52 @@ export async function GET(req: Request) {
           height="1920"
           src={`${process.env.NEXT_PUBLIC_HOSTNAME}/ingresso.jpg`}
         />
+
+        <p
+          style={{
+            fontSize: 36,
+            lineHeight: "110%",
+            fontWeight: "bold",
+            position: "absolute",
+            left: 172,
+            top: 790,
+            maxWidth: 740,
+            color: "#222",
+            textWrap: "balance",
+          }}
+        >
+          {appConfig.theme}
+        </p>
+
+        <p
+          style={{
+            fontSize: 36,
+            lineHeight: "110%",
+            fontWeight: "bold",
+            position: "absolute",
+            left: 172,
+            top: 974,
+            maxWidth: 340,
+            color: "#222",
+          }}
+        >
+          {appConfig.fullDate}
+        </p>
+
+        <p
+          style={{
+            fontSize: 36,
+            lineHeight: "110%",
+            fontWeight: "bold",
+            position: "absolute",
+            left: 528,
+            top: 974,
+            maxWidth: 376,
+            color: "#222",
+          }}
+        >
+          {appConfig.place}
+        </p>
 
         {!!subscription.igAvatar && (
           <img

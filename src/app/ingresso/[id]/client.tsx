@@ -115,7 +115,7 @@ export const StoryPreview = ({ id }: { id: string }) => {
             <div className="absolute top-0 w-full p-4 flex flex-row justify-between items-center gap-2">
               <Button asChild variant="outline">
                 <a href={`/api/ticket?id=${id}`} download>
-                  <Download /> Salvar imagem
+                  <Download /> Salvar
                 </a>
               </Button>
 
