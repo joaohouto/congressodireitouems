@@ -110,12 +110,14 @@ const AnimatedLogoCloud = () => {
                 className="flex shrink-0 animate-logo-cloud flex-row justify-around gap-6"
               >
                 {logos.map((logo: any, key: any) => (
-                  <img
-                    key={key}
-                    src={logo}
-                    className="h-10 w-auto px-2 dark:invert"
-                    alt={`${logo}`}
-                  />
+                  <div className="flex h-12 w-24 items-center justify-center p-1">
+                    <img
+                      key={key}
+                      src={logo}
+                      className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all"
+                      alt={`${logo}`}
+                    />
+                  </div>
                 ))}
               </div>
             ))}
@@ -139,15 +141,40 @@ export default function Page() {
     }),
   };
 
+  const macawAnimation = {
+    hidden: { x: -30, opacity: 0, filter: "blur(6px)" },
+    visible: {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0)",
+      transition: {
+        duration: 1,
+        delay: 5 * 0.2,
+      },
+    },
+  };
+
+  const themisAnimation = {
+    hidden: { x: 0, opacity: 0, filter: "blur(6px)" },
+    visible: {
+      opacity: 1,
+      x: 0,
+      filter: "blur(0)",
+      transition: {
+        duration: 0.6,
+        delay: 5 * 0.2,
+      },
+    },
+  };
+
   return (
     <div className="min-h-screen bg-muted">
       <div className="max-w-[600px] mx-auto my-auto py-8 px-4 flex flex-col items-center">
         <header className="flex flex-col items-center gap-7 py-15 relative">
           <motion.div
-            variants={itemVariants}
+            variants={macawAnimation}
             initial="hidden"
             animate="visible"
-            custom={5}
             className="absolute -top-[130px] -right-[200px]"
           >
             <Image
@@ -193,7 +220,7 @@ export default function Page() {
             initial="hidden"
             animate="visible"
             custom={3}
-            className="grid grid-cols-2 gap-4"
+            className="grid grid-cols-2 gap-2"
           >
             <div className="flex gap-2 leading-3.5 font-semibold text-secondary text-sm max-w-[160px]">
               <CalendarBlankIcon
@@ -230,10 +257,9 @@ export default function Page() {
           </motion.div>
 
           <motion.div
-            variants={itemVariants}
+            variants={themisAnimation}
             initial="hidden"
             animate="visible"
-            custom={5}
             className="absolute -bottom-[0px] -left-[200px]"
           >
             <Image
@@ -253,7 +279,7 @@ export default function Page() {
           custom={6}
           className="flex flex-col items-center gap-6"
         >
-          <h2 className="uppercase tracking-widest text-muted-foreground my-6">
+          <h2 className="uppercase tracking-widest text-muted-foreground">
             Programação
           </h2>
 
@@ -357,10 +383,6 @@ export default function Page() {
             </Card>
           ))}
         </motion.div>
-
-        <h2 className="uppercase tracking-widest text-muted-foreground mt-20">
-          Patrocinadores
-        </h2>
 
         <AnimatedLogoCloud />
 

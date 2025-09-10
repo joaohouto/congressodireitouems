@@ -29,13 +29,16 @@ export function Footer() {
 
       <ul className="flex items-center justify-center gap-4 text-sm text-primary">
         <li>
-          <Link href="/">Programação</Link>
+          <Link href="/">Início</Link>
+        </li>
+        <li>
+          <Link href="/inscricao">Inscrição</Link>
         </li>
         <li>
           <Link href="/editais">Editais</Link>
         </li>
         <li>
-          <Link href="/inscricao">Inscrição</Link>
+          <Link href="/patrocinadores">Patrocinadores</Link>
         </li>
       </ul>
 

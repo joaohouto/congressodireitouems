@@ -2,7 +2,7 @@
 
 import * as React from "react";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -38,13 +38,7 @@ export default function SponsorsPage() {
   }
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center gap-8 p-8">
-      <Image src="/logo.svg" width={200} height={200} alt="logo" />
-
-      <h1 className="uppercase tracking-widest text-muted-foreground">
-        Patrocinadores
-      </h1>
-
+    <div className="h-screen flex flex-col justify-center items-center gap-20 p-8">
       <Carousel
         className="w-full "
         plugins={[
@@ -59,36 +53,36 @@ export default function SponsorsPage() {
               key={index}
               className="pl-1 md:basis-1/2 lg:basis-1/3"
             >
-              <div className="p-1">
-                <Card>
-                  <div className="relative h-48 w-full">
-                    <Image
-                      src={sponsor}
-                      alt="Descrição da imagem"
-                      fill
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      style={{ objectFit: "contain" }}
-                      className="absolute"
-                    />
-                  </div>
-                </Card>
+              <div className="px-6">
+                <div className="relative h-48 w-full">
+                  <Image
+                    src={sponsor}
+                    alt="Descrição da imagem"
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    style={{ objectFit: "contain" }}
+                    className="absolute"
+                  />
+                </div>
               </div>
             </CarouselItem>
           ))}
 
           {loading && (
-            <CarouselItem className="pl-1">
-              <div className="p-1">
-                <Card>
-                  <div className="relative h-48 w-full flex items-center justify-center">
-                    <Spinner />
-                  </div>
-                </Card>
-              </div>
+            <CarouselItem className="w-full flex justify-center items-center">
+              <Spinner />
             </CarouselItem>
           )}
         </CarouselContent>
       </Carousel>
+
+      <Image
+        src="/logo.svg"
+        width={160}
+        height={160}
+        alt="logo"
+        className="absolute bottom-8 grayscale opacity-50"
+      />
     </div>
   );
 }

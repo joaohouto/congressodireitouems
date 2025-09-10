@@ -59,6 +59,7 @@ import axios from "axios";
 
 import { toast } from "sonner";
 import { appConfig, SUBSCRIPTION_CATEGORIES } from "../config";
+import { TicketIcon } from "@/components/icon/ticket";
 
 const formSchema = z
   .object({
@@ -142,7 +143,7 @@ export function SignUpForm() {
 
         <CardContent>
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <Separator />
 
               <h2 className="text-xl select-none font-semibold text-primary flex items-center">
@@ -220,22 +221,29 @@ export function SignUpForm() {
                 control={form.control}
                 name="custom_ticket"
                 render={({ field }) => (
-                  <FormItem className="flex flex-row items-center justify-between rounded-lg border p-4 gap-4">
-                    <div className="space-y-0.5">
-                      <FormLabel className="text-base">
-                        <Ticket className="text-primary size-6" />
-                        Gerar ingresso personalizado
-                      </FormLabel>
-                      <FormDescription>
-                        Use a sua foto e o seu nome públicos do Instagram
-                      </FormDescription>
+                  <FormItem className="flex flex-row items-center rounded-lg border">
+                    <div className="h-[100px] w-[160px] bg-muted p-1 rounded-l-lg flex items-center justify-center">
+                      <TicketIcon className="h-[96px] w-[96px]" />
                     </div>
-                    <FormControl>
-                      <Switch
-                        checked={field.value}
-                        onCheckedChange={field.onChange}
-                      />
-                    </FormControl>
+
+                    <div className="p-4 flex">
+                      <div className="space-y-0.5">
+                        <FormLabel className="text-base">
+                          Gerar ingresso personalizado
+                        </FormLabel>
+                        <FormDescription className="text-balance">
+                          Use a sua foto e o seu nome públicos da sua conta do
+                          Instagram
+                        </FormDescription>
+                      </div>
+
+                      <FormControl>
+                        <Switch
+                          checked={field.value}
+                          onCheckedChange={field.onChange}
+                        />
+                      </FormControl>
+                    </div>
                   </FormItem>
                 )}
               />
