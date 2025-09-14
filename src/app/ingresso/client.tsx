@@ -32,7 +32,8 @@ export function IngressoClient() {
       });
 
       toast.success("Sucesso!", {
-        description: "Seu ingresso foi gerado com sucesso.",
+        description:
+          "Seu ingresso foi gerado com sucesso. Já vamos te redirecionar para ele!",
       });
 
       router.push(`/ingresso/${response.data.ticket.id}`);
@@ -60,27 +61,26 @@ export function IngressoClient() {
           </Link>
         </header>
 
+        <Card className="w-full flex flex-col sm:flex-row p-2 items-center rounded-lg mb-6">
+          <div className="h-full flex-grow w-full md:w-[130px] bg-muted p-2 rounded-lg flex items-center justify-center">
+            <TicketIcon className="h-[96px] w-[96px] transition-all duration-300 ease-in-out hover:scale-110 -rotate-12 hover:rotate-12" />
+          </div>
+
+          <div className="p-4 flex">
+            <div className="flex flex-col">
+              <span className="text-base font-semibold text-primary">
+                Retire aqui o seu ingresso
+              </span>
+              <span className="text-balance text-sm">
+                Use a sua foto e o seu nome públicos da sua conta do Instagram
+              </span>
+            </div>
+          </div>
+        </Card>
+
         <Card className="w-full mx-auto my-auto rounded-lg">
           <CardContent>
             <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <div className="flex flex-row items-center rounded-lg border p-2">
-                <div className="h-[100px] w-[130px] bg-muted p-2 rounded-lg flex items-center justify-center">
-                  <TicketIcon className="h-[96px] w-[96px] transition-all duration-300 ease-in-out hover:scale-110 -rotate-12 hover:rotate-12" />
-                </div>
-
-                <div className="p-4 flex">
-                  <div className="flex flex-col">
-                    <span className="text-base font-semibold text-primary">
-                      Retire aqui o seu ingresso
-                    </span>
-                    <span className="text-balance text-sm">
-                      Use a sua foto e o seu nome públicos da sua conta do
-                      Instagram
-                    </span>
-                  </div>
-                </div>
-              </div>
-
               <div className="flex flex-col gap-2">
                 <Label>Seu nome de usuário do Instagram</Label>
                 <div className="relative">

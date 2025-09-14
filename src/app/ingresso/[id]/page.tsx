@@ -51,7 +51,7 @@ export default async function Ticket({
 
   return (
     <div className="bg-muted">
-      <main className="h-full max-w-[500px] mx-auto my-auto p-8 flex flex-col items-center">
+      <main className="h-full max-w-[500px] mx-auto my-auto p-4 flex flex-col items-center">
         <StoryPreview id={id} />
       </main>
     </div>
