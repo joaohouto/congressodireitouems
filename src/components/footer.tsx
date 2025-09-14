@@ -32,7 +32,7 @@ export function Footer() {
           <Link href="/">Início</Link>
         </li>
         <li>
-          <Link href="/inscricao">Inscrição</Link>
+          <Link href="/ingresso">Ingresso</Link>
         </li>
         <li>
           <Link href="/editais">Editais</Link>

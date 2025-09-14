@@ -7,15 +7,12 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Subscription {
+model Ticket {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   count     Int      @default(-1)
-  name      String
-  email     String
-  category  String
-  instagram String?
-  igAvatar  String?
-  igName    String?
+  instagram String
+  igAvatar  String
+  igName    String
   createdAt DateTime @default(now())
 }
 

@@ -110,7 +110,7 @@ const AnimatedLogoCloud = () => {
                 className="flex shrink-0 animate-logo-cloud flex-row justify-around gap-6"
               >
                 {logos.map((logo: any, key: any) => (
-                  <div className="flex h-12 w-24 items-center justify-center p-1">
+                  <div className="flex h-14 w-24 items-center justify-center p-1">
                     <img
                       key={key}
                       src={logo}
@@ -249,7 +249,7 @@ export default function Page() {
               asChild
               className="h-12 w-[310px] uppercase rounded-full text-base font-semibold text-primary-foreground"
             >
-              <Link href="/inscricao">
+              <Link href={appConfig.subscriptionForm}>
                 <NotePencilIcon />
                 Inscreva-se
               </Link>

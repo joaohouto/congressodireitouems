@@ -45,15 +45,13 @@ function EditalItem({ edital }: { edital: Edital }) {
 export function EditaisList() {
   return (
     <div className="w-full mx-auto my-auto rounded-lg flex flex-col gap-6">
-      <Card>
-        <CardHeader>
-          <div className="h-12 w-12 rounded-full bg-primary grid place-items-center mb-2">
-            <FileText className="h-6 w-6 text-background" />
+      <Card className="p-6">
+        <h1 className="text-3xl font-semibold tracking-tight text-primary flex items-center gap-4">
+          <div className="size-12 rounded-full bg-primary grid place-items-center">
+            <FileText className="size-6 text-background" />
           </div>
-          <CardTitle className="text-3xl font-semibold tracking-tight mb-2 text-primary">
-            Editais
-          </CardTitle>
-        </CardHeader>
+          Editais
+        </h1>
       </Card>
 
       {Object.entries(EDICTS_BY_YEAR)

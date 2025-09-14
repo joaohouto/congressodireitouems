@@ -11,15 +11,15 @@ export default async function Gerencia() {
     redirect("/api/auth/signin");
   }
 
-  const subscriptions = await database.subscription.findMany();
+  const tickets = await database.ticket.findMany();
 
   return (
     <div className="container mx-auto p-4">
       <header className="flex justify-between items-center mb-4">
-        <h1 className="text-2xl font-bold">Inscrições</h1>
+        <h1 className="text-2xl font-bold">Ingressos</h1>
       </header>
 
-      <GerenciaClient subscriptions={subscriptions} />
+      <GerenciaClient tickets={tickets} />
     </div>
   );
 }

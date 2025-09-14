@@ -8,12 +8,24 @@ export const appConfig = {
   description: "",
   instagram: "congressodireitouems",
   email: "nao-responda@joaocouto.com",
+  subscriptionForm: "https://forms.gle/Aov3CPTD1YGGrSmx6",
+  scienceMeetingForm: "https://forms.gle/W8Vx5Mfy8fed4jMw6",
 };
 
 export const EVENT_SCHEDULE = [
   {
     date: "2025-11-12T00:00",
-    events: [],
+    events: [
+      {
+        time: "19:00",
+        category: "Palestra",
+        local: "Auditório da Câmara Municipal de Aquidauana",
+        title: "----",
+        person: "Dr. João Meneghini Girelli",
+        bio: "",
+        image: "",
+      },
+    ],
   },
   {
     date: "2025-11-13T00:00",
@@ -37,24 +49,16 @@ export const EVENT_SCHEDULE = [
 
 export const SUBSCRIPTION_CATEGORIES = [
   {
-    value: "Acadêmico de Direito - UEMS (1º ano)",
-    label: "🎓 Acadêmico de Direito - UEMS (1º ano)",
+    value: "Acadêmico de Direito (UEMS Aquidauana)",
+    label: "🎓 Acadêmico de Direito (UEMS Aquidauana)",
   },
   {
     value: "Acadêmico de Direito - UEMS (2º ano)",
-    label: "🎓 Acadêmico de Direito - UEMS (2º ano)",
-  },
-  {
-    value: "Acadêmico de Direito - UEMS (3º ano)",
-    label: "🎓 Acadêmico de Direito -  UEMS (3º ano)",
-  },
-  {
-    value: "Acadêmico de outra instituição",
-    label: "🎓 Acadêmico de outra instituição",
+    label: "🎓 Acadêmico de Direito (Outras Insituições)",
   },
   {
     value: "Profissional",
-    label: "🎓 Profissional",
+    label: "💼 Profissional",
   },
 ];
 
@@ -67,9 +71,8 @@ interface Edital {
 export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
   "2025": [
     {
-      title:
-        "EDITAL PARA INSCRIÇÃO NO CONGRESSO E SUBMISSÃO DE TRABALHOS CIENTÍFICOS",
-      url: "/editais/2025/EDITAL PARA INSCRIÇÃO NO CONGRESSO E SUBMISSÃO DE TRABALHOS CIENTÍFICOS.pdf",
+      title: "",
+      url: "/editais/2025/.pdf",
     },
   ],
   "2024": [

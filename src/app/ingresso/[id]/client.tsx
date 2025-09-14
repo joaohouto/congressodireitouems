@@ -8,7 +8,7 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
-import { Download, InfoIcon, Loader2, TicketIcon } from "lucide-react";
+import { Download, Loader2, TicketIcon } from "lucide-react";
 
 import { useReward } from "react-rewards";
 import { useState } from "react";
@@ -16,6 +16,7 @@ import { RiInstagramLine } from "react-icons/ri";
 import { appConfig } from "@/app/config";
 import { toast } from "sonner";
 import { Footer } from "@/components/footer";
+import { Spinner } from "@/components/luxe/spinner";
 
 export const StoryPreview = ({ id }: { id: string }) => {
   const [loading, setLoading] = useState(true);
@@ -51,47 +52,6 @@ export const StoryPreview = ({ id }: { id: string }) => {
 
   return (
     <>
-      {loading ? (
-        <Card className={`p-8 rounded-lg mb-8`}>
-          <div className="h-12 w-12 rounded-full bg-primary grid place-items-center">
-            <Loader2 className="size-6 text-background animate-spin" />
-          </div>
-
-          <CardTitle className="text-3xl font-semibold tracking-tight mb-2 text-primary text-balance">
-            Estamos processando o seu ingresso.
-          </CardTitle>
-        </Card>
-      ) : (
-        <Card className={`p-8 rounded-lg mb-8`}>
-          <div className="size-12 rounded-full bg-primary grid place-items-center">
-            <TicketIcon className="size-6 text-background" />
-          </div>
-
-          <CardTitle className="text-3xl font-semibold tracking-tight text-primary text-balance">
-            Aqui está o seu ingresso!
-          </CardTitle>
-          <CardDescription className="text-base text-muted-foreground">
-            Você já está inscrito no evento,{" "}
-            <b>enviamos um email com a confirmação</b>. Fique a vontade para
-            compartilhar a sua inscrição e marcar:{" "}
-            <a
-              className="text-primary font-semibold"
-              href={`https://www.instagram.com/${appConfig.instagram}`}
-            >
-              @{appConfig.instagram}
-            </a>
-            .
-          </CardDescription>
-        </Card>
-      )}
-
-      <span
-        id="rewardId"
-        style={{
-          pointerEvents: "none",
-        }}
-      />
-
       <Card className="rounded-lg w-full p-0">
         <CardContent className="p-0 relative">
           <div className="relative aspect-[9/16] w-full">
@@ -111,8 +71,15 @@ export const StoryPreview = ({ id }: { id: string }) => {
             />
           </div>
 
-          {!loading && (
-            <div className="absolute top-0 w-full p-4 flex flex-row justify-between items-center gap-2">
+          {loading ? (
+            <div className="absolute top-0 w-full h-full p-4 flex items-center justify-center gap-2">
+              <Button variant="outline" className="rounded-full">
+                <Spinner />
+                Processando imagem
+              </Button>
+            </div>
+          ) : (
+            <div className="absolute top-0 w-full p-4 flex justify-between items-center gap-2">
               <Button asChild variant="outline">
                 <a href={`/api/ticket?id=${id}`} download>
                   <Download /> Salvar
@@ -126,6 +93,13 @@ export const StoryPreview = ({ id }: { id: string }) => {
           )}
         </CardContent>
       </Card>
+
+      <span
+        id="rewardId"
+        style={{
+          pointerEvents: "none",
+        }}
+      />
 
       <Footer />
     </>

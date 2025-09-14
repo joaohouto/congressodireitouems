@@ -11,18 +11,23 @@ export async function GET(req: Request) {
     return NextResponse.json({ message: "Forneça um ID!" });
   }
 
-  const subscription = await database.subscription.findUnique({
+  const ticket = await database.ticket.findUnique({
     where: {
       id,
     },
   });
 
-  if (!subscription) {
+  console.log(ticket);
+
+  if (!ticket) {
     return NextResponse.json(
-      { message: "Erro ao encontrar inscrição!" },
+      { message: "Erro ao encontrar ticket!" },
       { status: 404 }
     );
   }
+
+  // TODO: se o get da url de subscription.igAvatar der pau, tentar fazer o
+  // scrap do perfil do Instagram novamente e salvar no banco
 
   const fontData = await fetch(
     new URL(`${process.env.NEXT_PUBLIC_HOSTNAME}/fonts/Lato-Bold.ttf`)
@@ -93,11 +98,11 @@ export async function GET(req: Request) {
           {appConfig.place}
         </p>
 
-        {!!subscription.igAvatar && (
+        {!!ticket.igAvatar && (
           <img
             width="127"
             height="127"
-            src={subscription.igAvatar}
+            src={ticket.igAvatar}
             style={{
               borderRadius: 100,
               objectFit: "cover",
@@ -120,9 +125,7 @@ export async function GET(req: Request) {
             color: "#222",
           }}
         >
-          {subscription.igName ||
-            subscription.name?.split(" ")?.[0] ||
-            "Direito Aquidauana"}
+          {ticket.igName || "Direito Aquidauana"}
         </p>
 
         <p
@@ -137,7 +140,7 @@ export async function GET(req: Request) {
             color: "#222",
           }}
         >
-          {subscription.count.toString().padStart(4, "0") || "------"}
+          {ticket.count.toString().padStart(4, "0") || "------"}
         </p>
       </div>
     ),
