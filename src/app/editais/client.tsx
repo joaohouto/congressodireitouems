@@ -7,8 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FileText } from "lucide-react";
+import { ArrowUpRight, FileText } from "lucide-react";
 import { appConfig, EDICTS_BY_YEAR } from "../config";
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 interface Edital {
   title: string;
@@ -44,8 +46,8 @@ function EditalItem({ edital }: { edital: Edital }) {
 
 export function EditaisList() {
   return (
-    <div className="w-full mx-auto my-auto rounded-lg flex flex-col gap-6">
-      <Card className="p-6">
+    <div className="w-full mx-auto my-auto rounded-lg flex flex-col items-center gap-6">
+      <Card className="p-6 w-full">
         <h1 className="text-3xl font-semibold tracking-tight text-primary flex items-center gap-4">
           <div className="size-12 rounded-full bg-primary grid place-items-center">
             <FileText className="size-6 text-background" />
@@ -53,6 +55,16 @@ export function EditaisList() {
           Editais
         </h1>
       </Card>
+
+      <Button
+        asChild
+        className="h-12 w-fit !px-8 uppercase rounded-full text-sm font-semibold text-primary-foreground"
+      >
+        <Link href={appConfig.scienceMeetingForm}>
+          Submissão (II Encontro Científico)
+          <ArrowUpRight />
+        </Link>
+      </Button>
 
       {Object.entries(EDICTS_BY_YEAR)
         .reverse()

@@ -40,7 +40,9 @@ export async function POST(request: Request) {
     igName = igResponse.data.data?.user?.full_name;
   } catch (err) {
     return NextResponse.json(
-      { message: "Erro ao buscar dados do Instagram!" },
+      {
+        message: "Erro ao buscar dados do Instagram!",
+      },
       { status: 400 }
     );
   }

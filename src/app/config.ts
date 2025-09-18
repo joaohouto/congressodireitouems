@@ -10,6 +10,7 @@ export const appConfig = {
   email: "nao-responda@joaocouto.com",
   subscriptionForm: "https://forms.gle/Aov3CPTD1YGGrSmx6",
   scienceMeetingForm: "https://forms.gle/W8Vx5Mfy8fed4jMw6",
+  showSchedule: false,
 };
 
 export const EVENT_SCHEDULE = [
@@ -71,8 +72,33 @@ interface Edital {
 export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
   "2025": [
     {
-      title: "",
-      url: "/editais/2025/.pdf",
+      title:
+        "EDITAL DE ABERTURA - III CONGRESSO JURÍDICO E II ENCONTRO CIENTÍFICO",
+      url: "/editais/2025/Edital-de-Abertura-III-Congresso-Jurídico-e-II-Encontro-Científico.pdf",
+      children: [
+        {
+          title:
+            "ANEXO I - REGRAS PARA SUBMISSÃO DE RESUMO SIMPLES (100 A 500 PALAVRAS)",
+          url: "/editais/2025/Edital-de-Abertura-III-Congresso-Jurídico-e-II-Encontro-Científico.pdf",
+        },
+        {
+          title:
+            "ANEXO II - REGRAS PARA CONFECÇÃO E SUBMISSÃO DO BANNER ELETRÔNICO",
+          url: "/editais/2025/Edital-de-Abertura-III-Congresso-Jurídico-e-II-Encontro-Científico.pdf",
+        },
+        {
+          title: "ANEXO III - MODELO DE RESUMO SIMPLES (COM ID)",
+          url: "https://docs.google.com/document/d/1FcjoeHdP3bTUbax9aUxs_3jaXsif7lsxy5jQVE15VMU/edit?usp=sharing",
+        },
+        {
+          title: "ANEXO IV - MODELO DE RESUMO SIMPLES (SEM ID)",
+          url: "https://docs.google.com/document/d/1hR9nuE7tfQiU66ImVfrlAPLwG9Mv8I9W_81T6U_voFE/edit?usp=sharing",
+        },
+        {
+          title: "ANEXO V - MODELO DE BANNER",
+          url: "https://docs.google.com/presentation/d/10GhET99718sNNidjo-UJnBC5VLS6-Y_HOq-Lkdi2Cyc/edit?usp=sharing",
+        },
+      ],
     },
   ],
   "2024": [

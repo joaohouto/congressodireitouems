@@ -15,6 +15,7 @@ import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { AtSign, Loader2, Send, User2Icon } from "lucide-react";
 import { Label } from "@/components/ui/label";
+import { SponsorsBar } from "@/components/sponsors-bar";
 
 export function IngressoClient() {
   const [instagram, setInstagram] = useState("");
@@ -37,10 +38,13 @@ export function IngressoClient() {
       });
 
       router.push(`/ingresso/${response.data.ticket.id}`);
-    } catch (error) {
+    } catch (error: any) {
       toast.error("Erro!", {
-        description: "Ocorreu um erro ao gerar seu ingresso.",
+        description:
+          error.response.data.message ||
+          "Ocorreu um erro ao gerar seu ingresso.",
       });
+      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -61,9 +65,9 @@ export function IngressoClient() {
           </Link>
         </header>
 
-        <Card className="w-full flex flex-col sm:flex-row p-2 items-center rounded-lg mb-6">
+        <Card className="w-full flex flex-col gap-0 sm:flex-row p-2 items-center rounded-lg mb-6">
           <div className="h-full flex-grow w-full md:w-[130px] bg-muted p-2 rounded-lg flex items-center justify-center">
-            <TicketIcon className="h-[96px] w-[96px] transition-all duration-300 ease-in-out hover:scale-110 -rotate-12 hover:rotate-12" />
+            <TicketIcon className="h-[128px] w-[128px] transition-all duration-300 ease-in-out hover:scale-110 -rotate-12 hover:rotate-12" />
           </div>
 
           <div className="p-4 flex">
@@ -86,7 +90,7 @@ export function IngressoClient() {
                 <div className="relative">
                   <AtSign className="absolute left-2 top-2.5 size-4 text-muted-foreground" />
                   <Input
-                    placeholder="direitoaquidauana"
+                    placeholder="congressodireitouems"
                     autoCapitalize="off"
                     autoCorrect="off"
                     className="pl-8"
@@ -114,6 +118,8 @@ export function IngressoClient() {
             </form>
           </CardContent>
         </Card>
+
+        <SponsorsBar />
 
         <Footer />
       </div>

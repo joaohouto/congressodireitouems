@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Image from "next/image";
 
 export const SponsorsBar = () => {
   const [logos, setLogos] = useState<any>([]);
@@ -15,6 +16,8 @@ export const SponsorsBar = () => {
     })();
   }, []);
 
+  if (!logos) return <div className="h-14 py-12 px-4 w-full" />;
+
   return (
     <div className="w-full py-12">
       <div className="mx-auto w-full px-4">
@@ -27,16 +30,20 @@ export const SponsorsBar = () => {
         >
           {Array(5)
             .fill(null)
-            .map((index) => (
+            .map((i, idx) => (
               <div
-                key={index}
+                key={idx}
                 className="flex shrink-0 animate-logo-cloud flex-row justify-around gap-6"
               >
                 {logos.map((logo: any, key: any) => (
-                  <div className="flex h-14 w-24 items-center justify-center p-1">
-                    <img
-                      key={key}
+                  <div
+                    key={key}
+                    className="flex h-14 w-24 items-center justify-center p-1"
+                  >
+                    <Image
                       src={logo}
+                      height={96}
+                      width={96}
                       className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all"
                       alt={`${logo}`}
                     />

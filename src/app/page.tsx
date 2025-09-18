@@ -15,8 +15,10 @@ import {
 } from "@phosphor-icons/react";
 
 import {
+  ArrowUpRight,
   Calendar,
   CalendarCheck,
+  ChevronRight,
   Clock,
   MapPin,
   PresentationIcon,
@@ -125,7 +127,7 @@ export default function Page() {
             variants={macawAnimation}
             initial="hidden"
             animate="visible"
-            className="absolute -top-[130px] -right-[200px]"
+            className="absolute -top-[120px] -right-[100px] md:-top-[130px] md:-right-[200px]"
           >
             <Image
               width={300}
@@ -194,6 +196,7 @@ export default function Page() {
             initial="hidden"
             animate="visible"
             custom={4}
+            className="flex flex-col gap-4 items-center justify-center"
           >
             <Button
               asChild
@@ -204,13 +207,25 @@ export default function Page() {
                 Inscreva-se
               </Link>
             </Button>
+
+            <Button
+              asChild
+              variant="outline"
+              size="sm"
+              className="rounded-full w-fit"
+            >
+              <Link href="/editais">
+                Mais informações
+                <ChevronRight />
+              </Link>
+            </Button>
           </motion.div>
 
           <motion.div
             variants={themisAnimation}
             initial="hidden"
             animate="visible"
-            className="absolute -bottom-[0px] -left-[200px]"
+            className="absolute bottom-[100px] left-[100px] scale-150 md:scale-100 md:-bottom-[0px] md:-left-[200px]"
           >
             <Image
               width={140}
@@ -220,119 +235,127 @@ export default function Page() {
               alt="Themis"
             />
           </motion.div>
+
+          <div className="md:h-0 h-[400px]" />
         </header>
 
-        <motion.div
-          variants={itemVariants}
-          initial="hidden"
-          animate="visible"
-          custom={6}
-          className="flex flex-col items-center gap-6"
-        >
-          <h2 className="uppercase tracking-widest text-muted-foreground">
-            Programação
-          </h2>
+        {appConfig.showSchedule && (
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={6}
+            className="flex flex-col items-center gap-6"
+          >
+            <h2 className="uppercase tracking-widest text-muted-foreground">
+              Programação
+            </h2>
 
-          {EVENT_SCHEDULE?.map((day) => (
-            <Card key={day.date} className={`w-full`}>
-              <CardHeader>
-                <CardTitle className="text-2xl font-semibold tracking-tight mb-2 text-primary flex items-center gap-2">
-                  <Calendar className="size-6" />
+            {EVENT_SCHEDULE?.map((day) => (
+              <Card key={day.date} className={`w-full`}>
+                <CardHeader>
+                  <CardTitle className="text-2xl font-semibold tracking-tight mb-2 text-primary flex items-center gap-2">
+                    <Calendar className="size-6" />
 
-                  {formatDate(day.date, "EEEE", {
-                    locale: ptBR,
-                  })}
-                </CardTitle>
-                <CardDescription>
-                  {formatDate(day.date, "dd 'de' MMMM 'de' yyyy", {
-                    locale: ptBR,
-                  })}
-                </CardDescription>
-              </CardHeader>
+                    {formatDate(day.date, "EEEE", {
+                      locale: ptBR,
+                    })}
+                  </CardTitle>
+                  <CardDescription>
+                    {formatDate(day.date, "dd 'de' MMMM 'de' yyyy", {
+                      locale: ptBR,
+                    })}
+                  </CardDescription>
+                </CardHeader>
 
-              <CardContent>
-                <div className="flex flex-col gap-4 ">
-                  {day.events?.map((event) => (
-                    <Dialog key={event.title}>
-                      <DialogTrigger>
-                        <div className="flex items-start gap-4">
-                          <span className="text-sm bg-primary text-primary-foreground py-1 px-2 rounded-full w-15 min-w-15 text-center text-balance font-semibold">
-                            {event.time}
-                          </span>
-                          <div className="flex flex-col items-start justify-start">
-                            <strong className="text-base font-semibold text-balance text-left">
-                              {event.title}
-                            </strong>
-                            {!!event.person && (
-                              <p className="text-sm text-balance text-left">
-                                {event.person}
-                              </p>
-                            )}
+                <CardContent>
+                  <div className="flex flex-col gap-4 ">
+                    {day.events?.map((event) => (
+                      <Dialog key={event.title}>
+                        <DialogTrigger>
+                          <div className="flex items-start gap-4">
+                            <span className="text-sm bg-primary text-primary-foreground py-1 px-2 rounded-full w-15 min-w-15 text-center text-balance font-semibold">
+                              {event.time}
+                            </span>
+                            <div className="flex flex-col items-start justify-start">
+                              <strong className="text-base font-semibold text-balance text-left">
+                                {event.title}
+                              </strong>
+                              {!!event.person && (
+                                <p className="text-sm text-balance text-left">
+                                  {event.person}
+                                </p>
+                              )}
+                            </div>
                           </div>
-                        </div>
-                      </DialogTrigger>
+                        </DialogTrigger>
 
-                      <DialogContent className="max-h-[calc(100%-2rem)] w-[800px] overflow-y-auto flex flex-col ">
-                        {!!event.image && (
-                          <Image
-                            className="rounded-sm h-[200px] w-full object-cover bg-muted"
-                            src={event.image}
-                            alt={event.person}
-                            width={200}
-                            height={200}
-                          />
-                        )}
-
-                        <div className="">
-                          <strong className="text-2xl font-semibold text-balance mb-4">
-                            {event.title}
-                          </strong>
-
-                          {!!event.person && (
-                            <p className="text-lg text-balance">
-                              com <b>{event.person}</b>
-                            </p>
+                        <DialogContent className="max-h-[calc(100%-2rem)] w-[800px] overflow-y-auto flex flex-col ">
+                          {!!event.image && (
+                            <Image
+                              className="rounded-sm h-[200px] w-full object-cover bg-muted"
+                              src={event.image}
+                              alt={event.person}
+                              width={200}
+                              height={200}
+                            />
                           )}
 
-                          <ul className="flex flex-row flex-wrap gap-2 my-2 mb-6">
-                            <li>
-                              <Badge variant="secondary">
-                                <PresentationIcon className="h-4 w-4" />
-                                {event.category}
-                              </Badge>
-                            </li>
+                          <div className="">
+                            <strong className="text-2xl font-semibold text-balance mb-4">
+                              {event.title}
+                            </strong>
 
-                            <li>
-                              <Badge variant="secondary">
-                                <Clock className="h-4 w-4" />
-                                {event.time}
-                              </Badge>
-                            </li>
+                            {!!event.person && (
+                              <p className="text-lg text-balance">
+                                com <b>{event.person}</b>
+                              </p>
+                            )}
 
-                            <li>
-                              <Badge variant="secondary">
-                                <MapPin className="h-4 w-4 min-w-4" />
-                                {event.local}
-                              </Badge>
-                            </li>
-                          </ul>
+                            <ul className="flex flex-row flex-wrap gap-2 my-2 mb-6">
+                              <li>
+                                <Badge variant="secondary">
+                                  <PresentationIcon className="h-4 w-4" />
+                                  {event.category}
+                                </Badge>
+                              </li>
 
-                          <div className="prose prose-neutral mb-6">
-                            <ReactMarkdown>{event.bio}</ReactMarkdown>
+                              <li>
+                                <Badge variant="secondary">
+                                  <Clock className="h-4 w-4" />
+                                  {event.time}
+                                </Badge>
+                              </li>
+
+                              <li>
+                                <Badge variant="secondary">
+                                  <MapPin className="h-4 w-4 min-w-4" />
+                                  {event.local}
+                                </Badge>
+                              </li>
+                            </ul>
+
+                            <div className="prose prose-neutral mb-6">
+                              <ReactMarkdown>{event.bio}</ReactMarkdown>
+                            </div>
+
+                            <AddToCalendarButton
+                              event={{ ...event, date: day.date }}
+                            />
                           </div>
+                        </DialogContent>
+                      </Dialog>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </motion.div>
+        )}
 
-                          <AddToCalendarButton
-                            event={{ ...event, date: day.date }}
-                          />
-                        </div>
-                      </DialogContent>
-                    </Dialog>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </motion.div>
+        <Link href="/editais">
+          <div></div>
+        </Link>
 
         <SponsorsBar />
 
