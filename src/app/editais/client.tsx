@@ -58,10 +58,10 @@ export function EditaisList() {
 
       <Button
         asChild
-        className="h-12 w-fit !px-8 uppercase rounded-full text-sm font-semibold text-primary-foreground"
+        className="w-fit !py-8 !px-8 whitespace-normal break-words uppercase rounded-full text-sm font-semibold text-primary-foreground"
       >
         <Link href={appConfig.scienceMeetingForm}>
-          Submissão (II Encontro Científico)
+          Submissão de resumos e banners (II Encontro Científico)
           <ArrowUpRight />
         </Link>
       </Button>

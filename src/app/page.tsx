@@ -212,10 +212,10 @@ export default function Page() {
               asChild
               variant="outline"
               size="sm"
-              className="rounded-full w-fit"
+              className="rounded-full w-fit !pl-4 "
             >
               <Link href="/editais">
-                Mais informações
+                Editais
                 <ChevronRight />
               </Link>
             </Button>
