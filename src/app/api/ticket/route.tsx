@@ -125,7 +125,7 @@ export async function GET(req: Request) {
             color: "#222",
           }}
         >
-          {ticket.igName || "Direito Aquidauana"}
+          {ticket.igName || ticket.instagram}
         </p>
 
         <p
