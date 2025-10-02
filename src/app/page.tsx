@@ -353,10 +353,6 @@ export default function Page() {
           </motion.div>
         )}
 
-        <Link href="/editais">
-          <div></div>
-        </Link>
-
         <SponsorsBar />
 
         <Footer />

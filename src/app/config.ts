@@ -10,7 +10,7 @@ export const appConfig = {
   email: "nao-responda@joaocouto.com",
   subscriptionForm: "https://forms.gle/Aov3CPTD1YGGrSmx6",
   scienceMeetingForm: "https://forms.gle/W8Vx5Mfy8fed4jMw6",
-  showSchedule: false,
+  showSchedule: true,
 };
 
 export const EVENT_SCHEDULE = [
@@ -19,10 +19,28 @@ export const EVENT_SCHEDULE = [
     events: [
       {
         time: "19:00",
+        category: "",
+        local: "Auditório da Câmara Municipal de Aquidauana",
+        title: "Abertura",
+        person: "Alunos do Curso de Direito - UEMS Aquidauana",
+        bio: "",
+        image: "",
+      },
+      {
+        time: "19:30",
         category: "Palestra",
         local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "----",
-        person: "Dr. João Meneghini Girelli",
+        title: "Patriarcado e a Violência Doméstica",
+        person: "Prof. Dra. Andrea Flores",
+        bio: "",
+        image: "",
+      },
+      {
+        time: "20:30",
+        category: "Palestra",
+        local: "Auditório da Câmara Municipal de Aquidauana",
+        title: "Direitos Fundamentais do Réu no Processo Penal",
+        person: "Prof. Dra. Rejane Arruda",
         bio: "",
         image: "",
       },
@@ -30,7 +48,26 @@ export const EVENT_SCHEDULE = [
   },
   {
     date: "2025-11-13T00:00",
-    events: [],
+    events: [
+      {
+        time: "19:30",
+        category: "Palestra",
+        local: "Auditório da Câmara Municipal de Aquidauana",
+        title: "Tribunal do Júri: Perspectivas e Desafios na Prática",
+        person: "Dr. João Meneghini Girelli",
+        bio: "",
+        image: "",
+      },
+      {
+        time: "20:30",
+        category: "Palestra",
+        local: "Auditório da Câmara Municipal de Aquidauana",
+        title: "Exame Criminológico: Psiquiatrização da Execução Penal",
+        person: "Dr. Cahuê Duarte e Urdiales",
+        bio: "",
+        image: "",
+      },
+    ],
   },
   {
     date: "2025-11-14T00:00",
@@ -43,6 +80,15 @@ export const EVENT_SCHEDULE = [
         person: "",
         bio: "",
         image: "/placeholder.png",
+      },
+      {
+        time: "19:30",
+        category: "Júri Simulado",
+        local: "Auditório da Câmara Municipal de Aquidauana",
+        title: "Júri Simulado",
+        person: "Alunos do Curso de Direito - UEMS Aquidauana",
+        bio: "",
+        image: "",
       },
     ],
   },
