@@ -53,7 +53,8 @@ export const EVENT_SCHEDULE = [
         time: "19:30",
         category: "Palestra",
         local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Tribunal do Júri: Perspectivas e Desafios na Prática",
+        title:
+          "Tribunal do Júri: Princípios Constitucionais e Teses Recentes do STF",
         person: "Dr. João Meneghini Girelli",
         bio: "",
         image: "",
