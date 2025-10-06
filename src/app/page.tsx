@@ -283,7 +283,7 @@ export default function Page() {
                               </strong>
                               {!!event.person && (
                                 <p className="text-sm text-balance text-left">
-                                  {event.person}
+                                  com {event.person}
                                 </p>
                               )}
                             </div>

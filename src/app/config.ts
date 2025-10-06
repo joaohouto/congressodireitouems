@@ -50,6 +50,15 @@ export const EVENT_SCHEDULE = [
     date: "2025-11-13T00:00",
     events: [
       {
+        time: "14:00",
+        category: "Apresentação de trabalhos",
+        local: "Google Meet",
+        title: "II Encontro Científico do Curso de Direito",
+        person: "",
+        bio: "",
+        image: "/placeholder.png",
+      },
+      {
         time: "19:30",
         category: "Palestra",
         local: "Auditório da Câmara Municipal de Aquidauana",
@@ -74,7 +83,7 @@ export const EVENT_SCHEDULE = [
     date: "2025-11-14T00:00",
     events: [
       {
-        time: "19:00",
+        time: "14:00",
         category: "Apresentação de trabalhos",
         local: "Google Meet",
         title: "II Encontro Científico do Curso de Direito",
