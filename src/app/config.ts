@@ -65,8 +65,12 @@ export const EVENT_SCHEDULE = [
         title:
           "Tribunal do Júri: Princípios Constitucionais e Teses Recentes do STF",
         person: "Dr. João Meneghini Girelli",
-        bio: "",
-        image: "",
+        bio: `
+Promotor de Justiça do Ministério Público do Estado do Mato Grosso do Sul
+
+Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
+        `,
+        image: "/palestrantes/joao-meneghini-girelli.jpeg",
       },
       {
         time: "20:30",

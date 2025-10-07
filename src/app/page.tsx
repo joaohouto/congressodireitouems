@@ -290,7 +290,7 @@ export default function Page() {
                           </div>
                         </DialogTrigger>
 
-                        <DialogContent className="max-h-[calc(100%-2rem)] w-[800px] overflow-y-auto flex flex-col ">
+                        <DialogContent className="max-h-[calc(100%-2rem)] w-[560px] overflow-y-auto flex flex-col ">
                           {!!event.image && (
                             <Image
                               className="rounded-sm h-[200px] w-full object-cover bg-muted"
