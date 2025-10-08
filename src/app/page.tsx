@@ -293,7 +293,7 @@ export default function Page() {
                         <DialogContent className="max-h-[calc(100%-2rem)] w-[560px] overflow-y-auto flex flex-col ">
                           {!!event.image && (
                             <Image
-                              className="rounded-sm h-[200px] w-full object-cover bg-muted"
+                              className="rounded-sm h-[200px] w-full object-contain bg-muted"
                               src={event.image}
                               alt={event.person}
                               width={200}
