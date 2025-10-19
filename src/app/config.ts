@@ -164,6 +164,12 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
         },
       ],
     },
+
+    {
+      title:
+        "RETIFICAÇÃO Nº 01/2025 - PRORROGAÇÃO DAS SUBMISSÕES DO II ENCONTRO CIENTÍFICO",
+      url: "/editais/2025/Prorrogação-das-Submissões-II-Encontro-Científico.pdf",
+    },
   ],
   "2024": [
     {
