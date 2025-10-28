@@ -9,7 +9,7 @@ export const appConfig = {
   instagram: "congressodireitouems",
   email: "nao-responda@joaocouto.com",
   subscriptionForm: "https://forms.gle/Aov3CPTD1YGGrSmx6",
-  scienceMeetingForm: "https://forms.gle/W8Vx5Mfy8fed4jMw6",
+  scienceMeetingForm: "",
   showSchedule: true,
 };
 
@@ -19,6 +19,7 @@ export const EVENT_SCHEDULE = [
     events: [
       {
         time: "19:00",
+        endTime: "19:30",
         category: "",
         local: "Auditório da Câmara Municipal de Aquidauana",
         title: "Abertura",
@@ -29,6 +30,7 @@ export const EVENT_SCHEDULE = [
       },
       {
         time: "19:30",
+        endTime: "20:30",
         category: "Palestra",
         local: "Auditório da Câmara Municipal de Aquidauana",
         title: "Patriarcado e a Violência Doméstica",
@@ -39,6 +41,7 @@ export const EVENT_SCHEDULE = [
       },
       {
         time: "20:30",
+        endTime: "22:00",
         category: "Palestra",
         local: "Auditório da Câmara Municipal de Aquidauana",
         title: "Direitos Fundamentais do Réu no Processo Penal",
@@ -54,6 +57,7 @@ export const EVENT_SCHEDULE = [
     events: [
       {
         time: "14:00",
+        endTime: "17:00",
         category: "Apresentação de trabalhos",
         local: "Google Meet",
         title: "II Encontro Científico do Curso de Direito",
@@ -63,6 +67,7 @@ export const EVENT_SCHEDULE = [
       },
       {
         time: "19:30",
+        endTime: "20:30",
         category: "Palestra",
         local: "Auditório da Câmara Municipal de Aquidauana",
         title:
@@ -76,7 +81,8 @@ Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
         image: "/palestrantes/joao-meneghini-girelli.jpeg",
       },
       {
-        time: "20:30",
+        time: "21:30",
+        endTime: "22:00",
         category: "Palestra",
         local: "Auditório da Câmara Municipal de Aquidauana",
         title: "Exame Criminológico: Psiquiatrização da Execução Penal",
@@ -91,6 +97,7 @@ Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
     events: [
       {
         time: "14:00",
+        endTime: "17:00",
         category: "Apresentação de trabalhos",
         local: "Google Meet",
         title: "II Encontro Científico do Curso de Direito",
@@ -100,9 +107,20 @@ Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
       },
       {
         time: "19:30",
+        endTime: "21:30",
         category: "Júri Simulado",
         local: "Auditório da Câmara Municipal de Aquidauana",
         title: "Júri Simulado",
+        person: "Alunos do Curso de Direito - UEMS Aquidauana",
+        bio: "",
+        image: "",
+        ig: "https://www.instagram.com/direitoaquidauana/",
+      },
+      {
+        time: "21:30",
+        category: "22:00",
+        local: "Auditório da Câmara Municipal de Aquidauana",
+        title: "Encerramento",
         person: "Alunos do Curso de Direito - UEMS Aquidauana",
         bio: "",
         image: "",
@@ -112,24 +130,10 @@ Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
   },
 ];
 
-export const SUBSCRIPTION_CATEGORIES = [
-  {
-    value: "Acadêmico de Direito (UEMS Aquidauana)",
-    label: "🎓 Acadêmico de Direito (UEMS Aquidauana)",
-  },
-  {
-    value: "Acadêmico de Direito - UEMS (2º ano)",
-    label: "🎓 Acadêmico de Direito (Outras Insituições)",
-  },
-  {
-    value: "Profissional",
-    label: "💼 Profissional",
-  },
-];
-
 interface Edital {
   title: string;
   url?: string;
+  badge?: string;
   children?: Edital[];
 }
 
@@ -163,6 +167,13 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
           url: "https://docs.google.com/presentation/d/10GhET99718sNNidjo-UJnBC5VLS6-Y_HOq-Lkdi2Cyc/edit?usp=sharing",
         },
       ],
+    },
+
+    {
+      title:
+        "SUBMISSÕES (RESUMO E BANNER) - II ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
+      url: "https://forms.gle/W8Vx5Mfy8fed4jMw6",
+      badge: "Encerradas!",
     },
 
     {

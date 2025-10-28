@@ -2,7 +2,6 @@
 
 import * as React from "react";
 
-import { Card } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -13,6 +12,9 @@ import Autoplay from "embla-carousel-autoplay";
 import Image from "next/image";
 import { toast } from "sonner";
 import { Spinner } from "@/components/luxe/spinner";
+import { LiveEvent } from "@/components/live-event";
+import { Card } from "@/components/ui/card";
+import { Separator } from "@/components/ui/separator";
 
 export default function SponsorsPage() {
   const [loading, setLoading] = React.useState(true);
@@ -38,7 +40,7 @@ export default function SponsorsPage() {
   }
 
   return (
-    <div className="h-screen flex flex-col justify-center items-center gap-20 p-8">
+    <div className="h-screen flex justify-center items-center p-8 pb-20 bg-neutral-100">
       <Carousel
         className="w-full "
         plugins={[
@@ -54,7 +56,7 @@ export default function SponsorsPage() {
               className="pl-1 md:basis-1/2 lg:basis-1/3"
             >
               <div className="px-6">
-                <div className="relative h-48 w-full">
+                <div className="relative h-[300px] w-full">
                   <Image
                     src={sponsor}
                     alt="Descrição da imagem"
@@ -76,13 +78,19 @@ export default function SponsorsPage() {
         </CarouselContent>
       </Carousel>
 
-      <Image
-        src="/logo.svg"
-        width={160}
-        height={160}
-        alt="logo"
-        className="absolute bottom-8 grayscale opacity-50"
-      />
+      <div className="fixed bottom-4 w-full flex flex-row items-center justify-center gap-4">
+        <Card className="p-6 flex flex-row items-center gap-8">
+          <LiveEvent />
+
+          <Image
+            src="/logo.svg"
+            width={160}
+            height={160}
+            alt="logo"
+            className="grayscale opacity-50"
+          />
+        </Card>
+      </div>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
 
-import { formatDate } from "date-fns";
+import { formatDate, isToday } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 import {
@@ -15,7 +15,6 @@ import {
 } from "@phosphor-icons/react";
 
 import {
-  ArrowUpRight,
   Calendar,
   CalendarCheck,
   ChevronRight,
@@ -252,7 +251,12 @@ export default function Page() {
             </h2>
 
             {EVENT_SCHEDULE?.map((day) => (
-              <Card key={day.date} className={`w-full`}>
+              <Card
+                key={day.date}
+                className={`w-full ${
+                  isToday(day.date) && "relative border-primary border-2"
+                }`}
+              >
                 <CardHeader>
                   <CardTitle className="text-2xl font-semibold tracking-tight mb-2 text-primary flex items-center gap-2">
                     <Calendar className="size-6" />
@@ -266,6 +270,12 @@ export default function Page() {
                       locale: ptBR,
                     })}
                   </CardDescription>
+
+                  {isToday(day.date) && (
+                    <span className="absolute top-0 right-0 py-2 px-6 bg-primary text-primary-foreground rounded-tr-lg rounded-bl-xl">
+                      É HOJE!
+                    </span>
+                  )}
                 </CardHeader>
 
                 <CardContent>

@@ -27,7 +27,7 @@ export function Footer() {
 
       <Separator />
 
-      <ul className="flex items-center justify-center gap-4 text-sm text-primary">
+      <ul className="flex items-center justify-center gap-4 flex-wrap text-sm text-primary">
         <li>
           <Link href="/">Início</Link>
         </li>
@@ -40,9 +40,17 @@ export function Footer() {
         <li>
           <Link href="/patrocinadores">Patrocinadores</Link>
         </li>
+        <li>
+          <a
+            href="https://github.com/joaohouto/congressodireitouems"
+            target="_blank"
+          >
+            GitHub
+          </a>
+        </li>
       </ul>
 
-      <div className="text-center text-xs text-muted-foreground">
+      <div className="text-center text-xs text-muted-foreground text-balance">
         &copy; {new Date().getFullYear()} {appConfig.title}. Organizado com
         muito carinho por alunos e professores.
       </div>

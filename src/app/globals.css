@@ -183,7 +183,7 @@
   --animate-accordion-open: accordion-open 0.2s ease-out;
   --animate-accordion-close: accordion-close 0.2s ease-out;
 
-  --animate-logo-cloud: logo-cloud 90s linear infinite;
+  --animate-logo-cloud: logo-cloud 120s linear infinite;
 
   @keyframes accordion-open {
     from {

@@ -147,82 +147,16 @@ export default function GerenciaClient({
               </TableCell>
               <TableCell>
                 <div className="flex gap-2">
-                  <Dialog
-                    open={isEditDialogOpen}
-                    onOpenChange={setIsEditDialogOpen}
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={() => {
+                      setSelectedTicket(ticket);
+                      setIsEditDialogOpen(true);
+                    }}
                   >
-                    <DialogTrigger asChild>
-                      <Button
-                        variant="outline"
-                        size="icon"
-                        onClick={() => setSelectedTicket(ticket)}
-                      >
-                        <Pencil className="h-4 w-4" />
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent>
-                      <DialogHeader>
-                        <DialogTitle>Editar Ingresso</DialogTitle>
-                      </DialogHeader>
-                      {selectedTicket && (
-                        <form onSubmit={handleUpdate}>
-                          <div className="grid gap-4 py-4">
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="instagram" className="text-right">
-                                Instagram
-                              </Label>
-                              <Input
-                                id="instagram"
-                                value={selectedTicket.instagram}
-                                onChange={(e) =>
-                                  setSelectedTicket({
-                                    ...selectedTicket,
-                                    instagram: e.target.value,
-                                  })
-                                }
-                                className="col-span-3"
-                              />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="igName" className="text-right">
-                                Nome no Instagram
-                              </Label>
-                              <Input
-                                id="igName"
-                                value={selectedTicket.igName}
-                                onChange={(e) =>
-                                  setSelectedTicket({
-                                    ...selectedTicket,
-                                    igName: e.target.value,
-                                  })
-                                }
-                                className="col-span-3"
-                              />
-                            </div>
-                            <div className="grid grid-cols-4 items-center gap-4">
-                              <Label htmlFor="igAvatar" className="text-right">
-                                Avatar no Instagram
-                              </Label>
-                              <Input
-                                id="igAvatar"
-                                value={selectedTicket.igAvatar}
-                                onChange={(e) =>
-                                  setSelectedTicket({
-                                    ...selectedTicket,
-                                    igAvatar: e.target.value,
-                                  })
-                                }
-                                className="col-span-3"
-                              />
-                            </div>
-                          </div>
-                          <div className="flex justify-end">
-                            <Button type="submit">Salvar</Button>
-                          </div>
-                        </form>
-                      )}
-                    </DialogContent>
-                  </Dialog>
+                    <Pencil className="h-4 w-4" />
+                  </Button>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
                       <Button
@@ -263,6 +197,70 @@ export default function GerenciaClient({
           ))}
         </TableBody>
       </Table>
+      <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
+        <DialogContent>
+          <DialogHeader>
+            <DialogTitle>Editar Ingresso</DialogTitle>
+          </DialogHeader>
+          {selectedTicket && (
+            <form onSubmit={handleUpdate}>
+              <div className="grid gap-4 py-4">
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="instagram" className="text-right">
+                    Instagram
+                  </Label>
+                  <Input
+                    id="instagram"
+                    value={selectedTicket.instagram}
+                    onChange={(e) =>
+                      setSelectedTicket({
+                        ...selectedTicket,
+                        instagram: e.target.value,
+                      })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="igName" className="text-right">
+                    Nome no Instagram
+                  </Label>
+                  <Input
+                    id="igName"
+                    value={selectedTicket.igName}
+                    onChange={(e) =>
+                      setSelectedTicket({
+                        ...selectedTicket,
+                        igName: e.target.value,
+                      })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+                <div className="grid grid-cols-4 items-center gap-4">
+                  <Label htmlFor="igAvatar" className="text-right">
+                    Avatar no Instagram
+                  </Label>
+                  <Input
+                    id="igAvatar"
+                    value={selectedTicket.igAvatar}
+                    onChange={(e) =>
+                      setSelectedTicket({
+                        ...selectedTicket,
+                        igAvatar: e.target.value,
+                      })
+                    }
+                    className="col-span-3"
+                  />
+                </div>
+              </div>
+              <div className="flex justify-end">
+                <Button type="submit">Salvar</Button>
+              </div>
+            </form>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -11,10 +11,12 @@ import { ArrowUpRight, FileText } from "lucide-react";
 import { appConfig, EDICTS_BY_YEAR } from "../config";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { Badge } from "@/components/ui/badge";
 
 interface Edital {
   title: string;
   url?: string;
+  badge?: string;
   children?: Edital[];
 }
 
@@ -28,15 +30,17 @@ function EditalItem({ edital }: { edital: Edital }) {
           rel="noopener noreferrer"
           className="text-primary hover:underline"
         >
-          {edital.title}
+          {edital.title} {edital.badge && <Badge>{edital.badge}</Badge>}
         </a>
       ) : (
-        <span>{edital.title}</span>
+        <span>
+          {edital.title} {edital.badge && <Badge>{edital.badge}</Badge>}
+        </span>
       )}
       {edital.children && (
         <ul className="pl-4 mt-2 space-y-2">
           {edital.children.map((child) => (
-            <EditalItem key={child.title} edital={child} />
+            <EditalItem key={child.title} edital={child} /> // recursion is cool
           ))}
         </ul>
       )}
@@ -56,15 +60,17 @@ export function EditaisList() {
         </h1>
       </Card>
 
-      <Button
-        asChild
-        className="w-fit !py-8 !px-8 whitespace-normal break-words uppercase rounded-full text-sm font-semibold text-primary-foreground"
-      >
-        <Link href={appConfig.scienceMeetingForm}>
-          Submissão de resumos e banners (II Encontro Científico)
-          <ArrowUpRight />
-        </Link>
-      </Button>
+      {appConfig.scienceMeetingForm && (
+        <Button
+          asChild
+          className="w-fit !py-8 !px-8 whitespace-normal break-words uppercase rounded-full text-sm font-semibold text-primary-foreground"
+        >
+          <Link href={appConfig.scienceMeetingForm}>
+            Submissão de resumos e banners (II Encontro Científico)
+            <ArrowUpRight />
+          </Link>
+        </Button>
+      )}
 
       {Object.entries(EDICTS_BY_YEAR)
         .reverse()
