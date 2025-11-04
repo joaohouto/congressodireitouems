@@ -171,15 +171,25 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
 
     {
       title:
-        "SUBMISSÕES (RESUMO E BANNER) - II ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
+        "SUBMISSÃO (RESUMO E BANNER) - II ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
       url: "https://forms.gle/W8Vx5Mfy8fed4jMw6",
-      badge: "Encerradas!",
     },
 
     {
       title:
         "RETIFICAÇÃO Nº 01/2025 - PRORROGAÇÃO DAS SUBMISSÕES DO II ENCONTRO CIENTÍFICO",
       url: "/editais/2025/Prorrogação-das-Submissões-II-Encontro-Científico.pdf",
+    },
+
+    {
+      title: "TRABALHOS APROVADOS E REPROVADOS - II ENCONTRO CIENTÍFICO",
+      url: "/editais/2025/Trabalhos-Aprovados-e-Reprovados-II-Encontro-Científico.pdf",
+      badge: "Novo!",
+    },
+
+    {
+      title: "SUBMISSÃO DE RESUMO RETIFICADO",
+      url: "https://forms.gle/GpWSUFyyC5M1wF8L8",
     },
   ],
   "2024": [
