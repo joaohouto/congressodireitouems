@@ -184,12 +184,13 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
     {
       title: "TRABALHOS APROVADOS E REPROVADOS - II ENCONTRO CIENTÍFICO",
       url: "/editais/2025/Trabalhos-Aprovados-e-Reprovados-II-Encontro-Científico.pdf",
-      badge: "Novo!",
+      badge: "NOVO",
     },
 
     {
-      title: "SUBMISSÃO DE RESUMO RETIFICADO",
+      title: "SUBMISSÃO DE RESUMO/BANNER RETIFICADO",
       url: "https://forms.gle/GpWSUFyyC5M1wF8L8",
+      badge: "NOVO",
     },
   ],
   "2024": [
