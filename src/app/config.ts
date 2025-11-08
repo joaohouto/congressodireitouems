@@ -178,18 +178,29 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
     {
       title:
         "RETIFICAÇÃO Nº 01/2025 - PRORROGAÇÃO DAS SUBMISSÕES DO II ENCONTRO CIENTÍFICO",
-      url: "/editais/2025/Prorrogação-das-Submissões-II-Encontro-Científico.pdf",
+      url: "/editais/2025/Retificação-N-01-2025-Prorrogação-das-Submissões-II-Encontro-Científico.pdf",
     },
 
     {
       title: "TRABALHOS APROVADOS E REPROVADOS - II ENCONTRO CIENTÍFICO",
       url: "/editais/2025/Trabalhos-Aprovados-e-Reprovados-II-Encontro-Científico.pdf",
-      badge: "NOVO",
     },
 
     {
       title: "SUBMISSÃO DE RESUMO/BANNER RETIFICADO",
       url: "https://forms.gle/GpWSUFyyC5M1wF8L8",
+    },
+
+    {
+      title: "RETIFICAÇÃO Nº 02/2025 - CRONOGRAMA DE APRESENTAÇÕES",
+      url: "/editais/2025/Retificação-N-02-2025-Cronograma-de-Apresentações.pdf",
+      badge: "NOVO",
+    },
+
+    {
+      title:
+        "ORDEM DE APRESENTAÇÃO DE TRABALHOS E SALAS VIRTUAIS (GOOGLE MEET)",
+      url: "/editais/2025/Ordem-de-Apresentação-de-Trabalhos-e-Salas-Virtuais.pdf",
       badge: "NOVO",
     },
   ],
