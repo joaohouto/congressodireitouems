@@ -199,8 +199,8 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
 
     {
       title:
-        "ORDEM DE APRESENTAÇÃO DE TRABALHOS E SALAS VIRTUAIS (GOOGLE MEET)",
-      url: "/editais/2025/Ordem-de-Apresentação-de-Trabalhos-e-Salas-Virtuais.pdf",
+        "RESULTADO DEFINITIVO DOS TRABALHOS SELECIONADOS E SALAS VIRTUAIS DE APRESENTAÇÃO",
+      url: "/editais/2025/Resultado-Definitivo-dos-Trabalhos-Selecionados-e-Salas-Virtuais-de-Apresentação.pdf",
       badge: "NOVO",
     },
   ],
