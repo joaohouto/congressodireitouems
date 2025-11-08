@@ -18,11 +18,21 @@ export const EVENT_SCHEDULE = [
     date: "2025-11-12T00:00",
     events: [
       {
+        time: "14:00",
+        endTime: "17:00",
+        category: "Apresentação de trabalhos",
+        local: "Google Meet",
+        title: "II Encontro Científico do Curso de Direito",
+        person: "Comissão Científica",
+        image: "/placeholder.png",
+        bio: "",
+      },
+      {
         time: "19:00",
         endTime: "19:30",
         category: "",
         local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Abertura",
+        title: "Abertura do Congresso",
         person: "Alunos do Curso de Direito - UEMS Aquidauana",
         bio: "",
         image: "",
@@ -56,16 +66,6 @@ export const EVENT_SCHEDULE = [
     date: "2025-11-13T00:00",
     events: [
       {
-        time: "14:00",
-        endTime: "17:00",
-        category: "Apresentação de trabalhos",
-        local: "Google Meet",
-        title: "II Encontro Científico do Curso de Direito",
-        person: "",
-        bio: "",
-        image: "/placeholder.png",
-      },
-      {
         time: "19:30",
         endTime: "20:30",
         category: "Palestra",
@@ -96,14 +96,14 @@ Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
     date: "2025-11-14T00:00",
     events: [
       {
-        time: "14:00",
-        endTime: "17:00",
+        time: "08:00",
+        endTime: "12:00",
         category: "Apresentação de trabalhos",
         local: "Google Meet",
         title: "II Encontro Científico do Curso de Direito",
-        person: "",
-        bio: "",
+        person: "Comissão Científica",
         image: "/placeholder.png",
+        bio: "",
       },
       {
         time: "19:30",

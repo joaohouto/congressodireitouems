@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Link from "next/link";
 import Image from "next/image";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 import { formatDate, isToday } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -346,7 +347,9 @@ export default function Page() {
                             </ul>
 
                             <div className="prose prose-neutral mb-6">
-                              <ReactMarkdown>{event.bio}</ReactMarkdown>
+                              <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                                {event.bio}
+                              </ReactMarkdown>
                             </div>
 
                             <AddToCalendarButton
