@@ -8,7 +8,7 @@ export const appConfig = {
   description: "",
   instagram: "congressodireitouems",
   email: "nao-responda@joaocouto.com",
-  subscriptionForm: "https://forms.gle/Aov3CPTD1YGGrSmx6",
+  subscriptionForm: "", // https://forms.gle/Aov3CPTD1YGGrSmx6
   scienceMeetingForm: "",
   showSchedule: true,
 };

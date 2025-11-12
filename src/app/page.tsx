@@ -198,15 +198,17 @@ export default function Page() {
             custom={4}
             className="flex flex-col gap-4 items-center justify-center"
           >
-            <Button
-              asChild
-              className="h-12 w-[310px] uppercase rounded-full text-base font-semibold text-primary-foreground"
-            >
-              <Link href={appConfig.subscriptionForm}>
-                <NotePencilIcon />
-                Inscreva-se
-              </Link>
-            </Button>
+            {!!appConfig.subscriptionForm && (
+              <Button
+                asChild
+                className="h-12 w-[310px] uppercase rounded-full text-base font-semibold text-primary-foreground"
+              >
+                <Link href={appConfig.subscriptionForm}>
+                  <NotePencilIcon />
+                  Inscreva-se
+                </Link>
+              </Button>
+            )}
 
             <Button
               asChild
