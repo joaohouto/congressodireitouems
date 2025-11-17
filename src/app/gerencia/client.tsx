@@ -54,6 +54,7 @@ export default function GerenciaClient({
   const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [isDeletingAll, setIsDeletingAll] = useState(false);
 
   const handleUpdate = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -89,6 +90,19 @@ export default function GerenciaClient({
     }
   };
 
+  const handleDeleteAll = async () => {
+    setIsDeletingAll(true);
+    try {
+      await axios.delete(`/api/ticket/delete-all`);
+      setTickets([]);
+      toast.success("Todos os ingressos foram deletados com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao deletar todos os ingressos.");
+    } finally {
+      setIsDeletingAll(false);
+    }
+  };
+
   const handleExport = (type: "csv" | "excel") => {
     const worksheet = XLSX.utils.json_to_sheet(tickets);
     if (type === "excel") {
@@ -119,6 +133,32 @@ export default function GerenciaClient({
           <FileSpreadsheet />
           Exportar Excel
         </Button>
+        <AlertDialog>
+          <AlertDialogTrigger asChild>
+            <Button variant="destructive" disabled={isDeletingAll}>
+              {isDeletingAll ? (
+                <Loader2 className="h-4 w-4 animate-spin" />
+              ) : (
+                "Apagar Todos"
+              )}
+            </Button>
+          </AlertDialogTrigger>
+          <AlertDialogContent>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Você tem certeza absoluta?</AlertDialogTitle>
+              <AlertDialogDescription>
+                Essa ação não pode ser desfeita. Isso irá deletar
+                permanentemente TODOS os ingressos.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancelar</AlertDialogCancel>
+              <AlertDialogAction onClick={handleDeleteAll}>
+                Deletar Tudo
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
       </div>
       <Table>
         <TableHeader>

@@ -40,6 +40,7 @@ import { Badge } from "@/components/ui/badge";
 import { appConfig, EVENT_SCHEDULE } from "../config/app";
 import { SponsorsBar } from "@/components/sponsors-bar";
 import { Gallery } from "@/components/gallery";
+import { DireitoIcon } from "@/components/icon/direito";
 
 const AddToCalendarButton = ({ event }: { event: any }) => {
   // Formata a data para YYYYMMDDTHHMMSS
@@ -376,7 +377,8 @@ export default function Page() {
 
       <Gallery />
 
-      <div className="flex flex-col items-center justify-center py-12">
+      <div className="flex flex-col items-center justify-center py-20">
+        <DireitoIcon className="size-8 text-neutral-400" />
         <h2 className="text-primary text-4xl font-bold">Obrigado!</h2>
         <span className="text-muted-foreground">Nos vemos em 2026.</span>
       </div>
