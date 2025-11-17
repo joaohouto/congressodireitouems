@@ -1,6 +1,6 @@
 "use client";
 
-import { EVENT_SCHEDULE } from "@/app/config";
+import { EVENT_SCHEDULE } from "@/config/app";
 import { useEffect, useState } from "react";
 
 export function LiveEvent() {

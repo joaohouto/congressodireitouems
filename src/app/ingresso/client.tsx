@@ -10,12 +10,13 @@ import { TicketIcon } from "@/components/icon/ticket";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
-import { appConfig } from "../config";
+import { appConfig } from "@/config/app";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { AtSign, Loader2, Send, User2Icon } from "lucide-react";
+import { AtSign, Loader2, Send, TriangleAlert, XIcon } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { SponsorsBar } from "@/components/sponsors-bar";
+import { Badge } from "@/components/ui/badge";
 
 export function IngressoClient() {
   const [instagram, setInstagram] = useState("");
@@ -72,6 +73,13 @@ export function IngressoClient() {
 
           <div className="p-4 flex">
             <div className="flex flex-col">
+              {!appConfig.allowGenerateTicket && (
+                <Badge className="mb-2">
+                  <TriangleAlert className="size-3" />
+                  ESGOTADOS
+                </Badge>
+              )}
+
               <span className="text-base font-semibold text-primary">
                 Retire aqui o seu ingresso
               </span>
@@ -88,7 +96,7 @@ export function IngressoClient() {
               <div className="flex flex-col gap-2">
                 <Label>Seu nome de usuário do Instagram</Label>
                 <div className="relative">
-                  <AtSign className="absolute left-2 top-2.5 size-4 text-muted-foreground" />
+                  <AtSign className="absolute left-3 top-2.75 size-3.5 text-muted-foreground" />
                   <Input
                     placeholder="congressodireitouems"
                     autoCapitalize="off"
@@ -97,12 +105,17 @@ export function IngressoClient() {
                     id="instagram"
                     value={instagram}
                     onChange={(e) => setInstagram(e.target.value)}
+                    disabled={!appConfig.allowGenerateTicket}
                     required
                   />
                 </div>
               </div>
 
-              <Button className="w-full" type="submit" disabled={loading}>
+              <Button
+                className="w-full"
+                type="submit"
+                disabled={loading || !appConfig.allowGenerateTicket}
+              >
                 {loading ? (
                   <>
                     Gerando
@@ -118,8 +131,6 @@ export function IngressoClient() {
             </form>
           </CardContent>
         </Card>
-
-        <SponsorsBar />
 
         <Footer />
       </div>

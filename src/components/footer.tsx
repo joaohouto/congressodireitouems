@@ -1,4 +1,4 @@
-import { appConfig } from "@/app/config";
+import { appConfig } from "@/config/app";
 import { Button } from "./ui/button";
 import { RiInstagramLine } from "react-icons/ri";
 import { Separator } from "./ui/separator";
@@ -31,15 +31,23 @@ export function Footer() {
         <li>
           <Link href="/">Início</Link>
         </li>
-        <li>
-          <Link href="/ingresso">Ingresso</Link>
-        </li>
+
         <li>
           <Link href="/editais">Editais</Link>
         </li>
+
+        <li>
+          <Link href="/galeria">Galeria</Link>
+        </li>
+
+        <li>
+          <Link href="/ingresso">Ingresso</Link>
+        </li>
+
         <li>
           <Link href="/patrocinadores">Patrocinadores</Link>
         </li>
+
         <li>
           <a
             href="https://github.com/joaohouto/congressodireitouems"

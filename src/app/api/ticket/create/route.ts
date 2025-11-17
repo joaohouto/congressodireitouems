@@ -1,8 +1,11 @@
 import { NextResponse } from "next/server";
 import { database } from "@/lib/prisma";
 import axios from "axios";
+import { appConfig } from "@/config/app";
 
 export async function POST(request: Request) {
+  if (!appConfig.allowGenerateTicket) return NextResponse.json({ status: 503 });
+
   const body = await request.json();
   const { instagram } = body;
 

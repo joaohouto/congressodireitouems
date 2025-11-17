@@ -1,3 +1,5 @@
+![Congresso Jurídico](/public/og.png)
+
 # ⚖️ Congresso Jurídico da UEMS
 
 Este é o site do Congresso Jurídico da UEMS, um evento acadêmico focado em palestras, debates e apresentações de trabalhos científicos na área do Direito em Aquidauana/MS.
@@ -69,9 +71,9 @@ Abra [http://localhost:3000](http://localhost:3000) em seu navegador para ver o 
 
 ## Estrutura do Projeto
 
-### `src/app/config.ts`
+### `src/config`
 
-Este arquivo centraliza todas as informações estáticas do evento, como título, datas, cronograma, palestrantes e editais. Manter esses dados em um único local facilita a manutenção e atualização do site.
+Esta pasta centraliza todas as informações estáticas do site. Título, datas, cronograma, palestrantes e editais. Manter esses dados em um único local facilita a manutenção e atualização da aplicação.
 
 ### Rotas da Aplicação
 

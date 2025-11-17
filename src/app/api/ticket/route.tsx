@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { ImageResponse } from "next/og";
 import { database } from "@/lib/prisma";
-import { appConfig } from "@/app/config";
+import { appConfig } from "@/config/app";
 
 export async function GET(req: Request) {
   const url = new URL(req.url);

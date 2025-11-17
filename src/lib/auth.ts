@@ -3,7 +3,7 @@ import { NextAuthOptions } from "next-auth";
 import EmailProvider from "next-auth/providers/email";
 import { database } from "@/lib/prisma";
 import { resend } from "@/lib/resend";
-import { appConfig } from "@/app/config";
+import { appConfig } from "@/config/app";
 
 const whitelist = process.env.AUTH_WHITELIST?.split(",") ?? [];
 

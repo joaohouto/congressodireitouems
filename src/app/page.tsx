@@ -37,8 +37,9 @@ import { RightBranchIcon } from "@/components/icon/right-branch";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 
-import { appConfig, EVENT_SCHEDULE } from "./config";
+import { appConfig, EVENT_SCHEDULE } from "../config/app";
 import { SponsorsBar } from "@/components/sponsors-bar";
+import { Gallery } from "@/components/gallery";
 
 const AddToCalendarButton = ({ event }: { event: any }) => {
   // Formata a data para YYYYMMDDTHHMMSS
@@ -371,6 +372,13 @@ export default function Page() {
         <SponsorsBar />
 
         <Footer />
+      </div>
+
+      <Gallery />
+
+      <div className="flex flex-col items-center justify-center py-12">
+        <h2 className="text-primary text-4xl font-bold">Obrigado!</h2>
+        <span className="text-muted-foreground">Nos vemos em 2026.</span>
       </div>
     </div>
   );

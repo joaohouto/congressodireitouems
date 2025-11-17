@@ -8,7 +8,8 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { ArrowUpRight, FileText } from "lucide-react";
-import { appConfig, EDICTS_BY_YEAR } from "../config";
+import { appConfig } from "@/config/app";
+import { EDICTS_BY_YEAR } from "@/config/edicts";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";

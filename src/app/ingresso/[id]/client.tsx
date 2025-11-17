@@ -13,7 +13,7 @@ import { Download, Loader2, TicketIcon } from "lucide-react";
 import { useReward } from "react-rewards";
 import { useState } from "react";
 import { RiInstagramLine } from "react-icons/ri";
-import { appConfig } from "@/app/config";
+import { appConfig } from "@/config/app";
 import { toast } from "sonner";
 import { Footer } from "@/components/footer";
 import { Spinner } from "@/components/luxe/spinner";

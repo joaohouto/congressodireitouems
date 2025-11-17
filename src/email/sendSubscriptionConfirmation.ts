@@ -1,7 +1,7 @@
 import * as React from "react";
 import { resend } from "@/lib/resend";
 import { SubscriptionEmailTemplate } from "@/components/email/subscription-confirmation";
-import { appConfig } from "@/app/config";
+import { appConfig } from "@/config/app";
 
 interface IConfirmation {
   id: string;
