@@ -44,7 +44,7 @@ export const SponsorsBar = () => {
                       src={logo}
                       height={96}
                       width={96}
-                      className="max-h-full max-w-full object-contain grayscale hover:grayscale-0 transition-all"
+                      className="max-h-full max-w-full object-contain grayscale"
                       alt={`${logo}`}
                     />
                   </div>

@@ -83,7 +83,7 @@ export function EditaisList() {
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <ul className="space-y-2">
+              <ul className="space-y-2 list-disc pl-5 text-neutral-400">
                 {editais.map((edital) => (
                   <EditalItem key={edital.title} edital={edital} />
                 ))}

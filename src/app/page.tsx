@@ -377,9 +377,11 @@ export default function Page() {
 
       <Gallery />
 
-      <div className="flex flex-col items-center justify-center py-20">
-        <DireitoIcon className="size-8 text-neutral-400" />
-        <h2 className="text-primary text-4xl font-bold">Obrigado!</h2>
+      <div className="flex flex-col items-center justify-center gap-3 py-20">
+        <DireitoIcon className="size-12 text-neutral-400" />
+        <h2 className="text-primary text-5xl font-bold font-playfair-display">
+          Obrigado!
+        </h2>
         <span className="text-muted-foreground">Nos vemos em 2026.</span>
       </div>
     </div>

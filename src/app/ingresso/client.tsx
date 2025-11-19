@@ -13,9 +13,8 @@ import Image from "next/image";
 import { appConfig } from "@/config/app";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { AtSign, Loader2, Send, TriangleAlert, XIcon } from "lucide-react";
+import { AtSign, Loader2, Send, TriangleAlert } from "lucide-react";
 import { Label } from "@/components/ui/label";
-import { SponsorsBar } from "@/components/sponsors-bar";
 import { Badge } from "@/components/ui/badge";
 
 export function IngressoClient() {
@@ -52,7 +51,7 @@ export function IngressoClient() {
   };
 
   return (
-    <div className="bg-muted">
+    <div className="bg-muted min-h-screen">
       <div className="max-w-[600px] mx-auto my-auto p-4 flex flex-col items-center">
         <header className="flex items-center py-12">
           <Link href="/">
@@ -67,8 +66,8 @@ export function IngressoClient() {
         </header>
 
         <Card className="w-full flex flex-col gap-0 sm:flex-row p-2 items-center rounded-lg mb-6">
-          <div className="h-full flex-grow w-full md:w-[130px] bg-muted p-2 rounded-lg flex items-center justify-center">
-            <TicketIcon className="h-[128px] w-[128px] transition-all duration-300 ease-in-out hover:scale-110 -rotate-12 hover:rotate-12" />
+          <div className="h-full flex-grow w-full md:w-[130px] bg-primary p-2 rounded-lg flex items-center justify-center">
+            <TicketIcon className="h-[128px] w-[128px] transition-all duration-300 ease-in-out hover:scale-120 -rotate-12 hover:rotate-12" />
           </div>
 
           <div className="p-4 flex">
@@ -118,13 +117,13 @@ export function IngressoClient() {
               >
                 {loading ? (
                   <>
-                    Gerando
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    Gerando
                   </>
                 ) : (
                   <>
-                    Gerar ingresso
                     <Send />
+                    Gerar ingresso
                   </>
                 )}
               </Button>

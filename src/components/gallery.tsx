@@ -30,18 +30,18 @@ export function Gallery() {
   }, [images]);
 
   return (
-    <div className="flex gap-4 p-4">
+    <div className="grid grid-cols-1 md:grid-cols-4 gap-4 p-4">
       {columns.map((column, colIndex) => (
         <div
           key={colIndex}
-          className={`flex flex-col gap-4 w-1/2 sm:w-1/4 ${
-            colIndex % 2 !== 0 ? "" : "sm:mt-[125px] mt-0"
+          className={`w-full flex flex-col gap-4 ${
+            colIndex % 2 !== 0 ? "" : "md:mt-[80px] mt-0"
           }`}
         >
           {column.map((image) => (
             <div key={image}>
               <Image
-                className="h-auto max-w-full sm:rounded-lg rounded"
+                className="h-auto w-full sm:rounded-lg rounded"
                 src={image}
                 alt=""
                 width={500}
