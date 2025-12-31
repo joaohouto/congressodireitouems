@@ -370,7 +370,7 @@ export default function Page() {
           </motion.div>
         )}
 
-        <SponsorsBar />
+        {appConfig.showSponsors && <SponsorsBar />}
 
         <Footer />
       </div>

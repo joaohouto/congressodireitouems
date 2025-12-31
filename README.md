@@ -32,7 +32,7 @@ Siga estas instruções para configurar e rodar o projeto em seu ambiente de des
 1.  Clone o repositório:
 
     ```bash
-    git clone https://github.com/joaohouto/congressojuridicouems.git
+    git clone https://github.com/joaohouto/congressodireitouems.git
     cd congressojuridicouems
     ```
 

@@ -15,6 +15,7 @@ export const appConfig = {
   scienceMeetingForm: "",
   showSchedule: false,
   allowGenerateTicket: false,
+  showSponsors: false,
 };
 
 export const EVENT_SCHEDULE = [
