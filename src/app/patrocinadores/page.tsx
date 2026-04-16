@@ -59,7 +59,7 @@ export default function SponsorsPage() {
                 <div className="relative h-[300px] w-full">
                   <Image
                     src={sponsor}
-                    alt="Descrição da imagem"
+                    alt={sponsor.split("/").pop()?.replace(/\.[^/.]+$/, "") ?? "Patrocinador"}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     style={{ objectFit: "contain" }}

@@ -41,10 +41,9 @@ export function IngressoClient() {
     } catch (error: any) {
       toast.error("Erro!", {
         description:
-          error.response.data.message ||
+          error?.response?.data?.message ||
           "Ocorreu um erro ao gerar seu ingresso.",
       });
-      console.log(error);
     } finally {
       setLoading(false);
     }
@@ -58,7 +57,6 @@ export function IngressoClient() {
             <Image
               width={300}
               height={200}
-              layout="contain"
               src="/logo.svg"
               alt={appConfig.title}
             />
@@ -117,7 +115,7 @@ export function IngressoClient() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                    <Loader2 className="animate-spin" />
                     Gerando
                   </>
                 ) : (

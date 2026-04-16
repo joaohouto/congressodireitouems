@@ -58,8 +58,8 @@ export const StoryPreview = ({ id }: { id: string }) => {
             <Image
               src={`/api/ticket?id=${id}`}
               alt="Instagram story"
-              layout="fill"
-              objectFit="cover"
+              fill
+              style={{ objectFit: "cover" }}
               placeholder="blur"
               blurDataURL="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAAAAAAD/2wBDAAMCAgICAgMCAgIDAwMDBAYEBAQEBAgGBgUGCQgKCgkICQkKDA8MCgsOCwkJDRENDg8QEBEQCgwSExIQEw8QEBD/2wBDAQMDAwQDBAgEBAgQCwkLEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBD/wAARCAASAAoDAREAAhEBAxEB/8QAFwAAAwEAAAAAAAAAAAAAAAAABQcICf/EACQQAAIBBAICAQUAAAAAAAAAAAECAwQFBhEAIQcSgQgTMUGR/8QAGAEBAAMBAAAAAAAAAAAAAAAABQECBgP/xAAgEQACAgAHAQEAAAAAAAAAAAABAgADBRETIUFRcSMz/9oADAMBAAIRAxEAPwB8YL9G2D5ThmN5CK+/PUXe10tbVBLjToInljVmCxmItoe3Wz88Nrw6l0DMTmYUmHo6ht9x3JuzK0UuL5ffMZp5p5IrRcqqhR5SPdlilZAW0Nb0veuF2UBXKjgw6ygK5UcGX54ey3DqXxVhNDecgio69LBbTLEn3SdinjPTAdbBHzzRUj5r5NFT+a+TP/yzPXzeVMylWGkcPkFxYMHcgg1MnY2N/wB4PaG1G9MGtB1G9MQL5FkEDtBBfbjHHGSqIlU4VQPwAAeuQGPcnMw/A7ywxyyuzu6hmZjssSOyT+zyk5z/2Q=="
               className="rounded-lg object-cover"

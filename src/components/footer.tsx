@@ -19,6 +19,7 @@ export function Footer() {
           <a
             href={`https://instagram.com/${appConfig.instagram}`}
             target="_blank"
+            rel="noopener noreferrer"
           >
             <RiInstagramLine />@{appConfig.instagram}
           </a>
@@ -34,6 +35,10 @@ export function Footer() {
 
         <li>
           <Link href="/editais">Editais</Link>
+        </li>
+
+        <li>
+          <Link href="/anais">Anais</Link>
         </li>
 
         <li>

@@ -190,6 +190,7 @@ export default function GerenciaClient({
                   <Button
                     variant="outline"
                     size="icon"
+                    aria-label="Editar ingresso"
                     onClick={() => {
                       setSelectedTicket(ticket);
                       setIsEditDialogOpen(true);
@@ -202,6 +203,7 @@ export default function GerenciaClient({
                       <Button
                         variant="destructive"
                         size="icon"
+                        aria-label="Deletar ingresso"
                         disabled={deletingId === ticket.id}
                       >
                         {deletingId === ticket.id ? (

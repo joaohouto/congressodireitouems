@@ -17,7 +17,7 @@ export const authOptions: NextAuthOptions = {
           from: appConfig.email,
           to: email,
           subject: "Seu link de acesso",
-          html: `<p>Clique aqui para entrar: ${url}`,
+          html: `<p>Clique aqui para entrar: <a href="${encodeURI(url)}">${encodeURI(url)}</a></p>`,
         });
       },
     }),

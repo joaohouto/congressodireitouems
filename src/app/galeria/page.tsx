@@ -19,7 +19,6 @@ export default function Galeria() {
             <Image
               width={300}
               height={200}
-              layout="contain"
               src="/logo.svg"
               alt={appConfig.title}
             />

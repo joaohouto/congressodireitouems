@@ -123,7 +123,8 @@ Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
       },
       {
         time: "21:30",
-        category: "22:00",
+        endTime: "22:00",
+        category: "",
         local: "Auditório da Câmara Municipal de Aquidauana",
         title: "Encerramento",
         person: "Alunos do Curso de Direito - UEMS Aquidauana",

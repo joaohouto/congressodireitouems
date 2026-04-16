@@ -35,7 +35,7 @@ export function LiveEvent() {
       if (!eventFound) {
         setCurrentEvent(null);
       }
-    }, 1000);
+    }, 30000);
 
     return () => clearInterval(interval);
   }, []);

@@ -122,7 +122,7 @@ export default function Page() {
   };
 
   return (
-    <div className="min-h-screen bg-muted">
+    <main className="min-h-screen bg-muted">
       <div className="max-w-[600px] mx-auto my-auto py-8 px-4 flex flex-col items-center">
         <header className="flex flex-col items-center gap-7 py-15 relative">
           <motion.div
@@ -131,13 +131,7 @@ export default function Page() {
             animate="visible"
             className="absolute -top-[120px] -right-[100px] md:-top-[130px] md:-right-[200px]"
           >
-            <Image
-              width={300}
-              height={100}
-              layout="contain"
-              src="/araras.png"
-              alt="Araras"
-            />
+            <Image width={300} height={100} src="/araras.png" alt="Araras" />
           </motion.div>
 
           <motion.div
@@ -149,7 +143,6 @@ export default function Page() {
             <Image
               width={340}
               height={116}
-              layout="contain"
               src="/logo.svg"
               alt="Congresso Jurídico"
             />
@@ -212,17 +205,19 @@ export default function Page() {
               </Button>
             )}
 
-            <Button
-              asChild
-              variant="outline"
-              size="sm"
-              className="rounded-full w-fit !pl-4 "
-            >
-              <Link href="/editais">
-                Editais
-                <ChevronRight />
-              </Link>
-            </Button>
+            <div className="flex gap-2 flex-wrap justify-center">
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="rounded-full w-fit !pl-4"
+              >
+                <Link href="/editais">
+                  Editais
+                  <ChevronRight />
+                </Link>
+              </Button>
+            </div>
           </motion.div>
 
           <motion.div
@@ -231,13 +226,7 @@ export default function Page() {
             animate="visible"
             className="absolute bottom-[100px] left-[100px] scale-150 md:scale-100 md:-bottom-[0px] md:-left-[200px]"
           >
-            <Image
-              width={140}
-              height={100}
-              layout="contain"
-              src="/themis.png"
-              alt="Themis"
-            />
+            <Image width={140} height={100} src="/themis.png" alt="Themis" />
           </motion.div>
 
           <div className="md:h-0 h-[400px]" />
@@ -287,8 +276,8 @@ export default function Page() {
                   <div className="flex flex-col gap-4 ">
                     {day.events?.map((event) => (
                       <Dialog key={event.title}>
-                        <DialogTrigger>
-                          <div className="flex items-start gap-4">
+                        <DialogTrigger asChild>
+                          <button className="flex items-start gap-4 text-left w-full">
                             <span className="text-sm bg-primary text-primary-foreground py-1 px-2 rounded-full w-15 min-w-15 text-center text-balance font-semibold">
                               {event.time}
                             </span>
@@ -302,7 +291,7 @@ export default function Page() {
                                 </p>
                               )}
                             </div>
-                          </div>
+                          </button>
                         </DialogTrigger>
 
                         <DialogContent className="max-h-[calc(100%-2rem)] w-[560px] overflow-y-auto flex flex-col ">
@@ -384,6 +373,6 @@ export default function Page() {
         </h2>
         <span className="text-muted-foreground">Nos vemos em 2026.</span>
       </div>
-    </div>
+    </main>
   );
 }

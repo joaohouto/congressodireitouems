@@ -45,7 +45,7 @@ export const SponsorsBar = () => {
                       height={96}
                       width={96}
                       className="max-h-full max-w-full object-contain grayscale"
-                      alt={`${logo}`}
+                      alt={logo.split("/").pop()?.replace(/\.[^/.]+$/, "") ?? "Patrocinador"}
                     />
                   </div>
                 ))}

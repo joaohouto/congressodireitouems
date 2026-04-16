@@ -91,7 +91,7 @@ export function Gallery() {
               alt=""
               width={500}
               height={500}
-              onLoadingComplete={() => handleLoaded(image)}
+              onLoad={() => handleLoaded(image)}
               unoptimized={false}
             />
           </motion.div>

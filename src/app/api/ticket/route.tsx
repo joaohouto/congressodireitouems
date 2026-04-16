@@ -2,13 +2,30 @@ import { NextResponse } from "next/server";
 import { ImageResponse } from "next/og";
 import { database } from "@/lib/prisma";
 import { appConfig } from "@/config/app";
+import fs from "fs";
+import path from "path";
+
+// Cache font at module level to avoid reading from disk on every request
+let fontDataCache: ArrayBuffer | null = null;
+
+function getFontData(): ArrayBuffer {
+  if (fontDataCache) return fontDataCache;
+  const buf = fs.readFileSync(
+    path.join(process.cwd(), "public/fonts/Lato-Bold.ttf")
+  );
+  fontDataCache = buf.buffer.slice(
+    buf.byteOffset,
+    buf.byteOffset + buf.byteLength
+  ) as ArrayBuffer;
+  return fontDataCache;
+}
 
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const id = url.searchParams.get("id");
 
   if (!id) {
-    return NextResponse.json({ message: "Forneça um ID!" });
+    return NextResponse.json({ message: "Forneça um ID!" }, { status: 400 });
   }
 
   const ticket = await database.ticket.findUnique({
@@ -16,8 +33,6 @@ export async function GET(req: Request) {
       id,
     },
   });
-
-  console.log(ticket);
 
   if (!ticket) {
     return NextResponse.json(
@@ -29,9 +44,7 @@ export async function GET(req: Request) {
   // TODO: se o get da url de subscription.igAvatar der pau, tentar fazer o
   // scrap do perfil do Instagram novamente e salvar no banco
 
-  const fontData = await fetch(
-    new URL(`${process.env.NEXT_PUBLIC_HOSTNAME}/fonts/Lato-Bold.ttf`)
-  ).then((res) => res.arrayBuffer());
+  const fontData = getFontData();
 
   return new ImageResponse(
     (
