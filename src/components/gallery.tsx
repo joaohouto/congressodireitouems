@@ -3,7 +3,7 @@
 import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import axios from "axios";
-import { AnimatePresence, motion } from "motion/react";
+import { motion } from "motion/react";
 
 const COLUMN_COUNT = 4;
 const SKELETON_ROWS = 3;

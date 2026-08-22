@@ -7,7 +7,7 @@ export function LiveEvent() {
   const [currentEvent, setCurrentEvent] = useState<any | null>(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    const checkCurrentEvent = () => {
       const now = new Date();
       let eventFound = false;
 
@@ -35,7 +35,10 @@ export function LiveEvent() {
       if (!eventFound) {
         setCurrentEvent(null);
       }
-    }, 30000);
+    };
+
+    checkCurrentEvent();
+    const interval = setInterval(checkCurrentEvent, 30000);
 
     return () => clearInterval(interval);
   }, []);

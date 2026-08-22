@@ -41,9 +41,12 @@ export default async function Ticket({
 
   if (!isValidObjectId(id)) return <Error id={id} />;
 
-  const ticketExists = await database.ticket.findFirst({
+  const ticketExists = await database.ticket.findUnique({
     where: {
       id,
+    },
+    select: {
+      id: true,
     },
   });
 

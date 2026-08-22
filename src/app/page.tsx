@@ -10,16 +10,18 @@ import { formatDate, isToday } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 import {
+  ArrowUpRightIcon,
   CalendarBlankIcon,
   MapPinIcon,
   NotePencilIcon,
+  XIcon,
 } from "@phosphor-icons/react";
 
 import {
   Calendar,
-  CalendarCheck,
   ChevronRight,
   Clock,
+  ExternalLink,
   MapPin,
   PresentationIcon,
 } from "lucide-react";
@@ -31,57 +33,34 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
 import { LeftBranchIcon } from "@/components/icon/left-branch";
 import { RightBranchIcon } from "@/components/icon/right-branch";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
+import { RiInstagramLine } from "react-icons/ri";
 
 import { appConfig, EVENT_SCHEDULE } from "../config/app";
 import { SponsorsBar } from "@/components/sponsors-bar";
-import { Gallery } from "@/components/gallery";
-import { DireitoIcon } from "@/components/icon/direito";
-
-const AddToCalendarButton = ({ event }: { event: any }) => {
-  // Formata a data para YYYYMMDDTHHMMSS
-  const formatDateTime = (date: string, time: string) => {
-    const [year, month, day] = date.split("-");
-    const [hour, minute] = time.split(":");
-    return `${year}${month}${day}T${hour}${minute}00`;
-  };
-
-  // Cria a URL do Google Calendar
-  const createCalendarUrl = (event: any) => {
-    const startDate = formatDateTime(event.date, event.time);
-    const endDate = formatDateTime(event.date, event.time); // Para eventos de um dia, a data de início e fim são as mesmas.
-    const details = `${
-      event.person ? `Palestrante: ${event.person}\n\n` : ""
-    }${event.bio.replace(/\*\*/g, "").replace(/<br\s*\/?>/g, "\n")}`;
-
-    const params = new URLSearchParams({
-      action: "TEMPLATE",
-      text: `${event.category}: ${event.title}`,
-      dates: `${startDate}/${endDate}`,
-      details: details,
-      location: event.local,
-    });
-
-    return `https://calendar.google.com/calendar/render?${params.toString()}`;
-  };
-
-  const calendarUrl = createCalendarUrl(event);
-
-  return (
-    <Button asChild variant="outline" className="rounded-full">
-      <Link href={calendarUrl} target="_blank" rel="noopener noreferrer">
-        <CalendarCheck />
-        Adicionar ao Google Calendar
-      </Link>
-    </Button>
-  );
-};
+import { usePeriodCountdown } from "@/hooks/use-period-countdown";
 
 export default function Page() {
+  const {
+    status: subscriptionStatus,
+    formattedCountdown,
+    isMounted,
+  } = usePeriodCountdown(
+    appConfig.subscriptionStart,
+    appConfig.subscriptionEnd,
+  );
+
   const itemVariants = {
     hidden: { y: 20, opacity: 0, filter: "blur(6px)" },
     visible: (index: number) => ({
@@ -109,10 +88,9 @@ export default function Page() {
   };
 
   const themisAnimation = {
-    hidden: { x: 0, opacity: 0, filter: "blur(6px)" },
+    hidden: { opacity: 0, filter: "blur(6px)" },
     visible: {
       opacity: 1,
-      x: 0,
       filter: "blur(0)",
       transition: {
         duration: 0.6,
@@ -122,14 +100,37 @@ export default function Page() {
   };
 
   return (
-    <main className="min-h-screen bg-muted">
-      <div className="max-w-[600px] mx-auto my-auto py-8 px-4 flex flex-col items-center">
-        <header className="flex flex-col items-center gap-7 py-15 relative">
+    <main className="relative min-h-screen bg-muted overflow-x-hidden">
+      {/* Imagem do Palácio no topo da página: largura total, colada no topo, apenas com fade embaixo */}
+      <div className="absolute inset-x-0 top-0 h-[480px] sm:h-[540px] md:h-[620px] pointer-events-none overflow-hidden select-none z-0">
+        <motion.div
+          initial={{ opacity: 0, filter: "blur(6px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          transition={{ duration: 1, delay: 0.1 }}
+          className="relative w-full h-full"
+        >
+          <Image
+            src="/palacio.webp"
+            alt=""
+            aria-hidden
+            fill
+            priority
+            sizes="100vw"
+            className="object-cover object-top opacity-15 dark:opacity-20"
+          />
+          {/* Fade suave apenas na parte inferior */}
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-muted" />
+          <div className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-muted to-transparent" />
+        </motion.div>
+      </div>
+
+      <div className="relative max-w-[600px] mx-auto py-8 px-4 flex flex-col items-center">
+        <header className="w-full flex flex-col items-center gap-7 pt-40 pb-15 relative">
           <motion.div
             variants={macawAnimation}
             initial="hidden"
             animate="visible"
-            className="absolute -top-[120px] -right-[100px] md:-top-[130px] md:-right-[200px]"
+            className="absolute -top-8 -right-30 md:-right-20"
           >
             <Image width={300} height={100} src="/araras.png" alt="Araras" />
           </motion.div>
@@ -148,43 +149,47 @@ export default function Page() {
             />
           </motion.div>
 
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            custom={2}
-            className="flex justify-center items-end font-semibold"
-          >
-            <LeftBranchIcon className="size-9 opacity-20" />
-            <span className="text-secondary text-center max-w-[240px] text-sm leading-3.5">
-              {appConfig.theme}
-            </span>
-            <RightBranchIcon className="size-9 opacity-20" />
-          </motion.div>
+          {appConfig.showTheme && (
+            <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              custom={2}
+              className="flex justify-center items-end font-semibold"
+            >
+              <LeftBranchIcon className="size-9 opacity-20" />
+              <span className="text-secondary text-center max-w-[240px] text-sm leading-3.5">
+                {appConfig.theme}
+              </span>
+              <RightBranchIcon className="size-9 opacity-20" />
+            </motion.div>
+          )}
 
-          <motion.div
-            variants={itemVariants}
-            initial="hidden"
-            animate="visible"
-            custom={3}
-            className="grid grid-cols-2 gap-2"
-          >
-            <div className="flex gap-2 leading-3.5 font-semibold text-secondary text-sm max-w-[160px]">
-              <CalendarBlankIcon
-                weight="fill"
-                className="size-6 min-w-6 text-primary"
-              />
-              {appConfig.fullDate}
-            </div>
+          {appConfig.showDateAndPlace && (
+            <motion.div
+              variants={itemVariants}
+              initial="hidden"
+              animate="visible"
+              custom={3}
+              className="grid grid-cols-2 gap-2"
+            >
+              <div className="flex gap-2 leading-3.5 font-semibold text-secondary text-sm max-w-[160px]">
+                <CalendarBlankIcon
+                  weight="fill"
+                  className="size-6 min-w-6 text-primary"
+                />
+                {appConfig.fullDate}
+              </div>
 
-            <div className="flex gap-2 leading-3.5 font-semibold text-secondary text-sm max-w-[160px]">
-              <MapPinIcon
-                weight="fill"
-                className="size-6 min-w-6 text-primary"
-              />
-              {appConfig.place}
-            </div>
-          </motion.div>
+              <div className="flex gap-2 leading-3.5 font-semibold text-secondary text-sm max-w-[160px]">
+                <MapPinIcon
+                  weight="fill"
+                  className="size-6 min-w-6 text-primary"
+                />
+                {appConfig.place}
+              </div>
+            </motion.div>
+          )}
 
           <motion.div
             variants={itemVariants}
@@ -193,17 +198,50 @@ export default function Page() {
             custom={4}
             className="flex flex-col gap-4 items-center justify-center"
           >
-            {!!appConfig.subscriptionForm && (
-              <Button
-                asChild
-                className="h-12 w-[310px] uppercase rounded-full text-base font-semibold text-primary-foreground"
-              >
-                <Link href={appConfig.subscriptionForm}>
-                  <NotePencilIcon />
-                  Inscreva-se
-                </Link>
-              </Button>
-            )}
+            {!!appConfig.subscriptionForm &&
+              (subscriptionStatus === "open" ? (
+                <Button
+                  asChild
+                  className="h-12 w-[310px] uppercase rounded-full text-base font-semibold text-primary-foreground"
+                >
+                  <Link href={appConfig.subscriptionForm}>
+                    <NotePencilIcon />
+                    Inscreva-se
+                  </Link>
+                </Button>
+              ) : (
+                <Button
+                  disabled
+                  className="h-12 w-[310px] rounded-full text-sm font-medium flex items-center justify-center gap-2 border border-border/60 bg-background/50 text-muted-foreground opacity-95 cursor-default select-none backdrop-blur-xs"
+                >
+                  {subscriptionStatus === "upcoming" ? (
+                    <>
+                      <Clock className="size-4 shrink-0 text-primary/70" />
+                      <span>
+                        Inscrições em{" "}
+                        <span
+                          suppressHydrationWarning
+                          className="font-mono font-semibold tabular-nums text-foreground/90"
+                        >
+                          {isMounted
+                            ? formattedCountdown
+                            : appConfig.subscriptionStart
+                              ? formatDate(
+                                  appConfig.subscriptionStart,
+                                  "dd/MM",
+                                  { locale: ptBR },
+                                )
+                              : ""}
+                        </span>
+                      </span>
+                    </>
+                  ) : (
+                    <span className="flex items-center gap-2 uppercase">
+                      <XIcon /> Inscrições encerradas
+                    </span>
+                  )}
+                </Button>
+              ))}
 
             <div className="flex gap-2 flex-wrap justify-center">
               <Button
@@ -217,6 +255,18 @@ export default function Page() {
                   <ChevronRight />
                 </Link>
               </Button>
+
+              <Button
+                asChild
+                variant="outline"
+                size="sm"
+                className="rounded-full w-fit !pl-4"
+              >
+                <Link href="/encontro-cientifico">
+                  Encontro Científico
+                  <ChevronRight />
+                </Link>
+              </Button>
             </div>
           </motion.div>
 
@@ -224,7 +274,7 @@ export default function Page() {
             variants={themisAnimation}
             initial="hidden"
             animate="visible"
-            className="absolute bottom-[100px] left-[100px] scale-150 md:scale-100 md:-bottom-[0px] md:-left-[200px]"
+            className="absolute bottom-[100px] left-1/2 -translate-x-1/2 scale-150 md:scale-120 md:translate-x-0 md:-bottom-0 md:-left-[140px]"
           >
             <Image width={140} height={100} src="/themis.png" alt="Themis" />
           </motion.div>
@@ -238,7 +288,7 @@ export default function Page() {
             initial="hidden"
             animate="visible"
             custom={6}
-            className="flex flex-col items-center gap-6"
+            className="w-full flex flex-col items-center gap-6"
           >
             <h2 className="uppercase tracking-widest text-muted-foreground">
               Programação
@@ -294,8 +344,8 @@ export default function Page() {
                           </button>
                         </DialogTrigger>
 
-                        <DialogContent className="max-h-[calc(100%-2rem)] w-[560px] overflow-y-auto flex flex-col ">
-                          {!!event.image && (
+                        <DialogContent className="max-h-[calc(100%-2rem)] w-[560px] overflow-y-auto flex flex-col">
+                          {event.image ? (
                             <Image
                               className="rounded-sm h-[200px] w-full object-contain bg-muted"
                               src={event.image}
@@ -303,51 +353,95 @@ export default function Page() {
                               width={200}
                               height={200}
                             />
+                          ) : (
+                            <div className="h-[160px] w-full rounded-sm bg-muted grid place-items-center">
+                              <PresentationIcon className="size-10 text-muted-foreground" />
+                            </div>
                           )}
 
-                          <div className="">
-                            <strong className="text-2xl font-semibold text-balance mb-4">
+                          <DialogHeader>
+                            <DialogTitle className="text-2xl font-semibold text-balance">
                               {event.title}
-                            </strong>
+                            </DialogTitle>
 
                             {!!event.person && (
-                              <p className="text-lg text-balance">
-                                com <b>{event.person}</b>
-                              </p>
+                              <DialogDescription className="text-base text-balance">
+                                com{" "}
+                                <span className="font-semibold text-foreground">
+                                  {event.person}
+                                </span>
+                              </DialogDescription>
                             )}
+                          </DialogHeader>
 
-                            <ul className="flex flex-row flex-wrap gap-2 my-2 mb-6">
+                          <ul className="flex flex-row flex-wrap gap-2">
+                            {!!event.category && (
                               <li>
                                 <Badge variant="secondary">
                                   <PresentationIcon className="h-4 w-4" />
                                   {event.category}
                                 </Badge>
                               </li>
+                            )}
 
-                              <li>
-                                <Badge variant="secondary">
-                                  <Clock className="h-4 w-4" />
-                                  {event.time}
-                                </Badge>
-                              </li>
+                            <li>
+                              <Badge variant="secondary">
+                                <Clock className="h-4 w-4" />
+                                {event.time}
+                                {!!event.endTime && ` – ${event.endTime}`}
+                              </Badge>
+                            </li>
 
-                              <li>
-                                <Badge variant="secondary">
-                                  <MapPin className="h-4 w-4 min-w-4" />
-                                  {event.local}
-                                </Badge>
-                              </li>
-                            </ul>
+                            <li>
+                              <Badge variant="secondary">
+                                <MapPin className="h-4 w-4 min-w-4" />
+                                {event.local}
+                              </Badge>
+                            </li>
+                          </ul>
 
-                            <div className="prose prose-neutral mb-6">
+                          {!!event.bio?.trim() && (
+                            <div className="prose prose-neutral">
                               <ReactMarkdown remarkPlugins={[remarkGfm]}>
                                 {event.bio}
                               </ReactMarkdown>
                             </div>
+                          )}
 
-                            <AddToCalendarButton
-                              event={{ ...event, date: day.date }}
-                            />
+                          <div className="flex flex-wrap gap-2">
+                            {!!event.ig && (
+                              <Button
+                                asChild
+                                variant="outline"
+                                className="rounded-full"
+                              >
+                                <Link
+                                  href={event.ig}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <RiInstagramLine />
+                                  Ver no Instagram
+                                </Link>
+                              </Button>
+                            )}
+
+                            {!!event.link && (
+                              <Button
+                                asChild
+                                variant="outline"
+                                className="rounded-full"
+                              >
+                                <Link
+                                  href={event.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                >
+                                  <ExternalLink />
+                                  Acessar sala
+                                </Link>
+                              </Button>
+                            )}
                           </div>
                         </DialogContent>
                       </Dialog>
@@ -356,22 +450,21 @@ export default function Page() {
                 </CardContent>
               </Card>
             ))}
+
+            <a
+              href="/api/schedule.ics"
+              download="programacao-congresso-uems.ics"
+              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground/80 hover:text-primary transition-colors py-1 hover:underline"
+            >
+              <ArrowUpRightIcon className="size-3.5" />
+              Salvar programação na agenda
+            </a>
           </motion.div>
         )}
 
         {appConfig.showSponsors && <SponsorsBar />}
 
         <Footer />
-      </div>
-
-      <Gallery />
-
-      <div className="flex flex-col items-center justify-center gap-3 py-20">
-        <DireitoIcon className="size-12 text-neutral-400" />
-        <h2 className="text-primary text-5xl font-bold font-playfair-display">
-          Obrigado!
-        </h2>
-        <span className="text-muted-foreground">Nos vemos em 2026.</span>
       </div>
     </main>
   );

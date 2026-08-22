@@ -38,7 +38,7 @@ export function Footer() {
         </li>
 
         <li>
-          <Link href="/anais">Anais</Link>
+          <Link href="/encontro-cientifico">Encontro Científico</Link>
         </li>
 
         <li>
@@ -47,10 +47,6 @@ export function Footer() {
 
         <li>
           <Link href="/ingresso">Ingresso</Link>
-        </li>
-
-        <li>
-          <Link href="/patrocinadores">Patrocinadores</Link>
         </li>
 
         <li>

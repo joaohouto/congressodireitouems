@@ -69,6 +69,10 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
         "RESULTADO DEFINITIVO DOS TRABALHOS SELECIONADOS E SALAS VIRTUAIS DE APRESENTAÇÃO",
       url: "/editais/2025/Resultado-Definitivo-dos-Trabalhos-Selecionados-e-Salas-Virtuais-de-Apresentação.pdf",
     },
+    {
+      title: "ANAIS DO II ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
+      url: "/editais/2025/Anais - II Encontro Científico - Direito UEMS Aquidauana.pdf",
+    },
   ],
   "2024": [
     {
@@ -108,7 +112,7 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
       url: "/editais/2024/LOCAL DE APRESENTAÇÃO E AVALIADORES.pdf",
     },
     {
-      title: "ANAIS - I ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
+      title: "ANAIS DO I ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
       url: "/editais/2024/Anais - I Encontro Científico - Direito UEMS Aquidauana.pdf",
     },
   ],

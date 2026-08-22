@@ -22,6 +22,9 @@ const playfairDisplay = Playfair_Display({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_HOSTNAME || "https://congressojuridicouems.vercel.app"
+  ),
   title: {
     default: appConfig.title,
     template: `%s | ${appConfig.shortTitle}`,

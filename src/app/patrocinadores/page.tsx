@@ -14,7 +14,6 @@ import { toast } from "sonner";
 import { Spinner } from "@/components/luxe/spinner";
 import { LiveEvent } from "@/components/live-event";
 import { Card } from "@/components/ui/card";
-import { Separator } from "@/components/ui/separator";
 
 export default function SponsorsPage() {
   const [loading, setLoading] = React.useState(true);

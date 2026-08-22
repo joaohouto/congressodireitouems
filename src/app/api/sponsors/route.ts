@@ -12,7 +12,7 @@ export async function GET() {
     const imageFiles = files.filter((file) => {
       const extension = file.toLowerCase().split(".").pop();
       return ["jpg", "jpeg", "png", "gif", "svg", "webp"].includes(
-        extension || ""
+        extension || "",
       );
     });
 
@@ -27,7 +27,7 @@ export async function GET() {
 
     return NextResponse.json(
       { message: "Erro ao buscar os patrocinadores." },
-      { status: 500 }
+      { status: 500 },
     );
   }
 }

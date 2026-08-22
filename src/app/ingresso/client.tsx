@@ -25,16 +25,28 @@ export function IngressoClient() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const cleanUsername = instagram
+      .trim()
+      .replace(/^@+/, "")
+      .replace(/^https?:\/\/(www\.)?instagram\.com\//, "")
+      .split("/")[0]
+      .split("?")[0]
+      .trim();
+
+    if (!cleanUsername) {
+      toast.error("Informe seu usuário do Instagram!");
+      return;
+    }
+
     setLoading(true);
 
     try {
       const response = await axios.post("/api/ticket/create", {
-        instagram,
+        instagram: cleanUsername,
       });
 
       toast.success("Sucesso!", {
-        description:
-          "Seu ingresso foi gerado com sucesso. Já vamos te redirecionar para ele!",
+        description: response.data.message,
       });
 
       router.push(`/ingresso/${response.data.ticket.id}`);
@@ -121,7 +133,7 @@ export function IngressoClient() {
                 ) : (
                   <>
                     <Send />
-                    Gerar ingresso
+                    Retirar ingresso
                   </>
                 )}
               </Button>

@@ -1,15 +1,25 @@
 import { NextResponse } from "next/server";
 import { database } from "@/lib/prisma";
-import axios from "axios";
 import { appConfig } from "@/config/app";
+import { fetchInstagramProfile, sanitizeInstagramUsername } from "@/lib/instagram";
 
-// Simple in-memory rate limiter: max 3 tickets per IP per 10 minutes
+// Simple in-memory rate limiter: max 5 tickets per IP per 10 minutes
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
-const RATE_LIMIT_MAX = 3;
+const RATE_LIMIT_MAX = 5;
 const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
 
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
+
+  // Prune expired entries periodically to prevent memory leaks
+  if (rateLimitMap.size > 200) {
+    for (const [key, val] of rateLimitMap.entries()) {
+      if (now > val.resetAt) {
+        rateLimitMap.delete(key);
+      }
+    }
+  }
+
   const entry = rateLimitMap.get(ip);
 
   if (!entry || now > entry.resetAt) {
@@ -29,8 +39,10 @@ export async function POST(request: Request) {
   if (!appConfig.allowGenerateTicket) return NextResponse.json({ status: 503 });
 
   const ip =
-    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
+    request.headers.get("x-vercel-forwarded-for") ||
+    request.headers.get("cf-connecting-ip") ||
     request.headers.get("x-real-ip") ||
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ||
     "unknown";
 
   if (!checkRateLimit(ip)) {
@@ -42,76 +54,90 @@ export async function POST(request: Request) {
     );
   }
 
-  const body = await request.json();
-  const { instagram } = body;
+  let body: any;
+  try {
+    body = await request.json();
+  } catch {
+    return NextResponse.json(
+      { message: "Requisição inválida. JSON esperado." },
+      { status: 400 },
+    );
+  }
 
-  if (!instagram) {
+  const rawInstagram = body?.instagram;
+
+  if (!rawInstagram || typeof rawInstagram !== "string") {
     return NextResponse.json(
       { message: "Informe o usuário do Instagram!" },
       { status: 400 },
     );
   }
 
-  // get Instagram data
-  const apiUrl = `https://i.instagram.com/api/v1/users/web_profile_info/?username=${instagram}`;
-  const userAgent =
-    "Instagram 337.0.0.0.77 Android (28/9; 420dpi; 1080x1920; samsung; SM-G611F; on7xreflte; samsungexynos7870; en_US; 493419337)";
+  const cleanInstagram = sanitizeInstagramUsername(rawInstagram);
 
-  let igAvatar;
-  let igName;
-
-  try {
-    const igResponse = await axios.get(apiUrl, {
-      headers: {
-        "User-Agent": userAgent,
-      },
-    });
-
-    if (!igResponse.data.data?.user) {
-      // user not found
-      return NextResponse.json(
-        { message: "Erro ao buscar dados do Instagram!" },
-        { status: 400 },
-      );
-    }
-
-    igAvatar = igResponse.data.data?.user?.profile_pic_url_hd;
-    igName = igResponse.data.data?.user?.full_name;
-  } catch (error: any) {
-    if (error?.response?.status === 429) {
-      return NextResponse.json(
-        {
-          message:
-            "O Instagram está temporariamente indisponível. Tente novamente em alguns minutos.",
-        },
-        { status: 503 },
-      );
-    }
-
+  if (!cleanInstagram) {
     return NextResponse.json(
-      { message: "Erro ao buscar dados do Instagram!" },
+      { message: "Usuário do Instagram inválido!" },
       { status: 400 },
     );
   }
 
+  let lastTicket = null;
+  let igResult;
+
+  try {
+    [lastTicket, igResult] = await Promise.all([
+      database.ticket.findFirst({
+        orderBy: {
+          count: "desc",
+        },
+        select: {
+          count: true,
+        },
+      }),
+      fetchInstagramProfile(cleanInstagram),
+    ]);
+  } catch (error) {
+    console.error("Erro ao buscar dados iniciais do ingresso:", error);
+    igResult = await fetchInstagramProfile(cleanInstagram);
+  }
+
+  if (igResult.outcome === "not_found") {
+    return NextResponse.json(
+      { message: igResult.message || "Usuário não encontrado no Instagram!" },
+      { status: 404 },
+    );
+  }
+
+  if (igResult.outcome === "rate_limited") {
+    return NextResponse.json(
+      { message: igResult.message || "O Instagram está temporariamente indisponível." },
+      { status: 503 },
+    );
+  }
+
+  if (igResult.outcome !== "ok") {
+    return NextResponse.json(
+      { message: igResult.message || "Não foi possível obter dados do Instagram." },
+      { status: 400 },
+    );
+  }
+
+  const igAvatar = igResult.igAvatar || "";
+  const igName = igResult.igName || cleanInstagram;
+
   // save ticket
   try {
-    const lastTicket = await database.ticket.findFirst({
-      orderBy: {
-        count: "desc",
-      },
-    });
-
     let lastCount = 0;
 
-    if (lastTicket) {
+    if (lastTicket && typeof lastTicket.count === "number") {
       lastCount = lastTicket.count;
     }
 
     const ticket = await database.ticket.create({
       data: {
         count: lastCount + 1,
-        instagram,
+        instagram: cleanInstagram,
         igAvatar,
         igName,
       },
@@ -121,9 +147,10 @@ export async function POST(request: Request) {
       message: "Ingresso gerado com sucesso!",
       ticket,
     });
-  } catch {
+  } catch (error) {
+    console.error("Erro ao salvar ingresso no banco de dados:", error);
     return NextResponse.json(
-      { message: "Erro ao salvar ingresso!" },
+      { message: "Erro ao salvar ingresso no banco de dados!" },
       { status: 500 },
     );
   }

@@ -11,7 +11,18 @@ export default async function Gerencia() {
     redirect("/api/auth/signin");
   }
 
-  const tickets = await database.ticket.findMany();
+  const tickets = await database.ticket.findMany({
+    select: {
+      id: true,
+      count: true,
+      instagram: true,
+      igName: true,
+      createdAt: true,
+    },
+    orderBy: {
+      createdAt: "desc",
+    },
+  });
 
   return (
     <div className="container mx-auto p-4">

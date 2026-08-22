@@ -2,64 +2,76 @@
 
 # ⚖️ Congresso Jurídico da UEMS
 
-Este é o site do Congresso Jurídico da UEMS, um evento acadêmico focado em palestras, debates e apresentações de trabalhos científicos na área do Direito em Aquidauana/MS.
+Este é o repositório oficial do site do **Congresso Jurídico da UEMS - Aquidauana**, um evento acadêmico voltado a palestras, debates, apresentação de trabalhos científicos e integração na área do Direito.
 
-## Tecnologias Utilizadas
+---
 
-Este projeto foi construído com as seguintes tecnologias:
+## 🚀 Tecnologias Utilizadas
 
-- **Framework:** [Next.js](https://nextjs.org/)
+- **Framework:** [Next.js](https://nextjs.org/) (App Router, Turbopack, Serverless Functions)
 - **Linguagem:** [TypeScript](https://www.typescriptlang.org/)
 - **ORM:** [Prisma](https://www.prisma.io/)
-- **Autenticação:** [Auth.js](https://authjs.dev/)
-- **Banco de Dados:** [MongoDB Atlas](https://www.mongodb.com/products/platform/atlas-database)
+- **Banco de Dados:** [MongoDB Atlas](https://www.mongodb.com/atlas)
+- **Autenticação:** [NextAuth.js](https://next-auth.js.org/) (Passwordless Magic Link com whitelist de administradores)
 - **Estilização:** [Tailwind CSS](https://tailwindcss.com/)
-- **Componentes UI:** [shadcn/ui](https://ui.shadcn.com/)
-- **Envio de E-mails:** [Resend](https://resend.com/)
+- **Componentes UI:** [Radix UI](https://www.radix-ui.com/) & [shadcn/ui](https://ui.shadcn.com/)
+- **Animações:** [Motion](https://motion.dev/)
+- **Envio de E-mails:** [Resend](https://resend.com/) com [@react-email/components](https://react.email/)
+- **Geração de Imagens:** `@vercel/og` / `next/og`
+- **Planilhas:** [xlsx](https://sheetjs.com/) (Exportação CSV e Excel)
 - **Gerenciador de Pacotes:** [pnpm](https://pnpm.io/)
 
-## ⚡ Guia de Início Rápido
+---
 
-Siga estas instruções para configurar e rodar o projeto em seu ambiente de desenvolvimento local.
+## ⚡ Guia de Início Rápido
 
 ### Pré-requisitos
 
 - [Node.js](https://nodejs.org/) (versão 20 ou superior)
-- [pnpm](https://pnpm.io/installation)
+- [pnpm](https://pnpm.io/installation) (versão 10 ou superior)
 
 ### Instalação
 
-1.  Clone o repositório:
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/joaohouto/congressodireitouems.git
+   cd congressojuridicouems
+   ```
 
-    ```bash
-    git clone https://github.com/joaohouto/congressodireitouems.git
-    cd congressojuridicouems
-    ```
+2. Instale as dependências:
+   ```bash
+   pnpm install
+   ```
 
-2.  Instale as dependências:
-    ```bash
-    pnpm install
-    ```
+3. Gere o cliente do Prisma:
+   ```bash
+   pnpm prisma generate
+   ```
 
 ### Variáveis de Ambiente
 
-Crie um arquivo chamado `.env.local` na raiz do projeto e adicione as seguintes variáveis:
+Crie um arquivo `.env` (ou `.env.local`) na raiz do projeto com base no `.env.example`:
 
 ```env
-# URL de conexão com o banco de dados MongoDB
-DATABASE_URL="mongodb+srv://user:password@host/database"
-
-# E-mails com permissão para acessar a área de gerência (separados por vírgula)
-AUTH_WHITELIST="email1@example.com,email2@example.com"
-
-# Chave da API do Resend para envio de e-mails
-RESEND_API_KEY="re_xxxxxxxxxxxxxxxx"
-
 # URL base da aplicação
-NEXT_PUBLIC_HOSTNAME="http://localhost:3000" # ou https://congressodireitouems.com.br para produção
+NEXT_PUBLIC_HOSTNAME="http://localhost:3000"
+
+# URL de conexão com o banco de dados MongoDB Atlas
+DATABASE_URL="mongodb+srv://<user>:<password>@cluster.mongodb.net/dbname?retryWrites=true&w=majority"
+
+# Chave secreta de criptografia para autenticação (NextAuth)
+AUTH_SECRET="uma-chave-secreta-forte-e-aleatoria"
+NEXTAUTH_SECRET="uma-chave-secreta-forte-e-aleatoria"
+NEXTAUTH_URL="http://localhost:3000"
+
+# Chave da API do Resend para envio do Magic Link e confirmações
+AUTH_RESEND_KEY="re_xxxxxxxxxxxxxxxx"
+
+# E-mails autorizados para acesso ao painel de gerência (separados por vírgula)
+AUTH_WHITELIST="admin@uems.br,organizador@uems.br"
 ```
 
-### Rodando a Aplicação
+### Executando Localmente
 
 Inicie o servidor de desenvolvimento:
 
@@ -67,34 +79,60 @@ Inicie o servidor de desenvolvimento:
 pnpm dev
 ```
 
-Abra [http://localhost:3000](http://localhost:3000) em seu navegador para ver o resultado.
+Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
-## Estrutura do Projeto
+---
 
-### `src/config`
+## 📂 Estrutura de Pastas e Configurações
 
-Esta pasta centraliza todas as informações estáticas do site. Título, datas, cronograma, palestrantes e editais. Manter esses dados em um único local facilita a manutenção e atualização da aplicação.
+### `src/config/`
+Centraliza todos os dados e configurações do evento para facilitar a edição anual:
+- **`app.ts`**: Título, tema, datas, status das inscrições, links de formulários e cronograma de palestras (`EVENT_SCHEDULE`).
+- **`edicts.ts`**: Editais oficiais de abertura, anexos e modelos de submissão organizados por ano.
+- **`annals.ts`**: Anais e trabalhos científicos publicados por edição.
+- **`galleries.ts`**: Álbuns e links das galerias de fotos de edições anteriores.
 
-### Rotas da Aplicação
+### Páginas e Rotas da Aplicação (`src/app/`)
+- `/`: Página principal com banner hero, contagem regressiva, programação interativa, modais de palestrantes e atalho para inscrição.
+- `/editais`: Lista de editais, retificações e modelos de documentos por ano.
+- `/encontro-cientifico`: Submissão de trabalhos, cronograma de apresentações e anais.
+- `/galeria`: Galeria de fotos oficiais do congresso.
+- `/ingresso`: Formulário para retirar ingresso personalizado via usuário público do Instagram.
+- `/ingresso/[id]`: Visualização, download e compartilhamento em alta resolução do ingresso gerado.
+- `/gerencia`: Painel administrativo protegido por autenticação (Magic Link) para listar, editar, deletar e exportar (CSV/Excel) os ingressos.
+- `/patrocinadores`: Painel rotativo em tela cheia com logos dos patrocinadores e detector de evento ao vivo (`LiveEvent`).
 
-O projeto utiliza o App Router do Next.js. As principais rotas são:
+### Endpoints da API (`src/app/api/`)
+- `POST /api/ticket/create`: Coleta dados públicos do Instagram, converte o avatar em Base64 permanente e armazena o ingresso no banco com rate limiting por IP.
+- `GET /api/ticket?id={id}`: Gera dinamicamente a imagem do ingresso em 1080x1920 utilizando `next/og` e fontes personalizadas.
+- `PUT /api/ticket/[id]` & `DELETE /api/ticket/[id]`: Atualização e exclusão de ingressos (requer autenticação admin).
+- `DELETE /api/ticket/delete-all`: Exclusão em massa de ingressos (requer autenticação admin).
+- `GET /api/schedule.ics`: Exportação da grade completa de eventos no formato iCalendar (.ics) para sincronização com Google Calendar / Apple Calendar.
+- `GET /api/gallery`: Retorna a lista de imagens disponíveis na pasta pública de fotos.
+- `GET /api/sponsors`: Retorna a lista de logotipos dos patrocinadores.
+- `/api/auth/[...nextauth]`: Autenticação e sessão com NextAuth.js.
 
-- `/`: Página inicial com informações gerais sobre o evento.
-- `/editais`: Exibe os editais e documentos do congresso, organizados por ano.
-- `/ingresso`: Página onde os participantes podem gerar uma imagem de ingresso personalizada para compartilhar nas redes sociais.
-- `/ingresso/[id]`: Exibe o ingresso gerado para um participante específico.
-- `/gerencia`: Área administrativa para gerenciamento dos ingressos de participantes, protegida por autenticação.
+---
 
-### API
+## 🔒 Segurança e Boas Práticas
 
-- `/api/ticket/create`: Esta rota `POST` cria um novo registro de ingresso. Ela recebe um nome de usuário do Instagram, busca o nome completo e a foto de perfil do usuário através da API do Instagram, e salva esses dados no banco de dados junto com um número de inscrição sequencial. (PS.: o URL de visualização da imagem expira, passado algum tempo, o ideal seria salvar a foto do usuário em um bucket)
+- **Controle de Acesso *Deny-by-Default*:** Usuários que não estejam explicitamente declarados em `AUTH_WHITELIST` são impedidos de fazer login na área de gerência.
+- **Rate Limiting & Proteção de Memória:** Limite de geração de ingressos por IP e limpeza periódica de caches voláteis para evitar vazamento de memória.
+- **Sanitização e Validação Estrita:** Validação de ObjectIds do MongoDB e filtragem de caracteres para usernames do Instagram.
+- **Isolamento de Avatares:** Download de imagens externas limitado a 5MB com validação de esquema HTTP/HTTPS para mitigação de riscos de SSRF e DoS.
 
-- `/api/ticket?id={id}`: Esta rota `GET` gera a imagem do ingresso. Utilizando a biblioteca `next/og`, ela cria uma imagem a partir de componentes React, combinando os dados do participante (buscados pelo `id`) com um template de imagem (`/public/ingresso.jpg`).
+---
 
-- `/api/sponsors`: Esta rota `GET` retorna uma lista com os caminhos das imagens dos patrocinadores, lendo diretamente o conteúdo do diretório `/public/patrocinadores`.
+## 📦 Build e Deploy
 
-## Deploy
+Para verificar tipagem e compilar o projeto para produção:
 
-Faça o deploy deste projeto na Vercel com um clique:
+```bash
+pnpm lint
+pnpm build
+```
+
+O projeto está otimizado para deploy na **[Vercel](https://vercel.com/)**:
 
 [![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fjoaohouto%2Fcongressojuridicouems)
+

@@ -15,7 +15,6 @@ import {
 } from "@react-email/components";
 
 import { appConfig } from "@/config/app";
-import { Calendar, Ticket } from "lucide-react";
 
 interface EmailTemplateProps {
   id: string;

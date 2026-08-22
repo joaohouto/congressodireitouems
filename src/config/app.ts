@@ -1,10 +1,9 @@
 export const appConfig = {
-  title: "III Congresso Jurídico do Curso de Direito da UEMS - Aquidauana",
+  title: "IV Congresso Jurídico do Curso de Direito da UEMS - Aquidauana",
   ogImage: "/og.png",
-
-  shortTitle: "III Congresso Jurídico",
-  theme: "Direito Penal em Debate: Perspectivas e Tendências",
-  fullDate: "de 12 a 14 de novembro de 2025",
+  shortTitle: "IV Congresso Jurídico",
+  theme: "Direito na Era Digital: Tecnologia, Inovação e Sociedade",
+  fullDate: "de 04 a 06 de novembro de 2026",
   place: "Câmara Municipal de Aquidauana/MS",
   description: "",
 
@@ -12,126 +11,146 @@ export const appConfig = {
   email: "nao-responda@joaocouto.com",
 
   subscriptionForm: "",
-  scienceMeetingForm: "",
+  subscriptionStart: "2026-09-01T00:00",
+  subscriptionEnd: "2026-11-03T23:59",
+
+  showTheme: false,
+  showDateAndPlace: false,
   showSchedule: false,
   allowGenerateTicket: false,
   showSponsors: false,
 };
 
-export const EVENT_SCHEDULE = [
-  {
-    date: "2025-11-12T00:00",
-    events: [
-      {
-        time: "14:00",
-        endTime: "17:00",
-        category: "Apresentação de trabalhos",
-        local: "Google Meet",
-        title: "II Encontro Científico do Curso de Direito",
-        person: "Comissão Científica",
-        image: "/placeholder.png",
-        bio: "",
-      },
-      {
-        time: "19:00",
-        endTime: "19:30",
-        category: "",
-        local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Abertura do Congresso",
-        person: "Alunos do Curso de Direito - UEMS Aquidauana",
-        bio: "",
-        image: "",
-        ig: "https://www.instagram.com/direitoaquidauana/",
-      },
-      {
-        time: "19:30",
-        endTime: "20:30",
-        category: "Palestra",
-        local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Patriarcado e a Violência Doméstica",
-        person: "Prof. Dra. Andrea Flores",
-        bio: "Advogada Criminalista. Doutora em Direito pela Pontifícia Universidade Católica de São Paulo (2008). Mestra em Direito pela Pontifícia Universidade Católica de São Paulo (2000). Graduada em Direito pela Universidade Católica Dom Bosco (1994).Graduada em letras -habilitação inglês pela Universidade Federal de Mato Grosso do Sul (1994), Professora da Universidade Católica Dom Bosco e professora efetiva da Universidade Federal de Mato Grosso do Sul, professora do programa de mestrado em Direitos Humanos da UFMS, Professora Emérita da UFMS, Conselheira Federal da OAB/MS (2022/2024).",
-        image: "/palestrantes/andrea-flores.jpeg",
-        ig: "https://www.instagram.com/andreaflores.adv/",
-      },
-      {
-        time: "20:30",
-        endTime: "22:00",
-        category: "Palestra",
-        local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Direitos Fundamentais do Réu no Processo Penal",
-        person: "Prof. Dra. Rejane Arruda",
-        bio: "Advogada. Doutora e Mestre em Direito pela PUC/SP. Pós-Graduada em Direito Penal Econômico pela Universidade de Coimbra/IBCCrim. Professora do Mestrado em Direitos Humanos e da Graduação da UFMS. Professora de Processo Penal da Escola Superior da Magistratura de Mato Grosso do Sul e Diretora dos Institutos Vozes e Aprimore-Curadoria Jurídica.",
-        image: "/palestrantes/rejane-arruda.jpeg",
-        ig: "https://www.instagram.com/rejanealvesdearruda/",
-      },
-    ],
-  },
-  {
-    date: "2025-11-13T00:00",
-    events: [
-      {
-        time: "19:30",
-        endTime: "20:30",
-        category: "Palestra",
-        local: "Auditório da Câmara Municipal de Aquidauana",
-        title:
-          "Tribunal do Júri: Princípios Constitucionais e Teses Recentes do STF",
-        person: "Dr. João Meneghini Girelli",
-        bio: `
-Promotor de Justiça do Ministério Público do Estado do Mato Grosso do Sul
+export const SCIENCE_MEETING = {
+  edition: "III",
 
-Máster em Processo Penal e Garantismo pela Universidade de Girona/ES
-        `,
-        image: "/palestrantes/joao-meneghini-girelli.jpeg",
-      },
-      {
-        time: "20:30",
-        endTime: "21:30",
-        category: "Palestra",
-        local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Exame Criminológico: Psiquiatrização da Execução Penal",
-        person: "Dr. Cahuê Duarte e Urdiales",
-        bio: "Defensor Público. Titular da 6ª Defensoria Pública de Execução Penal de Campo Grande. Pós graduando em Direito Penal e Criminologia pelo ICPC.",
-        image: "/palestrantes/cahue-duarte.jpeg",
-      },
-    ],
-  },
-  {
-    date: "2025-11-14T00:00",
-    events: [
-      {
-        time: "08:00",
-        endTime: "12:00",
-        category: "Apresentação de trabalhos",
-        local: "Google Meet",
-        title: "II Encontro Científico do Curso de Direito",
-        person: "Comissão Científica",
-        image: "/placeholder.png",
-        bio: "",
-      },
-      {
-        time: "19:30",
-        endTime: "21:30",
-        category: "Júri Simulado",
-        local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Júri Simulado",
-        person: "Alunos do Curso de Direito - UEMS Aquidauana",
-        bio: "",
-        image: "",
-        ig: "https://www.instagram.com/direitoaquidauana/",
-      },
-      {
-        time: "21:30",
-        endTime: "22:00",
-        category: "",
-        local: "Auditório da Câmara Municipal de Aquidauana",
-        title: "Encerramento",
-        person: "Alunos do Curso de Direito - UEMS Aquidauana",
-        bio: "",
-        image: "",
-        ig: "https://www.instagram.com/direitoaquidauana/",
-      },
-    ],
-  },
-];
+  submissionForm: "",
+  submissionStart: "2026-09-01T00:00",
+  submissionEnd: "2026-11-03T23:59",
+
+  sessions: [
+    {
+      date: "2026-11-05T00:00",
+      time: "14:00",
+      endTime: "17:00",
+      local: "Google Meet",
+      link: "",
+    },
+    {
+      date: "2026-11-06T00:00",
+      time: "08:00",
+      endTime: "12:00",
+      local: "Google Meet",
+      link: "",
+    },
+  ],
+};
+
+const OTHER_EVENTS_BY_DATE: Record<string, EventScheduleItem[]> = {
+  "2026-11-04T00:00": [
+    {
+      time: "19:00",
+      endTime: "19:30",
+      category: "",
+      local: "Auditório da Câmara Municipal de Aquidauana",
+      title: "Abertura do Congresso",
+      person: "Alunos do Curso de Direito - UEMS Aquidauana",
+      bio: "",
+      image: "",
+      ig: "https://www.instagram.com/direitoaquidauana/",
+    },
+  ],
+  "2026-11-06T00:00": [
+    {
+      time: "19:30",
+      endTime: "21:30",
+      category: "Júri Simulado",
+      local: "Auditório da Câmara Municipal de Aquidauana",
+      title: "Júri Simulado",
+      person: "Alunos do Curso de Direito - UEMS Aquidauana",
+      bio: "",
+      image: "",
+      ig: "https://www.instagram.com/direitoaquidauana/",
+    },
+    {
+      time: "21:30",
+      endTime: "22:00",
+      category: "",
+      local: "Auditório da Câmara Municipal de Aquidauana",
+      title: "Encerramento",
+      person: "Alunos do Curso de Direito - UEMS Aquidauana",
+      bio: "",
+      image: "",
+      ig: "https://www.instagram.com/direitoaquidauana/",
+    },
+  ],
+};
+
+export const EVENT_SCHEDULE: DaySchedule[] = buildEventSchedule();
+
+// ============================================================================
+// Tipagens e Helpers
+// ============================================================================
+
+function buildEventSchedule(): DaySchedule[] {
+  const eventsByDate = new Map<string, EventScheduleItem[]>();
+
+  for (const [date, events] of Object.entries(OTHER_EVENTS_BY_DATE)) {
+    eventsByDate.set(date, [...events]);
+  }
+
+  for (const session of SCIENCE_MEETING.sessions) {
+    const event: EventScheduleItem = {
+      time: session.time,
+      endTime: session.endTime,
+      category: "Apresentação de trabalhos",
+      local: session.local,
+      title: `${SCIENCE_MEETING.edition} Encontro Científico do Curso de Direito`,
+      person: "Comissão Científica",
+      image: "/placeholder.png",
+      bio: "",
+      link: session.link,
+    };
+
+    eventsByDate.set(session.date, [
+      ...(eventsByDate.get(session.date) ?? []),
+      event,
+    ]);
+  }
+
+  return Array.from(eventsByDate.entries())
+    .sort(([a], [b]) => a.localeCompare(b))
+    .map(([date, events]) => ({
+      date,
+      events: events.sort((a, b) => a.time.localeCompare(b.time)),
+    }));
+}
+
+export type AppConfig = typeof appConfig;
+export type ScienceMeetingConfig = typeof SCIENCE_MEETING;
+
+export interface ScienceMeetingSession {
+  date: string;
+  time: string;
+  endTime: string;
+  local: string;
+  link?: string;
+}
+
+export interface EventScheduleItem {
+  time: string;
+  endTime: string;
+  category: string;
+  local: string;
+  title: string;
+  person: string;
+  bio: string;
+  image: string;
+  ig?: string;
+  link?: string;
+}
+
+export interface DaySchedule {
+  date: string;
+  events: EventScheduleItem[];
+}

@@ -11,8 +11,8 @@ model Ticket {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   count     Int      @default(-1)
   instagram String
-  igAvatar  String
-  igName    String
+  igAvatar  String?
+  igName    String?
   createdAt DateTime @default(now())
 }
 

@@ -29,7 +29,6 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,9 +38,10 @@ import Link from "next/link";
 
 type Ticket = {
   id: string;
+  count?: number;
   instagram: string;
-  igAvatar: string;
-  igName: string;
+  igAvatar?: string | null;
+  igName: string | null;
   createdAt: Date;
 };
 
@@ -104,7 +104,15 @@ export default function GerenciaClient({
   };
 
   const handleExport = (type: "csv" | "excel") => {
-    const worksheet = XLSX.utils.json_to_sheet(tickets);
+    const exportData = tickets.map((ticket) => ({
+      ID: ticket.id,
+      "Número": ticket.count ?? "",
+      Instagram: ticket.instagram,
+      Nome: ticket.igName || ticket.instagram,
+      "Data de Criação": formatDate(ticket.createdAt, "dd/MM/yyyy HH:mm"),
+    }));
+
+    const worksheet = XLSX.utils.json_to_sheet(exportData);
     if (type === "excel") {
       const workbook = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(workbook, worksheet, "Ingressos");
@@ -269,7 +277,7 @@ export default function GerenciaClient({
                   </Label>
                   <Input
                     id="igName"
-                    value={selectedTicket.igName}
+                    value={selectedTicket.igName || ""}
                     onChange={(e) =>
                       setSelectedTicket({
                         ...selectedTicket,
@@ -285,7 +293,7 @@ export default function GerenciaClient({
                   </Label>
                   <Input
                     id="igAvatar"
-                    value={selectedTicket.igAvatar}
+                    value={selectedTicket.igAvatar || ""}
                     onChange={(e) =>
                       setSelectedTicket({
                         ...selectedTicket,

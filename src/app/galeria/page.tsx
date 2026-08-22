@@ -4,6 +4,7 @@ import Image from "next/image";
 import { GaleriesList } from "./client";
 import { appConfig } from "@/config/app";
 import { Footer } from "@/components/footer";
+import { Gallery } from "@/components/gallery";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -26,7 +27,11 @@ export default function Galeria() {
         </header>
 
         <GaleriesList />
+      </div>
 
+      <Gallery />
+
+      <div className="max-w-[600px] mx-auto p-4 flex flex-col items-center">
         <Footer />
       </div>
     </div>

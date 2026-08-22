@@ -2,18 +2,12 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardTitle,
-} from "@/components/ui/card";
-import { Download, Loader2, TicketIcon } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import { Download } from "lucide-react";
 
 import { useReward } from "react-rewards";
 import { useState } from "react";
 import { RiInstagramLine } from "react-icons/ri";
-import { appConfig } from "@/config/app";
 import { toast } from "sonner";
 import { Footer } from "@/components/footer";
 import { Spinner } from "@/components/luxe/spinner";
