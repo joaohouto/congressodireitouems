@@ -3,11 +3,9 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Download } from "lucide-react";
-
+import { DownloadSimpleIcon, InstagramLogoIcon } from "@phosphor-icons/react";
 import { useReward } from "react-rewards";
 import { useState } from "react";
-import { RiInstagramLine } from "react-icons/ri";
 import { toast } from "sonner";
 import { Footer } from "@/components/footer";
 import { Spinner } from "@/components/luxe/spinner";
@@ -68,7 +66,7 @@ export const StoryPreview = ({ id }: { id: string }) => {
           {loading ? (
             <div className="absolute top-0 w-full h-full p-4 flex items-center justify-center gap-2">
               <Button variant="outline" className="rounded-full">
-                <Spinner />
+                <Spinner size="size-4" />
                 Processando imagem
               </Button>
             </div>
@@ -76,12 +74,12 @@ export const StoryPreview = ({ id }: { id: string }) => {
             <div className="absolute top-0 w-full p-4 flex justify-between items-center gap-2">
               <Button asChild variant="outline">
                 <a href={`/api/ticket?id=${id}`} download>
-                  <Download /> Salvar
+                  <DownloadSimpleIcon /> Salvar
                 </a>
               </Button>
 
               <Button variant="outline" onClick={handleShare}>
-                <RiInstagramLine /> Compartilhar
+                <InstagramLogoIcon /> Compartilhar
               </Button>
             </div>
           )}

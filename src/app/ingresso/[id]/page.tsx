@@ -1,7 +1,7 @@
 import { database } from "@/lib/prisma";
 import { StoryPreview } from "./client";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
-import { XCircleIcon } from "lucide-react";
+import { XCircleIcon } from "@phosphor-icons/react/dist/ssr";
 
 function Error({ id }: { id: string }) {
   return (

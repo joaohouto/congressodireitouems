@@ -1,4 +1,4 @@
-export function TicketIcon(props: any) {
+export function Ticket(props: any) {
   return (
     <svg
       width={111}

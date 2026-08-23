@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { FileText } from "lucide-react";
+import { FileTextIcon } from "@phosphor-icons/react";
 import { EDICTS_BY_YEAR } from "@/config/edicts";
 import { Badge } from "@/components/ui/badge";
 import { ResourceLink } from "@/components/resource-link";
@@ -72,7 +72,7 @@ export function EditaisList() {
       <Card className="w-full p-6">
         <div className="flex items-center gap-4">
           <div className="size-12 shrink-0 rounded-full bg-primary grid place-items-center">
-            <FileText className="size-6 text-background" />
+            <FileTextIcon className="size-6 text-background" />
           </div>
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-primary">

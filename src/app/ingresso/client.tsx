@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 import axios from "axios";
-import { TicketIcon } from "@/components/icon/ticket";
+import { Ticket } from "@/components/icon/ticket";
 
 import { useRouter } from "next/navigation";
 import Link from "next/link";
@@ -13,7 +13,8 @@ import Image from "next/image";
 import { appConfig } from "@/config/app";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { AtSign, Loader2, Send, TriangleAlert } from "lucide-react";
+import { AtIcon, TicketIcon, WarningIcon } from "@phosphor-icons/react";
+import { Spinner } from "@/components/luxe/spinner";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 
@@ -77,14 +78,14 @@ export function IngressoClient() {
 
         <Card className="w-full flex flex-col gap-0 sm:flex-row p-2 items-center rounded-lg mb-6">
           <div className="h-full flex-grow w-full md:w-[130px] bg-primary p-2 rounded-lg flex items-center justify-center">
-            <TicketIcon className="h-[128px] w-[128px] transition-all duration-300 ease-in-out hover:scale-120 -rotate-12 hover:rotate-12" />
+            <Ticket className="h-[128px] w-[128px] transition-all duration-300 ease-in-out hover:scale-120 -rotate-12 hover:rotate-12" />
           </div>
 
           <div className="p-4 flex">
             <div className="flex flex-col">
               {!appConfig.allowGenerateTicket && (
                 <Badge className="mb-2">
-                  <TriangleAlert className="size-3" />
+                  <WarningIcon className="size-3" />
                   ESGOTADOS
                 </Badge>
               )}
@@ -105,7 +106,7 @@ export function IngressoClient() {
               <div className="flex flex-col gap-2">
                 <Label>Seu nome de usuário do Instagram</Label>
                 <div className="relative">
-                  <AtSign className="absolute left-3 top-2.75 size-3.5 text-muted-foreground" />
+                  <AtIcon className="absolute left-3 top-2.75 size-3.5 text-muted-foreground" />
                   <Input
                     placeholder="congressodireitouems"
                     autoCapitalize="off"
@@ -127,12 +128,12 @@ export function IngressoClient() {
               >
                 {loading ? (
                   <>
-                    <Loader2 className="animate-spin" />
+                    <Spinner size="size-4" />
                     Gerando
                   </>
                 ) : (
                   <>
-                    <Send />
+                    <TicketIcon weight="bold" />
                     Retirar ingresso
                   </>
                 )}

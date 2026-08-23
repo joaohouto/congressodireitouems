@@ -1,4 +1,4 @@
-import { ArrowUpRight, FileText } from "lucide-react";
+import { ArrowUpRightIcon, FileTextIcon } from "@phosphor-icons/react/dist/ssr";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 
@@ -36,7 +36,7 @@ export function ResourceLink({
   compact?: boolean;
   roundedEdge?: "top" | "bottom" | "both" | "none";
 }) {
-  const Icon = url && isDownloadable(url) ? FileText : ArrowUpRight;
+  const Icon = url && isDownloadable(url) ? FileTextIcon : ArrowUpRightIcon;
 
   const className = cn(
     "flex items-center gap-3 px-3 transition-colors",

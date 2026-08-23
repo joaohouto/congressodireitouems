@@ -10,7 +10,8 @@ import {
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import * as XLSX from "xlsx";
-import { FileSpreadsheet, Loader2, Pencil, Trash } from "lucide-react";
+import { FileXlsIcon, PencilSimpleIcon, TrashSimpleIcon } from "@phosphor-icons/react";
+import { Spinner } from "@/components/luxe/spinner";
 import { formatDate } from "date-fns";
 import { useState } from "react";
 import {
@@ -138,14 +139,14 @@ export default function GerenciaClient({
           Exportar CSV
         </Button>
         <Button variant="outline" onClick={() => handleExport("excel")}>
-          <FileSpreadsheet />
+          <FileXlsIcon />
           Exportar Excel
         </Button>
         <AlertDialog>
           <AlertDialogTrigger asChild>
             <Button variant="destructive" disabled={isDeletingAll}>
               {isDeletingAll ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
+                <Spinner size="size-4" />
               ) : (
                 "Apagar Todos"
               )}
@@ -204,7 +205,7 @@ export default function GerenciaClient({
                       setIsEditDialogOpen(true);
                     }}
                   >
-                    <Pencil className="h-4 w-4" />
+                    <PencilSimpleIcon className="h-4 w-4" />
                   </Button>
                   <AlertDialog>
                     <AlertDialogTrigger asChild>
@@ -215,9 +216,9 @@ export default function GerenciaClient({
                         disabled={deletingId === ticket.id}
                       >
                         {deletingId === ticket.id ? (
-                          <Loader2 className="h-4 w-4 animate-spin" />
+                          <Spinner size="size-4" />
                         ) : (
-                          <Trash className="h-4 w-4" />
+                          <TrashSimpleIcon className="h-4 w-4" />
                         )}
                       </Button>
                     </AlertDialogTrigger>

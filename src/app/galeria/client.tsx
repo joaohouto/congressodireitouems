@@ -8,7 +8,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GalleryHorizontal } from "lucide-react";
+import { ImagesIcon } from "@phosphor-icons/react";
 import { GALLERIES_BY_YEAR } from "@/config/galleries";
 import { ResourceLink } from "@/components/resource-link";
 
@@ -20,7 +20,7 @@ export function GaleriesList() {
       <Card className="w-full p-6">
         <div className="flex items-center gap-4">
           <div className="size-12 shrink-0 rounded-full bg-primary grid place-items-center">
-            <GalleryHorizontal className="size-6 text-background" />
+            <ImagesIcon className="size-6 text-background" />
           </div>
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-primary">

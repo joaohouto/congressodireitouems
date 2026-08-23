@@ -10,21 +10,17 @@ import { formatDate, isToday } from "date-fns";
 import { ptBR } from "date-fns/locale";
 
 import {
+  ArrowSquareOutIcon,
   ArrowUpRightIcon,
   CalendarBlankIcon,
+  CaretRightIcon,
+  ClockIcon,
+  InstagramLogoIcon,
   MapPinIcon,
   NotePencilIcon,
+  PresentationIcon,
   XIcon,
 } from "@phosphor-icons/react";
-
-import {
-  Calendar,
-  ChevronRight,
-  Clock,
-  ExternalLink,
-  MapPin,
-  PresentationIcon,
-} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -45,7 +41,6 @@ import { LeftBranchIcon } from "@/components/icon/left-branch";
 import { RightBranchIcon } from "@/components/icon/right-branch";
 import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
-import { RiInstagramLine } from "react-icons/ri";
 
 import { appConfig, EVENT_SCHEDULE } from "../config/app";
 import { SponsorsBar } from "@/components/sponsors-bar";
@@ -216,7 +211,7 @@ export default function Page() {
                 >
                   {subscriptionStatus === "upcoming" ? (
                     <>
-                      <Clock className="size-4 shrink-0 text-primary/70" />
+                      <ClockIcon className="size-4 shrink-0 text-primary/70" />
                       <span>
                         Inscrições em{" "}
                         <span
@@ -250,9 +245,9 @@ export default function Page() {
                 size="sm"
                 className="rounded-full w-fit !pl-4"
               >
-                <Link href="/editais">
-                  Editais
-                  <ChevronRight />
+                <Link href="/encontro-cientifico">
+                  Encontro Científico
+                  <CaretRightIcon />
                 </Link>
               </Button>
 
@@ -262,9 +257,9 @@ export default function Page() {
                 size="sm"
                 className="rounded-full w-fit !pl-4"
               >
-                <Link href="/encontro-cientifico">
-                  Encontro Científico
-                  <ChevronRight />
+                <Link href="/galeria">
+                  Galeria
+                  <CaretRightIcon />
                 </Link>
               </Button>
             </div>
@@ -303,7 +298,7 @@ export default function Page() {
               >
                 <CardHeader>
                   <CardTitle className="text-2xl font-semibold tracking-tight mb-2 text-primary flex items-center gap-2">
-                    <Calendar className="size-6" />
+                    <CalendarBlankIcon className="size-6" />
 
                     {formatDate(day.date, "EEEE", {
                       locale: ptBR,
@@ -386,7 +381,7 @@ export default function Page() {
 
                             <li>
                               <Badge variant="secondary">
-                                <Clock className="h-4 w-4" />
+                                <ClockIcon className="h-4 w-4" />
                                 {event.time}
                                 {!!event.endTime && ` – ${event.endTime}`}
                               </Badge>
@@ -394,7 +389,7 @@ export default function Page() {
 
                             <li>
                               <Badge variant="secondary">
-                                <MapPin className="h-4 w-4 min-w-4" />
+                                <MapPinIcon className="h-4 w-4 min-w-4" />
                                 {event.local}
                               </Badge>
                             </li>
@@ -420,7 +415,7 @@ export default function Page() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  <RiInstagramLine />
+                                  <InstagramLogoIcon />
                                   Ver no Instagram
                                 </Link>
                               </Button>
@@ -437,7 +432,7 @@ export default function Page() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  <ExternalLink />
+                                  <ArrowSquareOutIcon />
                                   Acessar sala
                                 </Link>
                               </Button>

@@ -8,7 +8,13 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Microscope, Clock, ArrowUpRight, ChevronRight } from "lucide-react";
+import {
+  ArrowUpRightIcon,
+  CaretRightIcon,
+  ClockIcon,
+  MicroscopeIcon,
+  XIcon,
+} from "@phosphor-icons/react";
 import Link from "next/link";
 import { formatDate } from "date-fns";
 import { ptBR } from "date-fns/locale";
@@ -17,7 +23,6 @@ import { SCIENCE_MEETING } from "@/config/app";
 import { ANNALS_BY_YEAR } from "@/config/annals";
 import { ResourceLink } from "@/components/resource-link";
 import { usePeriodCountdown } from "@/hooks/use-period-countdown";
-import { XIcon } from "@phosphor-icons/react";
 
 export function EncontroCientificoContent() {
   const {
@@ -38,7 +43,7 @@ export function EncontroCientificoContent() {
       <Card className="w-full p-6 gap-4">
         <div className="flex items-center gap-4">
           <div className="size-12 shrink-0 rounded-full bg-primary grid place-items-center">
-            <Microscope className="size-6 text-background" />
+            <MicroscopeIcon className="size-6 text-background" />
           </div>
           <div>
             <h1 className="text-3xl font-semibold tracking-tight text-primary">
@@ -63,7 +68,7 @@ export function EncontroCientificoContent() {
                 rel="noopener noreferrer"
               >
                 Submeta seu trabalho
-                <ArrowUpRight />
+                <ArrowUpRightIcon />
               </Link>
             </Button>
           ) : (
@@ -73,7 +78,7 @@ export function EncontroCientificoContent() {
             >
               {submissionStatus === "upcoming" ? (
                 <>
-                  <Clock className="size-4 shrink-0 text-primary/70" />
+                  <ClockIcon className="size-4 shrink-0 text-primary/70" />
                   <span>
                     Submissões abrem em{" "}
                     <span
@@ -101,19 +106,18 @@ export function EncontroCientificoContent() {
           ))}
       </Card>
 
-      <Card className="w-full">
-        <CardContent className="flex flex-col divide-y">
-          <Link
-            href="/editais"
-            className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0 hover:text-primary"
-          >
-            <span className="text-sm font-medium">
-              Editais e regras de submissão
+      <Link href="/editais" className="w-full hover:text-primary">
+        <Card className="w-full">
+          <CardContent className="flex flex-col divide-y">
+            <span className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0">
+              <span className="text-sm font-medium">
+                Editais e regras de submissão
+              </span>
+              <CaretRightIcon className="size-4 shrink-0" />
             </span>
-            <ChevronRight className="size-4 shrink-0" />
-          </Link>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </Link>
 
       <Card className="w-full gap-4">
         <CardHeader>

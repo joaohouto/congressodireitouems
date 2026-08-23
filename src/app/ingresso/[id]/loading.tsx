@@ -13,7 +13,7 @@ export default function Loading() {
             <div className="relative aspect-[9/16] w-full bg-card/60 flex flex-col items-center justify-center gap-4">
               <Skeleton className="w-full h-full absolute inset-0" />
               <Button variant="outline" className="rounded-full relative z-10 shadow-sm pointer-events-none">
-                <Spinner />
+                <Spinner size="size-4" />
                 Carregando seu ingresso...
               </Button>
             </div>

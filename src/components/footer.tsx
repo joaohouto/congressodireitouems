@@ -1,6 +1,6 @@
 import { appConfig } from "@/config/app";
 import { Button } from "./ui/button";
-import { RiInstagramLine } from "react-icons/ri";
+import { InstagramLogoIcon } from "@phosphor-icons/react/dist/ssr";
 import { Separator } from "./ui/separator";
 import Link from "next/link";
 
@@ -21,7 +21,7 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <RiInstagramLine />@{appConfig.instagram}
+            <InstagramLogoIcon weight="bold" />@{appConfig.instagram}
           </a>
         </Button>
       </div>

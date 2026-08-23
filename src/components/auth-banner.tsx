@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 
 import { signOut } from "next-auth/react";
-import { LogOut, Info } from "lucide-react";
+import { InfoIcon, SignOutIcon } from "@phosphor-icons/react";
 
 export default function AuthBanner() {
   const { data: session } = useSession();
@@ -18,7 +18,7 @@ export default function AuthBanner() {
     <div className="bg-primary text-primary-foreground p-2 text-center text-sm">
       <div className="container mx-auto flex justify-between items-center">
         <p className="flex gap-2 items-center">
-          <Info className="size-4" />
+          <InfoIcon className="size-4" />
           Você está autenticado.
         </p>
 
@@ -28,7 +28,7 @@ export default function AuthBanner() {
           </Button>
 
           <Button variant="outline" size="icon" onClick={() => signOut()}>
-            <LogOut />
+            <SignOutIcon className="size-4" />
           </Button>
         </div>
       </div>
