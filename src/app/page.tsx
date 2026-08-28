@@ -15,6 +15,7 @@ import {
   CalendarBlankIcon,
   CaretRightIcon,
   ClockIcon,
+  DownloadSimpleIcon,
   InstagramLogoIcon,
   MapPinIcon,
   NotePencilIcon,
@@ -43,6 +44,7 @@ import { Footer } from "@/components/footer";
 import { Badge } from "@/components/ui/badge";
 
 import { appConfig, EVENT_SCHEDULE } from "../config/app";
+import { LocationCard } from "@/components/location-card";
 import { SponsorsBar } from "@/components/sponsors-bar";
 import { usePeriodCountdown } from "@/hooks/use-period-countdown";
 
@@ -451,9 +453,20 @@ export default function Page() {
               download="programacao-congresso-uems.ics"
               className="inline-flex items-center gap-1.5 text-sm text-muted-foreground/80 hover:text-primary transition-colors py-1 hover:underline"
             >
-              <ArrowUpRightIcon className="size-3.5" />
               Salvar programação na agenda
             </a>
+          </motion.div>
+        )}
+
+        {appConfig.showLocation && (
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={7}
+            className="w-full flex flex-col items-center gap-6 mt-8"
+          >
+            <LocationCard />
           </motion.div>
         )}
 

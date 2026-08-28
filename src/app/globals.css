@@ -54,7 +54,7 @@
   --popover: oklch(0.21 0.006 285.885);
   --popover-foreground: oklch(0.985 0 0);
   --primary: oklch(0.696 0.17 162.48);
-  --primary-foreground: oklch(0.393 0.095 152.535);
+  --primary-foreground: oklch(39.348% 0.09569 152.299);
   --secondary: oklch(0.274 0.006 286.033);
   --secondary-foreground: oklch(0.985 0 0);
   --muted: oklch(0.274 0.006 286.033);
@@ -260,4 +260,144 @@
       transform: translateX(calc(-100% - 4rem));
     }
   }
+}
+
+/* Leaflet map customizations */
+.leaflet-container {
+  font-family: inherit;
+  background-color: transparent !important;
+}
+
+.leaflet-tile {
+  filter: contrast(0.96) saturate(0.9);
+}
+
+.dark .leaflet-tile {
+  filter: brightness(0.85) invert(1) contrast(1.1) hue-rotate(190deg)
+    saturate(0.8);
+}
+
+/* Liquid Glass Zoom Controls - Single Pill Capsule */
+.leaflet-control-zoom.leaflet-bar {
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  border-radius: 9999px !important;
+  overflow: hidden !important;
+  background: rgba(255, 255, 255, 0.45) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.08),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 0 !important;
+  width: 32px !important;
+  margin-top: 10px !important;
+  margin-left: 10px !important;
+}
+
+.dark .leaflet-control-zoom.leaflet-bar {
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  background: rgba(20, 20, 24, 0.55) !important;
+  box-shadow:
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+}
+
+.leaflet-control-zoom-in,
+.leaflet-control-zoom-out {
+  width: 32px !important;
+  height: 30px !important;
+  line-height: 30px !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  text-decoration: none !important;
+  cursor: pointer !important;
+  background: transparent !important;
+  color: var(--foreground) !important;
+  border: none !important;
+  border-radius: 0 !important;
+  transition: all 0.15s ease !important;
+}
+
+.leaflet-control-zoom-in {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08) !important;
+}
+
+.dark .leaflet-control-zoom-in {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.leaflet-control-zoom-in:hover,
+.leaflet-control-zoom-out:hover {
+  background: rgba(255, 255, 255, 0.4) !important;
+  color: var(--primary) !important;
+}
+
+.dark .leaflet-control-zoom-in:hover,
+.dark .leaflet-control-zoom-out:hover {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: var(--primary) !important;
+}
+
+/* Minimalist Liquid Glass Tooltip */
+.leaflet-tooltip.minimal-glass-tooltip {
+  background: rgba(255, 255, 255, 0.88) !important;
+  backdrop-filter: blur(14px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(14px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.75) !important;
+  border-radius: 9999px !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.1),
+    inset 0 1px 1px rgba(255, 255, 255, 0.9) !important;
+  padding: 3px 10px !important;
+  color: #0f172a !important;
+  font-weight: 600 !important;
+  font-size: 11px !important;
+  white-space: nowrap !important;
+  pointer-events: none !important;
+}
+
+.dark .leaflet-tooltip.minimal-glass-tooltip {
+  background: rgba(22, 22, 26, 0.88) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  box-shadow:
+    0 4px 14px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.15) !important;
+  color: #f8fafc !important;
+}
+
+.leaflet-tooltip-top.minimal-glass-tooltip::before {
+  border-top-color: rgba(255, 255, 255, 0.88) !important;
+}
+
+.dark .leaflet-tooltip-top.minimal-glass-tooltip::before {
+  border-top-color: rgba(22, 22, 26, 0.88) !important;
+}
+
+/* Minimalist Attribution */
+.leaflet-control-attribution {
+  background: rgba(255, 255, 255, 0.6) !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
+  border-radius: 9999px !important;
+  padding: 2px 10px !important;
+  font-size: 10px !important;
+  margin: 6px 8px !important;
+  color: #64748b !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+}
+
+.dark .leaflet-control-attribution {
+  background: rgba(18, 18, 22, 0.65) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  color: #94a3b8 !important;
+}
+
+.leaflet-control-attribution a {
+  color: inherit !important;
+  text-decoration: none !important;
 }

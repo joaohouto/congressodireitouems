@@ -1,11 +1,20 @@
 export const appConfig = {
   title: "IV Congresso Jurídico do Curso de Direito da UEMS - Aquidauana",
-  ogImage: "/og.png",
   shortTitle: "IV Congresso Jurídico",
+  description: "",
+  ogImage: "/og.png",
+
   theme: "Direito na Era Digital: Tecnologia, Inovação e Sociedade",
   fullDate: "de 04 a 06 de novembro de 2026",
-  place: "Câmara Municipal de Aquidauana/MS",
-  description: "",
+  place: "Auditório da UEMS Aquidauana",
+  placeAddress:
+    "Rodovia Graziela Maciel Barroso , Km 12 Zona Rural - G8VG+8P - Camisão, Aquidauana - MS, 79200-000",
+  placeCoordinates: {
+    lat: -20.456496,
+    lng: -55.66988,
+  },
+  placeUrl: "https://www.uems.br/cidades/detalhes/aquidauana",
+  placeImage: "/uems-aquidauana.jpg",
 
   instagram: "congressodireitouems",
   email: "nao-responda@joaocouto.com",
@@ -17,8 +26,9 @@ export const appConfig = {
   showTheme: false,
   showDateAndPlace: false,
   showSchedule: false,
-  allowGenerateTicket: false,
+  showLocation: false,
   showSponsors: false,
+  allowGenerateTicket: false,
 };
 
 export const SCIENCE_MEETING = {

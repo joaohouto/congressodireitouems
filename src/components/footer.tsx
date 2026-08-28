@@ -21,7 +21,8 @@ export function Footer() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <InstagramLogoIcon weight="bold" />@{appConfig.instagram}
+            <InstagramLogoIcon weight="bold" className="opacity-50" />@
+            {appConfig.instagram}
           </a>
         </Button>
       </div>
