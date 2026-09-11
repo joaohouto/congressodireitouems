@@ -11,11 +11,9 @@ import { ptBR } from "date-fns/locale";
 
 import {
   ArrowSquareOutIcon,
-  ArrowUpRightIcon,
   CalendarBlankIcon,
   CaretRightIcon,
   ClockIcon,
-  DownloadSimpleIcon,
   InstagramLogoIcon,
   MapPinIcon,
   NotePencilIcon,

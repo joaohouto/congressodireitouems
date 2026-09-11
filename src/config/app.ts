@@ -4,29 +4,28 @@ export const appConfig = {
   description: "",
   ogImage: "/og.png",
 
-  theme: "Direito na Era Digital: Tecnologia, Inovação e Sociedade",
+  theme: "Direito na Era Digital, Novas Tecnologias e Inteligência Artificial",
   fullDate: "de 04 a 06 de novembro de 2026",
   place: "Auditório da UEMS Aquidauana",
   placeAddress:
-    "Rodovia Graziela Maciel Barroso , Km 12 Zona Rural - G8VG+8P - Camisão, Aquidauana - MS, 79200-000",
+    "Rodovia Graziela Maciel Barroso, Km 12 Zona Rural - Camisão, Aquidauana/MS",
+  placeImage: "/uems-aquidauana.jpg",
   placeCoordinates: {
     lat: -20.456496,
     lng: -55.66988,
   },
-  placeUrl: "https://www.uems.br/cidades/detalhes/aquidauana",
-  placeImage: "/uems-aquidauana.jpg",
 
   instagram: "congressodireitouems",
   email: "nao-responda@joaocouto.com",
 
-  subscriptionForm: "",
-  subscriptionStart: "2026-09-01T00:00",
+  subscriptionForm: "https://forms.gle/RZ4NheTcy5HDLg628",
+  subscriptionStart: "2026-09-14T00:00",
   subscriptionEnd: "2026-11-03T23:59",
 
-  showTheme: false,
-  showDateAndPlace: false,
+  showTheme: true,
+  showDateAndPlace: true,
   showSchedule: false,
-  showLocation: false,
+  showLocation: true,
   showSponsors: false,
   allowGenerateTicket: false,
 };
@@ -34,9 +33,9 @@ export const appConfig = {
 export const SCIENCE_MEETING = {
   edition: "III",
 
-  submissionForm: "",
-  submissionStart: "2026-09-01T00:00",
-  submissionEnd: "2026-11-03T23:59",
+  submissionForm: "https://forms.gle/Kr5zFwUQ8EM1Poyq6",
+  submissionStart: "2026-09-14T00:00",
+  submissionEnd: "2026-10-16T23:59",
 
   sessions: [
     {
@@ -48,8 +47,8 @@ export const SCIENCE_MEETING = {
     },
     {
       date: "2026-11-06T00:00",
-      time: "08:00",
-      endTime: "12:00",
+      time: "14:00",
+      endTime: "17:00",
       local: "Google Meet",
       link: "",
     },
@@ -62,20 +61,71 @@ const OTHER_EVENTS_BY_DATE: Record<string, EventScheduleItem[]> = {
       time: "19:00",
       endTime: "19:30",
       category: "",
-      local: "Auditório da Câmara Municipal de Aquidauana",
+      local: "Auditório da UEMS Aquidauana",
       title: "Abertura do Congresso",
       person: "Alunos do Curso de Direito - UEMS Aquidauana",
       bio: "",
       image: "",
       ig: "https://www.instagram.com/direitoaquidauana/",
     },
-  ],
-  "2026-11-06T00:00": [
+
     {
       time: "19:30",
+      endTime: "21:00",
+      category: "",
+      local: "Auditório da UEMS Aquidauana",
+      title: "Palestra",
+      person: "Ulisses Swchartz",
+      bio: "",
+      image: "",
+      ig: "",
+    },
+
+    {
+      time: "21:00",
+      endTime: "22:30",
+      category: "",
+      local: "Auditório da UEMS Aquidauana",
+      title: "Palestra",
+      person: "Diego Bianchi",
+      bio: "",
+      image: "",
+      ig: "https://www.linkedin.com/in/odiegobianchi/",
+    },
+  ],
+
+  "2026-11-05T00:00": [
+    {
+      time: "19:00",
+      endTime: "20:30",
+      category: "",
+      local: "Auditório da UEMS Aquidauana",
+      title: "Palestra",
+      person: "Luiza Faccin",
+      bio: "",
+      image: "",
+      ig: "https://www.instagram.com/lufaccin/",
+    },
+
+    {
+      time: "20:30",
+      endTime: "22:00",
+      category: "",
+      local: "Auditório da UEMS Aquidauana",
+      title: "Palestra",
+      person: "Tiago Bunning",
+      bio: "",
+      image: "",
+      ig: "https://www.instagram.com/tiagobunning/",
+    },
+  ],
+
+  "2026-11-06T00:00": [
+    {
+      time: "19:00",
       endTime: "21:30",
       category: "Júri Simulado",
-      local: "Auditório da Câmara Municipal de Aquidauana",
+      local: "Auditório da UEMS Aquidauana",
       title: "Júri Simulado",
       person: "Alunos do Curso de Direito - UEMS Aquidauana",
       bio: "",
@@ -86,7 +136,7 @@ const OTHER_EVENTS_BY_DATE: Record<string, EventScheduleItem[]> = {
       time: "21:30",
       endTime: "22:00",
       category: "",
-      local: "Auditório da Câmara Municipal de Aquidauana",
+      local: "Auditório da UEMS Aquidauana",
       title: "Encerramento",
       person: "Alunos do Curso de Direito - UEMS Aquidauana",
       bio: "",
