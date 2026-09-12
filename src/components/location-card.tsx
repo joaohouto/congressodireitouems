@@ -64,7 +64,7 @@ export function LocationCard({
                 {place}
               </span>
               {!!address && (
-                <span className="text-sm text-white/80 leading-tight text-balance">
+                <span className="text-xs text-white/80 leading-tight text-balance">
                   {address}
                 </span>
               )}

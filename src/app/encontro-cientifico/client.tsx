@@ -80,7 +80,7 @@ export function EncontroCientificoContent() {
                 <>
                   <ClockIcon className="size-4 shrink-0 text-primary/70" />
                   <span>
-                    Submissões abrem em{" "}
+                    Submissões em{" "}
                     <span
                       suppressHydrationWarning
                       className="font-mono font-semibold tabular-nums text-foreground/90"
