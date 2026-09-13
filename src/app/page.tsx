@@ -121,13 +121,16 @@ export default function Page() {
 
       <div className="relative max-w-[600px] mx-auto py-8 px-4 flex flex-col items-center">
         <header className="w-full flex flex-col items-center gap-7 pt-40 pb-15 relative">
+          <h1 className="sr-only">{appConfig.title}</h1>
+
           <motion.div
             variants={macawAnimation}
             initial="hidden"
             animate="visible"
+            aria-hidden="true"
             className="absolute -top-8 -right-30 md:-right-20"
           >
-            <Image width={300} height={100} src="/araras.png" alt="Araras" />
+            <Image width={300} height={100} src="/araras.png" alt="" aria-hidden="true" />
           </motion.div>
 
           <motion.div
@@ -140,7 +143,8 @@ export default function Page() {
               width={340}
               height={116}
               src="/logo.svg"
-              alt="Congresso Jurídico"
+              alt={appConfig.title}
+              priority
             />
           </motion.div>
 
@@ -269,9 +273,10 @@ export default function Page() {
             variants={themisAnimation}
             initial="hidden"
             animate="visible"
+            aria-hidden="true"
             className="absolute bottom-[100px] left-1/2 -translate-x-1/2 scale-150 md:scale-120 md:translate-x-0 md:-bottom-0 md:-left-[140px]"
           >
-            <Image width={140} height={100} src="/themis.png" alt="Themis" />
+            <Image width={140} height={100} src="/themis.png" alt="" aria-hidden="true" />
           </motion.div>
 
           <div className="md:h-0 h-[400px]" />

@@ -1,8 +1,17 @@
+import type { Metadata } from "next";
 import { authOptions } from "@/lib/auth";
 import { database } from "@/lib/prisma";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import GerenciaClient from "./client";
+
+export const metadata: Metadata = {
+  title: "Gerência",
+  robots: {
+    index: false,
+    follow: false,
+  },
+};
 
 export default async function Gerencia() {
   const session = await getServerSession(authOptions);

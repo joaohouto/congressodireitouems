@@ -8,6 +8,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Editais",
+  description:
+    "Acesse os editais oficiais, retificações, regulamentos e modelos de documentos do Congresso Jurídico e do Encontro Científico da UEMS Aquidauana.",
+  alternates: {
+    canonical: "/editais",
+  },
+  openGraph: {
+    title: `Editais | ${appConfig.shortTitle}`,
+    description:
+      "Acesse os editais oficiais, retificações, regulamentos e modelos de documentos do Congresso Jurídico e do Encontro Científico da UEMS Aquidauana.",
+    url: `${appConfig.siteUrl}/editais`,
+  },
 };
 
 export default function Editais() {

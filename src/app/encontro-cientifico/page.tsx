@@ -8,6 +8,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Encontro Científico",
+  description:
+    "Submeta seu trabalho acadêmico e consulte os anais de edições anteriores do Encontro Científico do Curso de Direito da UEMS - Aquidauana.",
+  alternates: {
+    canonical: "/encontro-cientifico",
+  },
+  openGraph: {
+    title: `Encontro Científico | ${appConfig.shortTitle}`,
+    description:
+      "Submeta seu trabalho acadêmico e consulte os anais de edições anteriores do Encontro Científico do Curso de Direito da UEMS - Aquidauana.",
+    url: `${appConfig.siteUrl}/encontro-cientifico`,
+  },
 };
 
 export default function EncontroCientifico() {

@@ -1,7 +1,74 @@
+import type { Metadata } from "next";
+import { appConfig } from "@/config/app";
 import { database } from "@/lib/prisma";
 import { StoryPreview } from "./client";
 import { Card, CardDescription, CardTitle } from "@/components/ui/card";
 import { XCircleIcon } from "@phosphor-icons/react/dist/ssr";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const { id } = await params;
+
+  const isObjectId = /^[0-9a-fA-F]{24}$/.test(id);
+  if (!isObjectId) {
+    return {
+      title: "Ingresso Não Encontrado",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const ticket = await database.ticket.findUnique({
+    where: { id },
+    select: {
+      igName: true,
+      instagram: true,
+    },
+  });
+
+  if (!ticket) {
+    return {
+      title: "Ingresso Não Encontrado",
+      robots: { index: false, follow: false },
+    };
+  }
+
+  const attendee = ticket.igName || `@${ticket.instagram}`;
+  const title = `Ingresso de ${attendee}`;
+  const description = `Ingresso oficial de ${attendee} no IV Congresso Jurídico do Curso de Direito da UEMS - Aquidauana.`;
+  const ogImageUrl = `/api/ticket?id=${id}`;
+
+  return {
+    title,
+    description,
+    robots: {
+      index: false,
+      follow: true,
+    },
+    openGraph: {
+      title: `${title} | ${appConfig.shortTitle}`,
+      description,
+      url: `${appConfig.siteUrl}/ingresso/${id}`,
+      type: "website",
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1080,
+          height: 1920,
+          alt: `Ingresso de ${attendee}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${title} | ${appConfig.shortTitle}`,
+      description,
+      images: [ogImageUrl],
+    },
+  };
+}
 
 function Error({ id }: { id: string }) {
   return (

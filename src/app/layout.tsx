@@ -21,20 +21,37 @@ const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
 });
 
+import { EventJsonLd } from "@/components/seo/event-json-ld";
+
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.NEXT_PUBLIC_HOSTNAME || "https://congressojuridicouems.vercel.app"
-  ),
+  metadataBase: new URL(appConfig.siteUrl),
   title: {
     default: appConfig.title,
     template: `%s | ${appConfig.shortTitle}`,
   },
   description: appConfig.description,
-
+  keywords: appConfig.keywords,
+  authors: [{ name: "Curso de Direito - UEMS Aquidauana" }],
+  creator: "UEMS Aquidauana",
+  publisher: "Universidade Estadual de Mato Grosso do Sul",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
-    url: process.env.NEXT_PUBLIC_HOSTNAME,
+    url: appConfig.siteUrl,
     title: appConfig.title,
     description: appConfig.description,
     siteName: appConfig.shortTitle,
@@ -46,6 +63,12 @@ export const metadata: Metadata = {
         alt: appConfig.title,
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: appConfig.title,
+    description: appConfig.description,
+    images: [appConfig.ogImage],
   },
   icons: {
     icon: [
@@ -60,6 +83,7 @@ export const metadata: Metadata = {
         href: "/icon-dark.svg",
       },
     ],
+    apple: "/icon.png",
   },
 };
 
@@ -73,6 +97,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${playfairDisplay.variable} antialiased`}
       >
+        <EventJsonLd />
         <Providers>
           <AuthBanner />
           {children}

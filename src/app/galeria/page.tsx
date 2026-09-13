@@ -9,6 +9,17 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Galeria de Fotos",
+  description:
+    "Confira os registros fotográficos e momentos marcantes das edições anteriores do Congresso Jurídico da UEMS Aquidauana.",
+  alternates: {
+    canonical: "/galeria",
+  },
+  openGraph: {
+    title: `Galeria de Fotos | ${appConfig.shortTitle}`,
+    description:
+      "Confira os registros fotográficos e momentos marcantes das edições anteriores do Congresso Jurídico da UEMS Aquidauana.",
+    url: `${appConfig.siteUrl}/galeria`,
+  },
 };
 
 export default function Galeria() {
