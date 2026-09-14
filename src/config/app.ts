@@ -4,7 +4,8 @@ export const appConfig = {
   description:
     "IV Congresso Jurídico do Curso de Direito da UEMS - Aquidauana. De 04 a 06 de novembro de 2026. Palestras, Encontro Científico, debates e discussões sobre Direito na Era Digital, Novas Tecnologias e Inteligência Artificial.",
   siteUrl:
-    process.env.NEXT_PUBLIC_HOSTNAME && !process.env.NEXT_PUBLIC_HOSTNAME.includes("localhost")
+    process.env.NEXT_PUBLIC_HOSTNAME &&
+    !process.env.NEXT_PUBLIC_HOSTNAME.includes("localhost")
       ? process.env.NEXT_PUBLIC_HOSTNAME
       : "https://congressojuridicouems.vercel.app",
   ogImage: "/og.png",
@@ -44,7 +45,7 @@ export const appConfig = {
   showSchedule: false,
   showLocation: true,
   showSponsors: false,
-  allowGenerateTicket: false,
+  allowGenerateTicket: true,
 };
 
 export const SCIENCE_MEETING = {
