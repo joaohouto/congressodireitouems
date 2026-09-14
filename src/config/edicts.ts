@@ -6,6 +6,38 @@ interface Edital {
 }
 
 export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
+  "2026": [
+    {
+      title:
+        "EDITAL DE ABERTURA - IV CONGRESSO JURÍDICO E III ENCONTRO CIENTÍFICO",
+      url: "/editais/2026/Edital-de-Abertura-IV-Congresso-Jurídico-e-III-Encontro-Científico.pdf",
+      children: [
+        {
+          title:
+            "ANEXO I - REGRAS PARA SUBMISSÃO DE RESUMO SIMPLES (100 A 500 PALAVRAS)",
+          url: "/editais/2026/Edital-de-Abertura-IV-Congresso-Jurídico-e-III-Encontro-Científico.pdf",
+        },
+        {
+          title:
+            "ANEXO II - REGRAS PARA CONFECÇÃO E SUBMISSÃO DO BANNER ELETRÔNICO",
+          url: "/editais/2026/Edital-de-Abertura-IV-Congresso-Jurídico-e-III-Encontro-Científico.pdf",
+        },
+        {
+          title: "ANEXO III - MODELO DE RESUMO SIMPLES (COM ID)",
+          url: "https://docs.google.com/document/d/1kVVoVMLP2FktU-1asOvLrz_3tpbQLH_36cy2baeHvSI/edit?usp=sharing",
+        },
+        {
+          title: "ANEXO IV - MODELO DE RESUMO SIMPLES (SEM ID)",
+          url: "https://docs.google.com/document/d/1x-1CXyV-24hreIeVeRwFm7KH14zSFzfiUdo7Q7igMA0/edit?usp=sharing",
+        },
+        {
+          title: "ANEXO V - MODELO DE BANNER",
+          url: "https://docs.google.com/presentation/d/1fAZj67pAJmMYor7fcsjS7bH87LNUmja00zU_JGtDAcI/edit?usp=sharing",
+        },
+      ],
+    },
+  ],
+
   "2025": [
     {
       title:

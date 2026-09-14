@@ -34,28 +34,6 @@ export function EventJsonLd() {
       name: "Curso de Direito da Universidade Estadual de Mato Grosso do Sul (UEMS) - Aquidauana",
       url: "https://www.uems.br",
     },
-    performer: [
-      {
-        "@type": "Person",
-        name: "Ulisses Schwartz",
-        jobTitle: "Palestrante Convidado",
-      },
-      {
-        "@type": "Person",
-        name: "Diego Bianchi",
-        jobTitle: "Palestrante Convidado",
-      },
-      {
-        "@type": "Person",
-        name: "Luiza Faccin",
-        jobTitle: "Palestrante Convidada",
-      },
-      {
-        "@type": "Person",
-        name: "Tiago Bunning",
-        jobTitle: "Palestrante Convidado",
-      },
-    ],
     offers: {
       "@type": "Offer",
       url: appConfig.subscriptionForm || appConfig.siteUrl,
