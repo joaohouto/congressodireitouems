@@ -13,29 +13,25 @@ import Image from "next/image";
 import { appConfig } from "@/config/app";
 import { Footer } from "@/components/footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { AtIcon, TicketIcon, WarningIcon } from "@phosphor-icons/react";
+import { AvatarUploadField } from "@/components/avatar-upload-field";
+import { UserIcon, TicketIcon, WarningIcon } from "@phosphor-icons/react";
 import { Spinner } from "@/components/luxe/spinner";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 
 export function IngressoClient() {
-  const [instagram, setInstagram] = useState("");
+  const [name, setName] = useState("");
+  const [avatar, setAvatar] = useState("");
   const [loading, setLoading] = useState(false);
 
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const cleanUsername = instagram
-      .trim()
-      .replace(/^@+/, "")
-      .replace(/^https?:\/\/(www\.)?instagram\.com\//, "")
-      .split("/")[0]
-      .split("?")[0]
-      .trim();
+    const cleanName = name.trim();
 
-    if (!cleanUsername) {
-      toast.error("Informe seu usuário do Instagram!");
+    if (!cleanName) {
+      toast.error("Informe o seu nome!");
       return;
     }
 
@@ -43,7 +39,8 @@ export function IngressoClient() {
 
     try {
       const response = await axios.post("/api/ticket/create", {
-        instagram: cleanUsername,
+        name: cleanName,
+        avatar: avatar || undefined,
       });
 
       toast.success("Sucesso!", {
@@ -94,7 +91,8 @@ export function IngressoClient() {
                 Retire aqui o seu ingresso
               </span>
               <span className="text-balance text-sm">
-                Use a sua foto e o seu nome públicos da sua conta do Instagram
+                Personalize o seu ingresso oficial para o congresso com seu nome
+                e foto
               </span>
             </div>
           </div>
@@ -102,19 +100,25 @@ export function IngressoClient() {
 
         <Card className="w-full mx-auto my-auto rounded-lg">
           <CardContent>
-            <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-              <div className="flex flex-col gap-2">
-                <Label>Seu nome de usuário do Instagram</Label>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-6 pt-2">
+              <AvatarUploadField
+                value={avatar}
+                onChange={setAvatar}
+                disabled={loading || !appConfig.allowGenerateTicket}
+              />
+
+              <div className="flex flex-col gap-2 border-t border-muted-foreground/20 pt-4">
+                <Label htmlFor="name">Seu nome</Label>
                 <div className="relative">
-                  <AtIcon className="absolute left-3 top-2.75 size-3.5 text-muted-foreground" />
+                  <UserIcon className="absolute left-3 top-2.75 size-3.5 text-muted-foreground" />
                   <Input
-                    placeholder="congressodireitouems"
-                    autoCapitalize="off"
+                    placeholder="Ex.: Ruy Barbosa"
+                    autoCapitalize="words"
                     autoCorrect="off"
                     className="pl-8"
-                    id="instagram"
-                    value={instagram}
-                    onChange={(e) => setInstagram(e.target.value)}
+                    id="name"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
                     disabled={!appConfig.allowGenerateTicket}
                     required
                   />

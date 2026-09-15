@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 import { database } from "@/lib/prisma";
 import { appConfig } from "@/config/app";
-import { fetchInstagramProfile, sanitizeInstagramUsername } from "@/lib/instagram";
+import { uploadAvatarDataUrlToSupabase } from "@/lib/supabase";
+import { containsProfanity } from "@/lib/profanity-filter";
 
 // Simple in-memory rate limiter: max 5 tickets per IP per 10 minutes
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -36,7 +37,9 @@ function checkRateLimit(ip: string): boolean {
 }
 
 export async function POST(request: Request) {
-  if (!appConfig.allowGenerateTicket) return NextResponse.json({ status: 503 });
+  if (!appConfig.allowGenerateTicket) {
+    return NextResponse.json({ status: 503 });
+  }
 
   const ip =
     request.headers.get("x-vercel-forwarded-for") ||
@@ -64,72 +67,93 @@ export async function POST(request: Request) {
     );
   }
 
-  const rawInstagram = body?.instagram;
+  // Accepts name (preferred) or instagram for backwards compatibility
+  const rawName = body?.name || body?.instagram;
 
-  if (!rawInstagram || typeof rawInstagram !== "string") {
+  if (!rawName || typeof rawName !== "string") {
     return NextResponse.json(
-      { message: "Informe o usuário do Instagram!" },
+      { message: "Informe o seu nome!" },
       { status: 400 },
     );
   }
 
-  const cleanInstagram = sanitizeInstagramUsername(rawInstagram);
+  // Sanitize name: remove invisible control characters, trim, and collapse whitespace
+  let cleanName = rawName
+    .replace(/[\u0000-\u001F\u007F-\u009F\u200B-\u200D\uFEFF]/g, "")
+    .trim()
+    .replace(/\s+/g, " ")
+    .slice(0, 70);
 
-  if (!cleanInstagram) {
+  // Prevent CSV/Excel formula injection (=, +, -, @) when exported to spreadsheets
+  if (/^[=+\-@\t\r]/.test(cleanName)) {
+    cleanName = cleanName.replace(/^[=+\-@\t\r]+/, "").trim();
+  }
+
+  if (!cleanName || cleanName.length < 2) {
     return NextResponse.json(
-      { message: "Usuário do Instagram inválido!" },
+      { message: "Informe um nome válido com pelo menos 2 caracteres!" },
       { status: 400 },
     );
   }
 
-  let lastTicket = null;
-  let igResult;
+  if (containsProfanity(cleanName)) {
+    return NextResponse.json(
+      {
+        message:
+          "O nome informado contém termos inadequados. Por favor, utilize seu nome real.",
+      },
+      { status: 400 },
+    );
+  }
+
+  const rawAvatar = body?.avatar;
+  let igAvatar = "";
+
+  if (rawAvatar) {
+    if (
+      typeof rawAvatar !== "string" ||
+      !rawAvatar.startsWith("data:image/") ||
+      rawAvatar.length > 750 * 1024
+    ) {
+      return NextResponse.json(
+        {
+          message:
+            "Formato de imagem inválido ou arquivo muito grande (máximo 500KB).",
+        },
+        { status: 400 },
+      );
+    }
+
+    try {
+      const publicUrl = await uploadAvatarDataUrlToSupabase(rawAvatar);
+      if (publicUrl) {
+        igAvatar = publicUrl;
+      } else {
+        // Fallback: se Supabase não estiver configurado no ambiente, armazena data URL
+        // apenas se for JPEG válido e leve (< 150KB) para não inchar o MongoDB nem quebrar o Satori
+        if (
+          rawAvatar.startsWith("data:image/jpeg") &&
+          rawAvatar.length < 150 * 1024
+        ) {
+          igAvatar = rawAvatar;
+        }
+      }
+    } catch (err) {
+      console.error("Erro ao salvar foto de avatar no Supabase:", err);
+    }
+  }
 
   try {
-    [lastTicket, igResult] = await Promise.all([
-      database.ticket.findFirst({
-        orderBy: {
-          count: "desc",
-        },
-        select: {
-          count: true,
-        },
-      }),
-      fetchInstagramProfile(cleanInstagram),
-    ]);
-  } catch (error) {
-    console.error("Erro ao buscar dados iniciais do ingresso:", error);
-    igResult = await fetchInstagramProfile(cleanInstagram);
-  }
+    const lastTicket = await database.ticket.findFirst({
+      orderBy: {
+        count: "desc",
+      },
+      select: {
+        count: true,
+      },
+    });
 
-  if (igResult.outcome === "not_found") {
-    return NextResponse.json(
-      { message: igResult.message || "Usuário não encontrado no Instagram!" },
-      { status: 404 },
-    );
-  }
-
-  if (igResult.outcome === "rate_limited") {
-    return NextResponse.json(
-      { message: igResult.message || "O Instagram está temporariamente indisponível." },
-      { status: 503 },
-    );
-  }
-
-  if (igResult.outcome !== "ok") {
-    return NextResponse.json(
-      { message: igResult.message || "Não foi possível obter dados do Instagram." },
-      { status: 400 },
-    );
-  }
-
-  const igAvatar = igResult.igAvatar || "";
-  const igName = igResult.igName || cleanInstagram;
-
-  // save ticket
-  try {
     let lastCount = 0;
-
     if (lastTicket && typeof lastTicket.count === "number") {
       lastCount = lastTicket.count;
     }
@@ -137,9 +161,9 @@ export async function POST(request: Request) {
     const ticket = await database.ticket.create({
       data: {
         count: lastCount + 1,
-        instagram: cleanInstagram,
+        instagram: cleanName,
         igAvatar,
-        igName,
+        igName: cleanName,
       },
     });
 

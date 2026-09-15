@@ -35,6 +35,55 @@ function getBackgroundImage(): string {
   }
 }
 
+function isSafeAvatarUrl(url: string | null | undefined): boolean {
+  if (!url || typeof url !== "string") return false;
+
+  // Safe data URLs: JPEG or PNG under 500KB (reject WebP to avoid Satori crashes)
+  if (
+    (url.startsWith("data:image/jpeg;base64,") ||
+      url.startsWith("data:image/png;base64,")) &&
+    url.length <= 500 * 1024
+  ) {
+    return true;
+  }
+
+  // Must be HTTPS for external URLs
+  if (!url.startsWith("https://")) {
+    return false;
+  }
+
+  try {
+    const parsed = new URL(url);
+    const hostname = parsed.hostname.toLowerCase();
+
+    // Prevent SSRF: block internal, private, and cloud metadata addresses
+    if (
+      hostname === "localhost" ||
+      hostname.endsWith(".localhost") ||
+      hostname === "127.0.0.1" ||
+      hostname === "0.0.0.0" ||
+      hostname === "169.254.169.254" ||
+      hostname.startsWith("192.168.") ||
+      hostname.startsWith("10.") ||
+      hostname.endsWith(".internal") ||
+      hostname.endsWith(".local")
+    ) {
+      return false;
+    }
+
+    // Permitted storage and CDN hosts
+    const isSupabase =
+      hostname.endsWith(".supabase.co") || hostname.endsWith(".supabase.in");
+    const isInstagramCdn =
+      hostname.endsWith(".cdninstagram.com") ||
+      hostname.endsWith(".fbcdn.net");
+
+    return isSupabase || isInstagramCdn;
+  } catch {
+    return false;
+  }
+}
+
 export async function GET(req: Request) {
   const url = new URL(req.url);
   const id = url.searchParams.get("id");
@@ -73,6 +122,8 @@ export async function GET(req: Request) {
 
   const displayName = ticket.igName || ticket.instagram;
   const initialLetter = (displayName[0] || "U").toUpperCase();
+
+  const avatarSrc = isSafeAvatarUrl(ticket.igAvatar) ? ticket.igAvatar! : "";
 
   return new ImageResponse(
     <div
@@ -134,11 +185,11 @@ export async function GET(req: Request) {
         {appConfig.place}
       </p>
 
-      {ticket.igAvatar ? (
+      {avatarSrc ? (
         <img
           width="127"
           height="127"
-          src={ticket.igAvatar}
+          src={avatarSrc}
           style={{
             borderRadius: 100,
             objectFit: "cover",

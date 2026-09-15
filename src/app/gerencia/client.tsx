@@ -105,11 +105,20 @@ export default function GerenciaClient({
   };
 
   const handleExport = (type: "csv" | "excel") => {
+    const sanitizeForSpreadsheet = (val: any) => {
+      if (val === null || val === undefined) return "";
+      const str = String(val);
+      if (/^[=+\-@\t\r]/.test(str)) {
+        return "'" + str;
+      }
+      return str;
+    };
+
     const exportData = tickets.map((ticket) => ({
       ID: ticket.id,
       "Número": ticket.count ?? "",
-      Instagram: ticket.instagram,
-      Nome: ticket.igName || ticket.instagram,
+      Instagram: sanitizeForSpreadsheet(ticket.instagram),
+      Nome: sanitizeForSpreadsheet(ticket.igName || ticket.instagram),
       "Data de Criação": formatDate(ticket.createdAt, "dd/MM/yyyy HH:mm"),
     }));
 
