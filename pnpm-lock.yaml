@@ -92,12 +92,6 @@ importers:
       next-themes:
         specifier: ^0.4.6
         version: 0.4.6(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
-      piii:
-        specifier: ^4.0.2
-        version: 4.0.2
-      piii-filters:
-        specifier: ^1.0.0
-        version: 1.0.0
       prisma:
         specifier: ^6.15.0
         version: 6.15.0(typescript@5.9.2)
@@ -2271,9 +2265,6 @@ packages:
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
 
-  diacritics@1.3.0:
-    resolution: {integrity: sha512-wlwEkqcsaxvPJML+rDh/2iS824jbREk6DUMUKkEaSlxdYHeS43cClJtsWglvw2RfeXGm6ohKDqsXteJ5sP5enA==}
-
   doctrine@2.1.0:
     resolution: {integrity: sha512-35mSku4ZXK0vfCuHEDAwt55dg2jNajHZ1odvF+8SSr82EsZY4QmXfuWso8oEd8zRhVObSN18aM0CjSdoBX7zIw==}
     engines: {node: '>=0.10.0'}
@@ -2384,10 +2375,6 @@ packages:
   escalade@3.2.0:
     resolution: {integrity: sha512-WUj2qlxaQtO4g6Pq5c29GTcWGDyd8itL8zTlipgECz3JesAiiOKotd8JU6otB3PACgG6xkJUyVhboMS+bje/jA==}
     engines: {node: '>=6'}
-
-  escape-string-regexp@1.0.5:
-    resolution: {integrity: sha512-vbRorB5FUQWvla16U8R/qgaFIya2qGzwDrNmCZuYKrbdSUMG6I1ZCGQRefkRVhuOkIGVne7BQ35DSfo1qvJqFg==}
-    engines: {node: '>=0.8.0'}
 
   escape-string-regexp@4.0.0:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
@@ -3489,12 +3476,6 @@ packages:
   picomatch@4.0.5:
     resolution: {integrity: sha512-RvwwcruNjI1ncT5xRakeyS9Lf8lcItv34KD+aif+VH9kduAyfYBipGh12274xtenIPZ119/R9BdTBa8gAwSh0A==}
     engines: {node: '>=12'}
-
-  piii-filters@1.0.0:
-    resolution: {integrity: sha512-+NISkJ6Aqyxx2FG/LM6E8Ylblsth2lhIERbI9cgD6bAMRMFAena9Mxav5zAlMBTEK4sw0BWGah2Wk1/bnHa5Fw==}
-
-  piii@4.0.2:
-    resolution: {integrity: sha512-fvX+i7EHmadALeQ7wl5/60YLaX5ogvAwD/gO2DjglusIF//J/4KqanE0A7Fhlwk3Rl08I53v1SB7h+Kv/kiZ+w==}
 
   pkg-types@2.3.0:
     resolution: {integrity: sha512-SIqCzDRg0s9npO5XQ3tNZioRY1uK06lA41ynBC1YmFTmnY6FjUjVt6s4LoADmwoig1qqD0oK8h1p/8mlMx8Oig==}
@@ -6232,8 +6213,6 @@ snapshots:
     dependencies:
       dequal: 2.0.3
 
-  diacritics@1.3.0: {}
-
   doctrine@2.1.0:
     dependencies:
       esutils: 2.0.3
@@ -6411,8 +6390,6 @@ snapshots:
       is-symbol: 1.1.1
 
   escalade@3.2.0: {}
-
-  escape-string-regexp@1.0.5: {}
 
   escape-string-regexp@4.0.0: {}
 
@@ -7788,13 +7765,6 @@ snapshots:
   picomatch@4.0.3: {}
 
   picomatch@4.0.5: {}
-
-  piii-filters@1.0.0: {}
-
-  piii@4.0.2:
-    dependencies:
-      diacritics: 1.3.0
-      escape-string-regexp: 1.0.5
 
   pkg-types@2.3.0:
     dependencies:

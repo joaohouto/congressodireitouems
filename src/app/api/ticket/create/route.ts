@@ -2,7 +2,6 @@ import { NextResponse } from "next/server";
 import { database } from "@/lib/prisma";
 import { appConfig } from "@/config/app";
 import { uploadAvatarDataUrlToSupabase } from "@/lib/supabase";
-import { containsProfanity } from "@/lib/profanity-filter";
 
 // Simple in-memory rate limiter: max 5 tickets per IP per 10 minutes
 const rateLimitMap = new Map<string, { count: number; resetAt: number }>();
@@ -92,16 +91,6 @@ export async function POST(request: Request) {
   if (!cleanName || cleanName.length < 2) {
     return NextResponse.json(
       { message: "Informe um nome válido com pelo menos 2 caracteres!" },
-      { status: 400 },
-    );
-  }
-
-  if (containsProfanity(cleanName)) {
-    return NextResponse.json(
-      {
-        message:
-          "O nome informado contém termos inadequados. Por favor, utilize seu nome real.",
-      },
       { status: 400 },
     );
   }

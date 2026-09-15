@@ -15,7 +15,7 @@ export async function DELETE() {
     return NextResponse.json({
       message: "Todos os ingressos foram deletados com sucesso!",
     });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { message: "Erro ao deletar ingressos." },
       { status: 500 }

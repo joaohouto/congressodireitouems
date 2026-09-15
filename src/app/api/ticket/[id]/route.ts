@@ -31,7 +31,7 @@ export async function PUT(
     });
 
     return NextResponse.json(ticket);
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { message: "Erro ao atualizar ingresso." },
       { status: 400 }
@@ -59,7 +59,7 @@ export async function DELETE(
     });
 
     return NextResponse.json({ message: "Ingresso deletado com sucesso!" });
-  } catch (error) {
+  } catch (_error) {
     return NextResponse.json(
       { message: "Erro ao deletar ingresso." },
       { status: 400 }
