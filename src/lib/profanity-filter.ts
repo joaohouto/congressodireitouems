@@ -1,6 +1,4 @@
-// @ts-ignore
 import PiiiModule from "piii";
-// @ts-ignore
 import piiiFiltersModule from "piii-filters";
 
 const Piii = PiiiModule?.default || PiiiModule;
