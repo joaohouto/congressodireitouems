@@ -7,7 +7,7 @@ export const appConfig = {
     process.env.NEXT_PUBLIC_HOSTNAME &&
     !process.env.NEXT_PUBLIC_HOSTNAME.includes("localhost")
       ? process.env.NEXT_PUBLIC_HOSTNAME
-      : "https://congressojuridicouems.vercel.app",
+      : "https://congressodireitouems.com.br",
   ogImage: "/og.png",
   keywords: [
     "Congresso Jurídico",

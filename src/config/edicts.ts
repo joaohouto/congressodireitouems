@@ -36,6 +36,12 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
         },
       ],
     },
+
+    {
+      title:
+        "SUBMISSÃO (RESUMO E BANNER) - III ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
+      url: "https://forms.gle/Kr5zFwUQ8EM1Poyq6",
+    },
   ],
 
   "2025": [
