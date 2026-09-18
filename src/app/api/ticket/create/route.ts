@@ -133,23 +133,26 @@ export async function POST(request: Request) {
   }
 
   try {
-    const lastTicket = await database.ticket.findFirst({
-      orderBy: {
-        count: "desc",
+    const existingTickets = await database.ticket.findMany({
+      where: {
+        count: {
+          gt: 0,
+        },
       },
       select: {
         count: true,
       },
     });
 
-    let lastCount = 0;
-    if (lastTicket && typeof lastTicket.count === "number") {
-      lastCount = lastTicket.count;
+    const usedCounts = new Set<number>(existingTickets.map((t) => t.count));
+    let nextCount = 1;
+    while (usedCounts.has(nextCount)) {
+      nextCount++;
     }
 
     const ticket = await database.ticket.create({
       data: {
-        count: lastCount + 1,
+        count: nextCount,
         instagram: cleanName,
         igAvatar,
         igName: cleanName,

@@ -26,6 +26,7 @@ export default async function Gerencia() {
       count: true,
       instagram: true,
       igName: true,
+      igAvatar: true,
       createdAt: true,
     },
     orderBy: {
