@@ -15,6 +15,7 @@ import {
   CaretRightIcon,
   ClockIcon,
   InstagramLogoIcon,
+  LinkedinLogoIcon,
   MapPinIcon,
   NotePencilIcon,
   PresentationIcon,
@@ -420,8 +421,17 @@ export default function Page() {
                                   target="_blank"
                                   rel="noopener noreferrer"
                                 >
-                                  <InstagramLogoIcon />
-                                  Ver no Instagram
+                                  {event.ig.includes("linkedin.com") ? (
+                                    <>
+                                      <LinkedinLogoIcon />
+                                      Ver no LinkedIn
+                                    </>
+                                  ) : (
+                                    <>
+                                      <InstagramLogoIcon />
+                                      Ver no Instagram
+                                    </>
+                                  )}
                                 </Link>
                               </Button>
                             )}
