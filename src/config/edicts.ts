@@ -42,6 +42,22 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
         "SUBMISSÃO (RESUMO E BANNER) - III ENCONTRO CIENTÍFICO DO CURSO DE DIREITO",
       url: "https://forms.gle/Kr5zFwUQ8EM1Poyq6",
     },
+
+    {
+      title: "EDITAL DE SELEÇÃO N° 02/2026 – JÚRI SIMULADO INTERCAMPUS",
+      url: "/editais/2026/Edital-de-Seleção-N-02-2026–Júri-Simulado-Intercampus.pdf",
+      children: [
+        {
+          title: "ANEXO I - AUTOS - CASO PRÁTICO JÚRI SIMULADO",
+          url: "/editais/2026/Caso-Prático-Autos-001.07.042200-02.pdf",
+        },
+        {
+          title:
+            "INSCRIÇÃO (ACADÊMICOS DE AQUIDAUANA) - JÚRI SIMULADO INTERCAMPUS",
+          url: "https://forms.gle/tGCSbKST2faxyVZL6",
+        },
+      ],
+    },
   ],
 
   "2025": [

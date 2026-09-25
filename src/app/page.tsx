@@ -131,7 +131,13 @@ export default function Page() {
             aria-hidden="true"
             className="absolute -top-8 -right-30 md:-right-20"
           >
-            <Image width={300} height={100} src="/araras.png" alt="" aria-hidden="true" />
+            <Image
+              width={300}
+              height={100}
+              src="/araras.png"
+              alt=""
+              aria-hidden="true"
+            />
           </motion.div>
 
           <motion.div
@@ -262,8 +268,8 @@ export default function Page() {
                 size="sm"
                 className="rounded-full w-fit !pl-4"
               >
-                <Link href="/galeria">
-                  Galeria
+                <Link href="/editais">
+                  Editais
                   <CaretRightIcon />
                 </Link>
               </Button>
@@ -277,7 +283,13 @@ export default function Page() {
             aria-hidden="true"
             className="absolute bottom-[100px] left-1/2 -translate-x-1/2 scale-150 md:scale-120 md:translate-x-0 md:-bottom-0 md:-left-[140px]"
           >
-            <Image width={140} height={100} src="/themis.png" alt="" aria-hidden="true" />
+            <Image
+              width={140}
+              height={100}
+              src="/themis.png"
+              alt=""
+              aria-hidden="true"
+            />
           </motion.div>
 
           <div className="md:h-0 h-[400px]" />
