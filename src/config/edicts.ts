@@ -58,6 +58,12 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
         },
       ],
     },
+
+    {
+      title:
+        "EDITAL DE RETIFICAÇÃO E PRORROGAÇÃO Nº 01/2026 - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
+      url: "/editais/2026/Edital-de-Retificação-e-Prorrogação-N-01-2026-Júri-Simulado-Intercampus.pdf",
+    },
   ],
 
   "2025": [
