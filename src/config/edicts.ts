@@ -56,19 +56,24 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
             "INSCRIÇÃO (ACADÊMICOS DE AQUIDAUANA) - JÚRI SIMULADO INTERCAMPUS",
           url: "https://forms.gle/tGCSbKST2faxyVZL6",
         },
+        {
+          title:
+            "EDITAL DE RETIFICAÇÃO E PRORROGAÇÃO Nº 01/2026 - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
+          url: "/editais/2026/Edital-de-Retificação-e-Prorrogação-N-01-2026-Júri-Simulado-Intercampus.pdf",
+        },
+
+        {
+          title:
+            "HOMOLOGAÇÃO DAS INSCRIÇÕES E CONVOCAÇÃO - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
+          url: "/editais/2026/Homologação-das-Inscrições-e-Convocação-Edital-de-Seleção-N-02-2026–Júri-Simulado-Intercampus.pdf",
+        },
+
+        {
+          title:
+            "DIVULGAÇÃO DO LOCAL DE AVALIAÇÃO E COMPOSIÇÃO DA BANCA EXAMINADORA - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
+          url: "/editais/2026/Divulgação-do-Local-de-Avaliação-e-Composição-da-Banca-Examinadora_Júri-Simulado-Intercampus.pdf",
+        },
       ],
-    },
-
-    {
-      title:
-        "EDITAL DE RETIFICAÇÃO E PRORROGAÇÃO Nº 01/2026 - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
-      url: "/editais/2026/Edital-de-Retificação-e-Prorrogação-N-01-2026-Júri-Simulado-Intercampus.pdf",
-    },
-
-    {
-      title:
-        "HOMOLOGAÇÃO DAS INSCRIÇÕES E CONVOCAÇÃO - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
-      url: "/editais/2026/Homologação-das-Inscrições-e-Convocação-Edital-de-Seleção-N-02-2026–Júri-Simulado-Intercampus.pdf",
     },
   ],
 
