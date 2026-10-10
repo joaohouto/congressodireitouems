@@ -73,6 +73,12 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
             "DIVULGAÇÃO DO LOCAL DE AVALIAÇÃO E COMPOSIÇÃO DA BANCA EXAMINADORA - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
           url: "/editais/2026/Divulgação-do-Local-de-Avaliação-e-Composição-da-Banca-Examinadora_Júri-Simulado-Intercampus.pdf",
         },
+
+        {
+          title:
+            "RESULTADO FINAL - EDITAL DE SELEÇÃO Nº 02/2026 - JÚRI SIMULADO INTERCAMPUS",
+          url: "/editais/2026/Resultado-Final-Edital-de-Seleção-N-02-2026–Júri-Simulado-Intercampus.pdf",
+        },
       ],
     },
   ],
