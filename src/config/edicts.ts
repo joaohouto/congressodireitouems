@@ -81,6 +81,11 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
         },
       ],
     },
+
+    {
+      title: "EDITAL DE PRORROGAÇÃO - III ENCONTRO CIENTÍFICO",
+      url: "/editais/2026/Edital-de-Prorrogação-III-Encontro-Científico.pdf",
+    },
   ],
 
   "2025": [
