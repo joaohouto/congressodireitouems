@@ -53,7 +53,7 @@ export const SCIENCE_MEETING = {
 
   submissionForm: "https://forms.gle/Kr5zFwUQ8EM1Poyq6",
   submissionStart: "2026-09-14T00:00",
-  submissionEnd: "2026-10-16T23:59",
+  submissionEnd: "2026-10-24T23:59",
 
   sessions: [
     {
