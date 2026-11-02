@@ -88,16 +88,27 @@ const OTHER_EVENTS_BY_DATE: Record<string, EventScheduleItem[]> = {
     },
 
     {
+      time: "19:00",
+      endTime: "21:00",
+      category: "",
+      local: "Auditório da UEMS Aquidauana",
+      title: `Lançamento do Livro "Constituição e Jurisdição", 2ª Edição`,
+      person: "Prof. Dr. Acelino Rodrigues Carvalho",
+      bio: "Acelino Rodrigues Carvalho é doutor em Direito Público pela Unisinos (Universidade do Vale do Rio dos Sinos), com estágio doutoral na Universidade de Coimbra (Portugal). É mestre em Direito Processual e Cidadania pela Unipar (Universidade Paranaense) e especialista em Direito Processual Civil e em Direito Constitucional pela Unigran (Centro Universitário da Grande Dourados). É advogado e professor titular de Filosofia do Direito, Teoria da Constituição e Teoria do Processo na UEMS (Universidade Estadual de Mato Grosso do Sul).",
+      image: "/palestrantes/acelino-carvalho.jpg",
+      ig: "https://www.instagram.com/professoracelino/",
+    },
+
+    {
       time: "19:30",
       endTime: "21:00",
       category: "Palestra",
       local: "Auditório da UEMS Aquidauana",
-      title:
-        "Direito e complexidade na sociedade da informação: mídias sociais, IA e os limites da interpretação jurídica",
-      person: "Prof. Dr. Ulisses Schwarz Viana",
-      bio: "Doutor em Filosofia e Teoria Geral do Direito pela Faculdade de Direito da Universidade de São Paulo (USP). Mestre em Direito Constitucional pela Escola de Direito de Brasília do Instituto Brasiliense de Direito Público (IDP). Procurador do Estado de Mato Grosso do Sul (atuação junto ao STF e Tribunais Superiores). Membro da Comissão Especial de Defesa da Federação do Conselho Federal da OAB (CFOAB). Presidente da Câmara Técnica do CONPEG (Colégio Nacional de Procuradores-Gerais dos Estados e do DF). Professor do Programa de Mestrado e Doutorado Acadêmico em Direito da Escola de Direito de Brasília (EDB) do Instituto Brasiliense de Direito Público (IDP). Professor na Graduação e na Pós-graduação da Escola de Direito de Brasília (EDB) do Instituto Brasiliense de Direito Público. Professor de Direito Tributário na Pós-Graduação da Fundação Escola Superior do Ministério Público do Distrito Federal e Territórios. Pesquisador Visitante na Pennsylvania State University (Penn State University), Dickinson School of Law (2016).",
-      image: "/palestrantes/ulisses-schwarz.jpeg",
-      ig: "",
+      title: "Meio Ambiente Digital, Governança de Dados e Soberania de IA",
+      person: "Prof. Dr. Raphael Rios Chaia Jacob",
+      bio: "Advogado. Cursou pós-doutorado em Novas Tecnologias e Direito, pelo Mediterranea International Centre for Human Rights Research, da Università di Reggio Calabria, da Itália. Doutor em Desenvolvimento Local pela Universidade Católica Dom Bosco. Mestre em Direito Privado Europeu e Inteligência Artifical pela Università di Reggio Calabria, da Itália. Mestre em Desenvolvimento Local pela Universidade Católica Dom Bosco. Pós-Graduado em Direito Digital e Compliance pela Damásio Educacional. Pós-Graduado em Direito de Criptoativos e Blockchain pela Escola Superior da Magistratura Federal do Paraná - ESMAFEPR. Pós-Graduado em Direito Digital e Inteligência Artificial pela FAAP. Pós-Graduado em Direito Ambiental pela Universidade para o Desenvolvimento do Estado e da Região do Pantanal.",
+      image: "/palestrantes/raphael-chaia.jpeg",
+      ig: "https://www.instagram.com/raphaelchaia.adv",
     },
 
     {
