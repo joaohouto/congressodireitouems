@@ -61,14 +61,7 @@ export const SCIENCE_MEETING = {
       time: "14:00",
       endTime: "17:00",
       local: "Google Meet",
-      link: "",
-    },
-    {
-      date: "2026-11-06T00:00",
-      time: "14:00",
-      endTime: "17:00",
-      local: "Google Meet",
-      link: "",
+      link: "https://meet.google.com/tth-fjbn-bqb",
     },
   ],
 };

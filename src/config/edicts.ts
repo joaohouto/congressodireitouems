@@ -92,6 +92,12 @@ export const EDICTS_BY_YEAR: Record<string, Edital[]> = {
         "EDITAL DE DIVULGAÇÃO DOS TRABALHOS SELECIONADOS E CONVOCAÇÃO - III ENCONTRO CIENTÍFICO",
       url: "/editais/2026/Edital-de-Divulgação-dos-Trabalhos-Selecionados-e-Convocação-III-Encontro-Científico.pdf",
     },
+
+    {
+      title:
+        "EDITAL DE DIVULGAÇÃO DOS LINKS PARA APRESENTAÇÃO - III ENCONTRO CIENTÍFICO",
+      url: "/editais/2026/Edital-de-Divulgação-dos-Links-para-Apresentação-III-Encontro-Científico.pdf",
+    },
   ],
 
   "2025": [
