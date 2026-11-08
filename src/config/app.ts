@@ -33,17 +33,22 @@ export const appConfig = {
     lng: -55.66988,
   },
 
+  videoUrl: "/videos/iv-congresso.mp4",
+  videoTitle: "Resumo do IV Congresso Jurídico",
+  videoDescription: "Confira os melhores momentos do evento",
+
   instagram: "congressodireitouems",
   email: "nao-responda@joaocouto.com",
 
-  subscriptionForm: "https://forms.gle/RZ4NheTcy5HDLg628",
+  subscriptionForm: "",
   subscriptionStart: "2026-09-14T00:00",
   subscriptionEnd: "2026-11-03T23:59",
 
   showTheme: true,
   showDateAndPlace: true,
-  showSchedule: true,
-  showLocation: true,
+  showVideo: true,
+  showSchedule: false,
+  showLocation: false,
   showSponsors: false,
   allowGenerateTicket: true,
 };

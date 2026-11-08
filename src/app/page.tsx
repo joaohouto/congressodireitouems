@@ -44,6 +44,7 @@ import { Badge } from "@/components/ui/badge";
 
 import { appConfig, EVENT_SCHEDULE } from "../config/app";
 import { LocationCard } from "@/components/location-card";
+import { VideoCard } from "@/components/video-card";
 import { SponsorsBar } from "@/components/sponsors-bar";
 import { usePeriodCountdown } from "@/hooks/use-period-countdown";
 
@@ -294,6 +295,18 @@ export default function Page() {
 
           <div className="md:h-0 h-[400px]" />
         </header>
+
+        {appConfig.showVideo && (
+          <motion.div
+            variants={itemVariants}
+            initial="hidden"
+            animate="visible"
+            custom={5}
+            className="w-full flex flex-col items-center gap-6 mb-10"
+          >
+            <VideoCard />
+          </motion.div>
+        )}
 
         {appConfig.showSchedule && (
           <motion.div
