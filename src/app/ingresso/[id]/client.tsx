@@ -34,7 +34,7 @@ export const StoryPreview = ({ id }: { id: string }) => {
         };
 
         await navigator.share(data);
-      } catch (error) {
+      } catch {
         toast.error("Erro ao compartilhar o ingresso!");
       }
     } else {

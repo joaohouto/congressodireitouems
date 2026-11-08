@@ -16,7 +16,7 @@ export async function sendSubscriptionConfirmation({
   name,
   category,
 }: IConfirmation) {
-  const { data, error } = await resend.emails.send({
+  const { error } = await resend.emails.send({
     from: `${appConfig.shortTitle} <${appConfig.email}>`,
     to: email,
     subject: "Inscrição confirmada!",
